@@ -18,24 +18,54 @@ interface TimelineItem {
 
 const journeyData: TimelineItem[] = [
   {
-    year: 'Now',
-    title: 'Software Engineering Student',
-    company: 'Add your story here',
+    year: 'Aug. 2024 – May 2028',
+    title: 'B.S. Computer Science, Minor in Mathematics',
+    company: 'University of Mississippi',
     description:
-      'Placeholder: add a short description of what you are currently working on or studying.',
+      "GPA 3.87/4.0, Chancellor's Roll every semester, Sally McDonnell Barksdale Honors College (top 5%)."
+  },
+  {
+    year: 'Oct. 2024 – Apr. 2025',
+    title: 'Undergraduate Research Assistant',
+    company: 'UM Thad Cochran Research Center',
+    description:
+      'Programmed industrial robots (Wlkata, Epson) in Python and C++ for autonomous pharmaceutical preparation, cutting contamination risk by 85%. Built data pipelines with pandas, NumPy, and Matplotlib.'
+  },
+  {
+    year: 'Jul. 2025 – Present',
+    title: 'Computer Science Teaching Assistant',
+    company: 'University of Mississippi',
+    description:
+      'Guide 49+ students through OOP (Java), data structures, and algorithms; review and optimize 300+ programs weekly, improving code quality by 20%.'
+  },
+  {
+    year: 'Sept. 2025 – Oct. 2025',
+    title: 'NeuraBash',
+    company: 'Personal project',
+    description:
+      'Built a terminal-based AI coding assistant integrating GPT-4 and local LLMs (Ollama), with a modular CLI that cut RAM footprint by 30%.'
+  },
+  {
+    year: 'Nov. 2025',
+    title: 'ValueStop',
+    company: 'EmoryHacks 2025',
+    description:
+      'Built an AI-powered shopping navigator using the Gemini API and A* pathfinding, with a two-tier data architecture combining a pre-scraped database and real-time Playwright scraping.'
+  },
+  {
+    year: 'Jan. 2026 – Present',
+    title: 'Undergraduate Research Assistant, Distributed AI Systems',
+    company: 'University of Mississippi (Prof. Feng Wang) x University of Memphis',
+    description:
+      'Implement split-inference systems in PyTorch that partition DNN execution across device, edge, and cloud. Built a two-machine distributed inference pipeline over TCP, verified within 1e-4 of single-machine output, and profiled all 22 AlexNet split points across WiFi, LTE, and backhaul links.'
+  },
+  {
+    year: 'Jun. 2026 – Present',
+    title: 'Software Engineering Intern',
+    company: 'C Spire',
+    description:
+      'Handled 100+ weekly zero-payment errors in a production Perl billing flow, preventing batch-wide failures. Built a Python automation that auto-issues ServiceNow tickets for flagged accounts, saving on-call operators 30 minutes a day.',
     highlight: true
-  },
-  {
-    year: 'Add year',
-    title: 'Add your story here',
-    company: 'Add your story here',
-    description: 'Placeholder: add a previous role, project, or milestone.'
-  },
-  {
-    year: 'Add year',
-    title: 'Add your story here',
-    company: 'Add your story here',
-    description: 'Placeholder: add a previous role, project, or milestone.'
   }
 ];
 

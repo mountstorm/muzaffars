@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import MenuButton from '@/components/nav/menuButton';
 import React, { useState } from 'react';
 import NavLinks from '@/components/nav/NavLinks';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const links = [
   {
@@ -59,6 +60,7 @@ export default function Menu() {
           {isActive && (
             <div className="box-border flex h-full flex-col justify-between p-[100px_40px_50px]">
               <NavLinks links={links} setIsActive={setIsActive} />
+              <ThemeToggle className="self-start text-background" />
             </div>
           )}
         </AnimatePresence>

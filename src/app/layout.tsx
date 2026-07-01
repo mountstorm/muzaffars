@@ -33,9 +33,18 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          // Set the theme class synchronously before hydration to avoid a flash of
+          // incorrect theme / hydration mismatch.
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var stored=localStorage.getItem('theme');var isDark=stored?stored==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',isDark);}catch(e){}})();`
+          }}
+        />
+      </head>
       <SpeedInsights />
-      <body className="overflow-scroll overflow-x-hidden">
+      <body className="overflow-scroll overflow-x-hidden" suppressHydrationWarning>
         <Animations>
           <main>
             <Header />

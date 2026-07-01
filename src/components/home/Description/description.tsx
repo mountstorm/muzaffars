@@ -6,13 +6,13 @@ import Link from 'next/link';
 
 export default function Description() {
   const phrase1 =
-    'A software engineer with a passion for innovation and\n' +
-    'cutting-edge technology.\n\n ';
+    'A computer science student building software that spans\n' +
+    'devices, edges, and the cloud.\n\n ';
 
   const phrase2 =
-    'Currently based in Oxford, MS, exploring the space between ' +
-    'code and design. I enjoy building things end-to-end and learning ' +
-    'by shipping.';
+    'Currently based in Oxford, MS, studying CS and math at Ole Miss ' +
+    'while researching distributed AI systems. I enjoy building things ' +
+    'end-to-end and learning by shipping.';
   const description = useRef(null);
   const isInView = useInView(description);
 
@@ -61,8 +61,8 @@ export default function Description() {
           animate={isInView ? 'open' : 'closed'}
           className="m-0 pb-3 font-light sm:text-lg"
         >
-          Add your current role or focus here — e.g. student, intern,
-          builder of side projects.
+          Software Engineering Intern @ C Spire, and undergraduate CS
+          researcher at Ole Miss working on distributed AI systems.
         </motion.p>
         <motion.p
           variants={opacity}

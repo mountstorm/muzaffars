@@ -70,8 +70,8 @@ export default function ContactInfo() {
 
         <div className="mt-20 flex flex-col justify-between p-5 2xs:mt-52 sm:mx-[100px] sm:mt-48 sm:flex-row">
           <p className="min-w-screen mb-5 text-base sm:max-w-xs">
-            Software engineer & CS student based in Oxford, MS. Interested in
-            building thoughtful, well-crafted software.
+            CS student at Ole Miss and Software Engineering Intern at C Spire,
+            researching distributed AI systems. Based in Oxford, MS.
           </p>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">
@@ -96,24 +96,16 @@ export default function ContactInfo() {
               </h3>
               <Magnetic>
                 <Link
-                  href="https://twitter.com/yourusername"
+                  href="https://github.com/mountstorm"
                   className={animatedUnderlineStyle}
                 >
-                  Twitter
+                  Github
                 </Link>
               </Magnetic>
             </span>
             <Magnetic>
               <Link
-                href="https://github.com/yourusername"
-                className={animatedUnderlineStyle}
-              >
-                Github
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <Link
-                href="https://www.linkedin.com/in/yourusername/"
+                href="https://www.linkedin.com/in/muzaffar-"
                 className={animatedUnderlineStyle}
               >
                 Linkedin

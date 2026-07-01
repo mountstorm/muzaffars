@@ -1,53 +1,47 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import ProjectLink from '@/app/projects/projectLink';
+import { ProjectCard } from '@/components/ui/ProjectCard';
 import Layout from '@/components/layout';
 
-// Placeholder projects — replace with real case studies.
+// Real projects from resume. Live/demo URLs are unconfirmed — hrefs below are
+// best-guess GitHub links under github.com/mountstorm and should be swapped
+// for the real repo/demo URL once available.
 const projects = [
   {
-    title: 'Project One',
-    src: 'm31/controller.jpg',
-    points: ['Placeholder stack: e.g. React, Node', 'What it does in one line', 'Your role / key contribution'],
-    href: '/projects/m31',
-    tag: 'Placeholder',
-    color: '#000000'
+    id: 'neurabash',
+    title: 'NeuraBash',
+    description:
+      'Terminal-based AI coding assistant integrating GPT-4 and local LLMs (Ollama) for online/offline inference, repo analysis, and code explanation.',
+    imagePath: '/images/m31/controller.jpg',
+    link: 'https://github.com/mountstorm/neurabash', // best-guess placeholder — update with real repo link
+    tags: ['Python', 'Bash', 'OpenAI GPT-4', 'Ollama']
   },
   {
-    title: 'Project Two',
-    src: 'axo/astronaut-square.png',
-    points: ['Placeholder stack: e.g. Next.js, Python', 'What it does in one line', 'Your role / key contribution'],
-    href: '/projects/axo',
-    tag: 'Placeholder',
-    color: '#ee5622'
-  },
-  {
-    title: 'Project Three',
-    points: ['Placeholder stack: e.g. TypeScript, Figma', 'What it does in one line', 'Your role / key contribution'],
-    src: 'astra/astra.png',
-    href: '/projects/astra',
-    tag: 'Placeholder',
-    color: '#303030'
+    id: 'valuestop',
+    title: 'ValueStop',
+    description:
+      'EmoryHacks 2025 project — AI-powered shopping navigator that optimizes multi-store routes using the Gemini API and A* pathfinding.',
+    imagePath: '/images/axo/astronaut-square.png',
+    link: 'https://github.com/mountstorm/valuestop', // best-guess placeholder — update with real repo link
+    tags: ['React', 'Vite', 'Gemini API', 'Google Maps API', 'Firestore']
   }
 ];
 
 export default function ProjectsHome() {
   return (
     <Layout title={'My Work'}>
-      <div className="m-0">
-        <div className="m-0 overflow-hidden">
+      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {projects.map((project, index) => (
-            <Link href={project.href} key={index}>
-              <ProjectLink
-                title={project.title}
-                tag={project.tag}
-                points={project.points}
-                src={project.src}
-                color={project.color}
-              />
-            </Link>
+            <ProjectCard
+              key={project.id}
+              {...project}
+              index={index}
+              external
+              animated
+              buttonText="View on GitHub"
+            />
           ))}
         </div>
       </div>

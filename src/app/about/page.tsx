@@ -51,10 +51,10 @@ export default function About() {
             <div className="space-y-8 lg:col-span-3">
               <AnimatedSection animation="fade-up">
                 <TextReveal
-                  text="Software engineer and CS student based in Oxford, MS. Interested in building thoughtful, well-crafted products and learning new things along the way."
+                  text="Computer science student at the University of Mississippi, minoring in math, and an undergraduate researcher working on distributed AI systems. Currently a Software Engineering Intern at C Spire."
                   className="text-xl font-medium leading-relaxed text-foreground/90 sm:text-2xl"
                   as="p"
-                  highlightWords={['software', 'Oxford']}
+                  highlightWords={['mississippi,', 'distributed', 'c']}
                   scrub={false}
                 />
               </AnimatedSection>
@@ -65,8 +65,12 @@ export default function About() {
                     What I'm Into
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    Add your story here. (Placeholder: a short note on the
-                    kinds of problems you like to work on.)
+                    I like problems that span layers — from billing systems
+                    processing thousands of records a week, to splitting a
+                    neural network across a phone, an edge server, and the
+                    cloud. Right now that means researching split-inference
+                    systems with Prof. Feng Wang, in collaboration with the
+                    University of Memphis.
                   </p>
                 </div>
               </AnimatedSection>
@@ -77,8 +81,11 @@ export default function About() {
                     Beyond Code
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    Add your story here. (Placeholder: hobbies, interests, or
-                    activities outside of software.)
+                    Outside of research and my internship, I TA core CS
+                    courses at Ole Miss, guiding 49+ students through
+                    object-oriented programming, data structures, and
+                    algorithms, and I build side projects at hackathons like
+                    EmoryHacks.
                   </p>
                 </div>
               </AnimatedSection>
@@ -97,8 +104,11 @@ export default function About() {
                   <span className="font-semibold text-foreground">
                     Oxford, MS
                   </span>
-                  . Add your story here. (Placeholder: education background
-                  and any recognitions go here.)
+                  , pursuing a B.S. in Computer Science with a minor in
+                  Mathematics at the University of Mississippi (Aug. 2024 –
+                  May 2028). 3.87/4.0 GPA, Chancellor&apos;s Roll every
+                  semester, and a member of the Sally McDonnell Barksdale
+                  Honors College (top 5%).
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
@@ -144,7 +154,7 @@ export default function About() {
             <section className="py-16">
               <AnimatedSection animation="fade-up">
                 <Link
-                  href="https://github.com/yourusername"
+                  href="https://github.com/mountstorm"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block transition-transform hover:scale-[1.01]"

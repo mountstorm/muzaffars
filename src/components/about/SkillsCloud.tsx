@@ -9,39 +9,70 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface Skill {
   name: string;
-  category: 'frontend' | 'backend' | 'web3' | 'design' | 'other';
+  category: 'languages' | 'frameworks' | 'systems' | 'concepts' | 'certifications';
 }
 
 const skills: Skill[] = [
-  { name: 'React', category: 'frontend' },
-  { name: 'Next.js', category: 'frontend' },
-  { name: 'TypeScript', category: 'frontend' },
-  { name: 'Tailwind CSS', category: 'frontend' },
-  { name: 'GSAP', category: 'frontend' },
-  { name: 'Framer Motion', category: 'frontend' },
-  { name: 'Node.js', category: 'backend' },
-  { name: 'PostgreSQL', category: 'backend' },
-  { name: 'GraphQL', category: 'backend' },
-  { name: 'Solidity', category: 'web3' },
-  { name: 'Web3.js', category: 'web3' },
-  { name: 'DeFi', category: 'web3' },
-  { name: 'Figma', category: 'design' },
-  { name: 'Product Design', category: 'design' },
-  { name: 'AI/ML', category: 'other' },
-  { name: 'OpenAI', category: 'other' },
-  { name: 'DevRel', category: 'other' },
-  { name: 'Public Speaking', category: 'other' }
+  // Languages
+  { name: 'Java', category: 'languages' },
+  { name: 'Python', category: 'languages' },
+  { name: 'C++', category: 'languages' },
+  { name: 'C', category: 'languages' },
+  { name: 'JavaScript', category: 'languages' },
+  { name: 'TypeScript', category: 'languages' },
+  { name: 'Perl', category: 'languages' },
+  { name: 'SQL', category: 'languages' },
+  { name: 'Bash', category: 'languages' },
+  // Frameworks & tools
+  { name: 'Spring Boot', category: 'frameworks' },
+  { name: 'Node.js', category: 'frameworks' },
+  { name: 'Next.js', category: 'frameworks' },
+  { name: 'Flask', category: 'frameworks' },
+  { name: 'LangChain', category: 'frameworks' },
+  { name: 'Vite', category: 'frameworks' },
+  { name: 'Git', category: 'frameworks' },
+  { name: 'Docker', category: 'frameworks' },
+  { name: 'Kubernetes', category: 'frameworks' },
+  { name: 'AWS (EC2)', category: 'frameworks' },
+  { name: 'Firebase', category: 'frameworks' },
+  { name: 'ServiceNow', category: 'frameworks' },
+  { name: 'PyTorch', category: 'frameworks' },
+  { name: 'Ollama', category: 'frameworks' },
+  { name: 'Claude Code', category: 'frameworks' },
+  { name: 'Cursor', category: 'frameworks' },
+  // Systems & platforms
+  { name: 'Linux', category: 'systems' },
+  { name: 'RHEL', category: 'systems' },
+  { name: 'Billing Systems', category: 'systems' },
+  { name: 'Production Support', category: 'systems' },
+  // Concepts
+  { name: 'Microservices', category: 'concepts' },
+  { name: 'Distributed Systems', category: 'concepts' },
+  { name: 'REST APIs', category: 'concepts' },
+  { name: 'Workflow Automation', category: 'concepts' },
+  { name: 'Prompt Engineering', category: 'concepts' },
+  { name: 'pandas', category: 'concepts' },
+  { name: 'NumPy', category: 'concepts' },
+  { name: 'pytest', category: 'concepts' },
+  { name: 'Relational Databases', category: 'concepts' },
+  { name: 'Algorithms', category: 'concepts' },
+  { name: 'Edge Computing', category: 'concepts' },
+  { name: 'Workload Partitioning', category: 'concepts' },
+  // Certifications
+  { name: 'AWS Generative AI Applications', category: 'certifications' },
+  { name: 'IBM Data Analysis Professional', category: 'certifications' }
 ];
 
 const categoryColors: Record<string, string> = {
-  frontend:
+  languages:
     'bg-blue-600/15 text-blue-800 border-blue-600/30 hover:bg-blue-600/25',
-  backend:
+  frameworks:
     'bg-green-600/15 text-green-800 border-green-600/30 hover:bg-green-600/25',
-  web3: 'bg-purple-600/15 text-purple-800 border-purple-600/30 hover:bg-purple-600/25',
-  design:
+  systems:
+    'bg-purple-600/15 text-purple-800 border-purple-600/30 hover:bg-purple-600/25',
+  concepts:
     'bg-slate-600/15 text-slate-800 border-slate-600/30 hover:bg-slate-600/25',
-  other:
+  certifications:
     'bg-amber-600/15 text-amber-800 border-amber-600/30 hover:bg-amber-600/25'
 };
 

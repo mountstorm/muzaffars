@@ -1,6 +1,6 @@
 import React from 'react';
 
-const roles = ['Software Engineer', 'Builder', 'Problem Solver'];
+const roles = ['Software Engineer', 'CS Researcher', "Ole Miss '28"];
 
 export default function Hero() {
   return (

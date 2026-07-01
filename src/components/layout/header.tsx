@@ -9,6 +9,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useIsMobile } from '@/components/util';
 import Magnetic from '@/components/animations/magnetic';
 import Image from 'next/image';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 export default function Header() {
   const header = useRef(null);
@@ -110,6 +111,11 @@ export default function Header() {
                   <Link href={'/contact'}>Contact</Link>
                   <ArrowUpRight size={18} />
                 </div>
+              </Magnetic>
+            </div>
+            <div className="relative z-10 flex items-center p-3">
+              <Magnetic>
+                <ThemeToggle className="text-white" />
               </Magnetic>
             </div>
           </div>

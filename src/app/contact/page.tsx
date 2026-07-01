@@ -50,7 +50,7 @@ export default function Contact() {
           </div>
           <div className="flex justify-between uppercase">
             <p className="m-0">Oxford, MS </p>
-            <Link href={'https://www.linkedin.com/in/yourusername/'}>
+            <Link href={'https://www.linkedin.com/in/muzaffar-'}>
               <TextDisperse setBackground={setBackground}>
                 <p>→Linkedin</p>
               </TextDisperse>
@@ -70,7 +70,7 @@ export default function Contact() {
               <p className="m-0">→Email</p>
             </TextDisperse>
 
-            <Link href={'https://github.com/yourusername'}>
+            <Link href={'https://github.com/mountstorm'}>
               <TextDisperse setBackground={setBackground}>
                 <p>→Github</p>
               </TextDisperse>
