@@ -10,9 +10,9 @@ export default function Description() {
     'cutting-edge technology.\n\n ';
 
   const phrase2 =
-    'Particularly interested in the intersection of art, design, and ' +
-    'software. I believe that these disciplines can be combined to ' +
-    'create truly transformative experiences.';
+    'Currently based in Oxford, MS, exploring the space between ' +
+    'code and design. I enjoy building things end-to-end and learning ' +
+    'by shipping.';
   const description = useRef(null);
   const isInView = useInView(description);
 
@@ -61,17 +61,16 @@ export default function Description() {
           animate={isInView ? 'open' : 'closed'}
           className="m-0 pb-3 font-light sm:text-lg"
         >
-          Currently the founding full stack software engineer @Catapult a DeFi
-          startup.
+          Add your current role or focus here — e.g. student, intern,
+          builder of side projects.
         </motion.p>
         <motion.p
           variants={opacity}
           animate={isInView ? 'open' : 'closed'}
           className="m-0 text-lg font-light"
         >
-          My projects have received multiple awards in the past, and I am always
-          looking for new and innovative ways to use my skills to make a
-          positive impact on the world.
+          Always looking for new and interesting ways to use my skills to
+          build useful, well-crafted software.
         </motion.p>
         <div data-scroll-speed={0.1}>
           <Link href={'/about'}>

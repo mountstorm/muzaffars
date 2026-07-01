@@ -1,14 +1,33 @@
 import React from 'react';
 
+const roles = ['Software Engineer', 'Builder', 'Problem Solver'];
+
 export default function Hero() {
   return (
-    <div className="relative flex min-h-screen w-full items-center bg-foreground align-middle">
-      <iframe
-        src="https://player.vimeo.com/video/362997602?autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&controls=0"
-        className="pointer-events-none aspect-video h-full w-full"
-        allow="autoplay; fullscreen"
-        allowFullScreen
-      ></iframe>
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-8 overflow-hidden bg-foreground px-6 text-center align-middle">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          background:
+            'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 45%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 40%)'
+        }}
+      />
+      <p className="relative z-10 text-sm uppercase tracking-[0.4em] text-white/60 sm:text-base">
+        Hi, I&apos;m
+      </p>
+      <h1 className="relative z-10 text-[15vw] font-semibold leading-[0.9] text-white sm:text-[10vw]">
+        Muzaffar
+      </h1>
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-3 text-white/70">
+        {roles.map((role, index) => (
+          <React.Fragment key={role}>
+            <span className="text-lg sm:text-2xl">{role}</span>
+            {index < roles.length - 1 && (
+              <span className="text-lg text-white/30 sm:text-2xl">/</span>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 }

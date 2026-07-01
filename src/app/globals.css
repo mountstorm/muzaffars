@@ -16,8 +16,8 @@
     --primary: 210 100% 56%; /* 1f8fff Dodger blue */
     --primary-foreground: 60 9.1% 97.8%;
 
-    --secondary: 282, 100%, 81%; /*  e2a0ff / 332 93% 67%; f95ca4 brilliant rose / 332 92% 80% fb9dc9 carnation pink*/
-    --secondary-foreground: 24 9.8% 10%; /* 1c197 eerie black */
+    --secondary: 205 45% 35%; /* 2d5a7a steel blue */
+    --secondary-foreground: 0 0% 100%; /* white */
 
     --muted: 293 33% 91%; /* eddfef pale purple */
     --muted-foreground: 25 5.3% 44.7%;
@@ -46,8 +46,8 @@
     --primary: 210 100% 56%;
     --primary-foreground: 60 9.1% 97.8%;
 
-    --secondary: 282, 100%, 81%;
-    --secondary-foreground: 24 9.8% 10%;
+    --secondary: 205 45% 35%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 293 33% 91%;
     --muted-foreground: 25 5.3% 44.7%;

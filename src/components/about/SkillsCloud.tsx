@@ -40,7 +40,7 @@ const categoryColors: Record<string, string> = {
     'bg-green-600/15 text-green-800 border-green-600/30 hover:bg-green-600/25',
   web3: 'bg-purple-600/15 text-purple-800 border-purple-600/30 hover:bg-purple-600/25',
   design:
-    'bg-pink-600/15 text-pink-800 border-pink-600/30 hover:bg-pink-600/25',
+    'bg-slate-600/15 text-slate-800 border-slate-600/30 hover:bg-slate-600/25',
   other:
     'bg-amber-600/15 text-amber-800 border-amber-600/30 hover:bg-amber-600/25'
 };

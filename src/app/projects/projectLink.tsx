@@ -1,33 +1,46 @@
 'use client';
-import React, { useContext } from 'react';
-import { ModalContext } from '@/app/projects/modalContext';
+import React from 'react';
+import Image from 'next/image';
 
 interface Props {
-  index: number;
   title: string;
   tag: string;
+  points: string[];
+  src: string;
+  color: string;
 }
 
-export default function ProjectLink({ index, title, tag }: Props) {
-  const { setModal } = useContext(ModalContext);
-
+export default function ProjectLink({ title, tag, points, src, color }: Props) {
   return (
     <div
-      onMouseEnter={() => {
-        setModal({ active: true, index });
-      }}
-      onMouseLeave={() => {
-        setModal({ active: false, index });
-      }}
-      className="align-center flex w-full cursor-pointer justify-between border-b border-b-gray-600
-      px-5 py-10 transition-all duration-200 hover:opacity-50"
+      className="flex w-full flex-col items-start justify-between gap-6 border-b border-b-gray-600 px-4 py-8 transition-all duration-200 hover:opacity-80 sm:flex-row sm:items-center sm:gap-10 sm:px-5 sm:py-10"
     >
-      <h2 className="m-0 text-xl font-normal transition-all duration-300 hover:translate-x-[-10px] lg:text-6xl">
-        {title}
-      </h2>
-      <p className="text-sm font-light transition-all duration-300 hover:translate-x-[10px]">
-        {tag}
-      </p>
+      <div className="flex flex-1 flex-col gap-3">
+        <div className="flex flex-wrap items-baseline gap-3">
+          <h2 className="m-0 text-2xl font-normal sm:text-4xl lg:text-5xl">
+            {title}
+          </h2>
+          <span className="text-xs font-light uppercase tracking-widest text-gray-400 sm:text-sm">
+            {tag}
+          </span>
+        </div>
+        <ul className="m-0 flex list-none flex-col gap-1 p-0 text-sm font-light text-gray-300 sm:text-base">
+          {points.map((point) => (
+            <li key={point}>• {point}</li>
+          ))}
+        </ul>
+      </div>
+      <div
+        className="relative h-32 w-full shrink-0 overflow-hidden rounded-lg sm:h-28 sm:w-40 lg:h-32 lg:w-48"
+        style={{ backgroundColor: color }}
+      >
+        <Image
+          src={`/images/${src}`}
+          alt={`${title} preview`}
+          fill
+          className="object-cover"
+        />
+      </div>
     </div>
   );
 }

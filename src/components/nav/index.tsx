@@ -22,10 +22,6 @@ const links = [
     href: '/gallery'
   },
   {
-    title: 'blog',
-    href: '/blog'
-  },
-  {
     title: 'contact',
     href: '/contact'
   }

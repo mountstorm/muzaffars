@@ -4,11 +4,11 @@ import { MutableRefObject, useEffect, useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const creativity = 'Creativity ';
-const is = 'is ';
-const my = 'my ';
-const craft = 'craft';
-const sentence3 = 'abstract thinking is my passion';
+const creativity = 'Curiosity ';
+const is = 'drives ';
+const my = 'what ';
+const craft = 'I build';
+const sentence3 = 'code, design, and a bit of chaos';
 
 function getRandomSpeed() {
   const randomDecimal = Math.random();

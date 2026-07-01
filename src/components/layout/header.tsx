@@ -6,7 +6,7 @@ import gsap from 'gsap';
 import Menu from '../nav';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { isMobile } from '@/components/util';
+import { useIsMobile } from '@/components/util';
 import Magnetic from '@/components/animations/magnetic';
 import Image from 'next/image';
 
@@ -15,6 +15,7 @@ export default function Header() {
   const [isActive, setIsActive] = useState(false);
   const pathname = usePathname();
   const button = useRef(null);
+  const mobile = useIsMobile();
 
   useEffect(() => {
     if (isActive) setIsActive(false);
@@ -62,7 +63,7 @@ export default function Header() {
                 priority
               />
             </Magnetic>
-            {!isMobile() && (
+            {!mobile && (
               <>
                 <div className="hover:rotate-[360deg]">©</div>
                 <div className="relative flex overflow-hidden">
@@ -84,7 +85,7 @@ export default function Header() {
             )}
           </Link>
         </div>
-        {!isMobile() && (
+        {!mobile && (
           <div className="flex flex-1 items-center justify-between font-semibold">
             <div className="group relative z-10 flex cursor-pointer flex-col p-3">
               <div className="flex flex-col">
@@ -101,9 +102,6 @@ export default function Header() {
                 <Magnetic>
                   <Link href={'/gallery'}>Gallery</Link>
                 </Magnetic>
-                <Magnetic>
-                  <Link href={'/blog'}>Blog</Link>
-                </Magnetic>
               </div>
             </div>
             <div className="group relative z-10 flex cursor-pointer flex-col p-3">
@@ -117,12 +115,12 @@ export default function Header() {
           </div>
         )}
       </div>
-      {!isMobile() && (
+      {!mobile && (
         <div ref={button} className="fixed right-0 z-20 scale-0 transform">
           <Menu />
         </div>
       )}
-      {isMobile() && (
+      {mobile && (
         <div className="fixed right-2 z-20 transform">
           <Menu />
         </div>

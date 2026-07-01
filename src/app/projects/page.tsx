@@ -1,18 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import ProjectLink from '@/app/projects/projectLink';
-import Modal from '@/app/projects/project/modal';
 import Layout from '@/components/layout';
-import { ModalContext } from './modalContext';
 
 // Placeholder projects — replace with real case studies.
 const projects = [
   {
     title: 'Project One',
     src: 'm31/controller.jpg',
-    description: 'Placeholder description for Project One.',
+    points: ['Placeholder stack: e.g. React, Node', 'What it does in one line', 'Your role / key contribution'],
     href: '/projects/m31',
     tag: 'Placeholder',
     color: '#000000'
@@ -20,14 +18,14 @@ const projects = [
   {
     title: 'Project Two',
     src: 'axo/astronaut-square.png',
-    description: 'Placeholder description for Project Two.',
+    points: ['Placeholder stack: e.g. Next.js, Python', 'What it does in one line', 'Your role / key contribution'],
     href: '/projects/axo',
     tag: 'Placeholder',
     color: '#ee5622'
   },
   {
     title: 'Project Three',
-    description: 'Placeholder description for Project Three.',
+    points: ['Placeholder stack: e.g. TypeScript, Figma', 'What it does in one line', 'Your role / key contribution'],
     src: 'astra/astra.png',
     href: '/projects/astra',
     tag: 'Placeholder',
@@ -36,27 +34,23 @@ const projects = [
 ];
 
 export default function ProjectsHome() {
-  const [modal, setModal] = useState({ active: false, index: 0 });
   return (
-    <ModalContext.Provider value={{ modal, setModal }}>
-      <Layout title={'My Work'}>
-        <div className="m-0">
-          <div className="m-0 overflow-hidden">
-            {projects.map((project, index) => {
-              return (
-                <Link href={project.href} key={index}>
-                  <ProjectLink
-                    index={index}
-                    title={project.title}
-                    tag={project.tag}
-                  />
-                </Link>
-              );
-            })}
-          </div>
-          <Modal projects={projects} />
+    <Layout title={'My Work'}>
+      <div className="m-0">
+        <div className="m-0 overflow-hidden">
+          {projects.map((project, index) => (
+            <Link href={project.href} key={index}>
+              <ProjectLink
+                title={project.title}
+                tag={project.tag}
+                points={project.points}
+                src={project.src}
+                color={project.color}
+              />
+            </Link>
+          ))}
         </div>
-      </Layout>
-    </ModalContext.Provider>
+      </div>
+    </Layout>
   );
 }
