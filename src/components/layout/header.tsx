@@ -114,9 +114,7 @@ export default function Header() {
               </Magnetic>
             </div>
             <div className="relative z-10 flex items-center p-3">
-              <Magnetic>
-                <ThemeToggle className="text-white" />
-              </Magnetic>
+              <ThemeToggle className="text-white" />
             </div>
           </div>
         )}
