@@ -58,7 +58,7 @@ export default function Header() {
                 height={32}
                 width={32}
                 src="/images/logo.jpg"
-                alt="Bettinas logo"
+                alt="Muzaffar Khaydarov logo"
                 priority
               />
             </Magnetic>
@@ -70,14 +70,14 @@ export default function Header() {
                     coded by
                   </div>
                   <div className="ease-custom-cubic px-1 transition-transform duration-500 group-hover:translate-x-[-65px]">
-                    Bettina
+                    Muzaffar
                   </div>
 
                   <div
                     className="ease-custom-cubic
               translate-x-full transition-transform duration-500 group-hover:translate-x-[-65px]"
                   >
-                    Sosa
+                    Khaydarov
                   </div>
                 </div>
               </>

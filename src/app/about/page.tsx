@@ -39,7 +39,7 @@ export default function About() {
               <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl">
                 <Image
                   src="/images/profile2.jpg"
-                  alt="Bettina"
+                  alt="Muzaffar Khaydarov"
                   fill
                   className="object-cover object-top"
                   priority
@@ -51,10 +51,10 @@ export default function About() {
             <div className="space-y-8 lg:col-span-3">
               <AnimatedSection animation="fade-up">
                 <TextReveal
-                  text="Design engineer turned software engineer. I approach engineering through a design lens, interested in both the technical architecture and the human experience."
+                  text="Software engineer and CS student based in Oxford, MS. Interested in building thoughtful, well-crafted products and learning new things along the way."
                   className="text-xl font-medium leading-relaxed text-foreground/90 sm:text-2xl"
                   as="p"
-                  highlightWords={['design', 'human']}
+                  highlightWords={['software', 'Oxford']}
                   scrub={false}
                 />
               </AnimatedSection>
@@ -62,11 +62,11 @@ export default function About() {
               <AnimatedSection animation="fade-up" delay={0.1}>
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-foreground">
-                    My Superpower
+                    What I'm Into
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    Taking abstract ideas and turning them into tangible,
-                    scalable products that people actually want to use.
+                    Add your story here. (Placeholder: a short note on the
+                    kinds of problems you like to work on.)
                   </p>
                 </div>
               </AnimatedSection>
@@ -77,10 +77,8 @@ export default function About() {
                     Beyond Code
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    I speak at IRL developer events, I write technical posts,
-                    run hands-on workshops, and run a devRel Guild. I thrive at
-                    the intersection of technical depth, creative
-                    problem-solving, and community building.
+                    Add your story here. (Placeholder: hobbies, interests, or
+                    activities outside of software.)
                   </p>
                 </div>
               </AnimatedSection>
@@ -95,30 +93,19 @@ export default function About() {
                   Education & Recognition
                 </h2>
                 <p className="mb-6 text-foreground/70">
-                  At{' '}
+                  Based in{' '}
                   <span className="font-semibold text-foreground">
-                    Imperial College London
+                    Oxford, MS
                   </span>
-                  , I studied design engineering, a unique program bridging
-                  creative thinking, design, and engineering, teaching us the
-                  full process of building a technical product from concept to
-                  launch.
+                  . Add your story here. (Placeholder: education background
+                  and any recognitions go here.)
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
-                    href="/projects/m31"
+                    href="/projects"
                     className="group inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-600 transition-all hover:bg-amber-500/20"
                   >
-                    🏆 Andromeda — Creative Conscience Gold
-                    <span className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </Link>
-                  <Link
-                    href="/projects/axo"
-                    className="group inline-flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-600 transition-all hover:bg-pink-500/20"
-                  >
-                    🏛️ AxoWear — Design Museum London
+                    See projects
                     <span className="transition-transform group-hover:translate-x-1">
                       →
                     </span>
@@ -157,7 +144,7 @@ export default function About() {
             <section className="py-16">
               <AnimatedSection animation="fade-up">
                 <Link
-                  href="https://github.com/bettinasosa"
+                  href="https://github.com/yourusername"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block transition-transform hover:scale-[1.01]"

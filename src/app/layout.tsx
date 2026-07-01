@@ -11,8 +11,20 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Bettina's portfolio",
-  description: 'Bettina is a software engineer and designer.'
+  title: 'Muzaffar Khaydarov — Portfolio',
+  description: 'Software engineer & builder. Portfolio, projects, and writing.',
+  authors: [{ name: 'Muzaffar Khaydarov' }],
+  openGraph: {
+    title: 'Muzaffar Khaydarov — Portfolio',
+    description: 'Software engineer & builder. Portfolio, projects, and writing.',
+    siteName: 'Muzaffar Khaydarov — Portfolio',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Muzaffar Khaydarov — Portfolio',
+    description: 'Software engineer & builder. Portfolio, projects, and writing.'
+  }
 };
 
 export default function RootLayout({

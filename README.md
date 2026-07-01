@@ -6,12 +6,11 @@
 [![Deployed on Vercel](https://img.shields.io/badge/deployed%20on-Vercel-000000)](https://vercel.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Vercel Deploy](https://deploy-badge.vercel.app/?url=http://www.nextjs.org/&bettinasosa=bettinasosa.com)](https://vercel.com)
-[![Portfolio](https://img.shields.io/badge/link%20to%20website-8A2BE2)](https://www.bettinasosa.com)
+[![Portfolio](https://img.shields.io/badge/link%20to%20website-8A2BE2)](https://github.com/yourusername)
 
 </div>
 
-<a href="https://www.bettinasosa.com">Visit my portfolio website</a>
+This is Muzaffar Khaydarov's personal portfolio website.
 
 ## Features:
 

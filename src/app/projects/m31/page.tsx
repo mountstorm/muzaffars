@@ -16,15 +16,12 @@ export default function M31Project() {
     '/images/m31/specs.png'
   ];
   const introduction =
-    'Andromeda is a new audio-tactile gaming system that promotes socially inclusive play between visually impaired and sighted individuals. ' +
-    'It expands the non-visual output of existing games, opening up the possibility for ' +
-    'people with severe visual impairments to explore digital spaces and experience games.';
+    'Placeholder description for Project One. This is a placeholder ' +
+    'project page reusing the existing layout to demonstrate the site structure — ' +
+    'replace this copy with a real project write-up.';
 
-  const description = 'Explore Worlds Through Feel and Sound';
-  const myRole =
-    'As a designer and full stack software engineer, I was involved in the project,' +
-    'from the initial concept to the final launch. I worked closely with the team to develop the overall aesthetics,' +
-    'brand identity, and UI/UX design of the product, as well as the engineering behind the audio-tactile gaming system.';
+  const description = 'Placeholder Project';
+  const myRole = 'Placeholder description of the role and approach for this project.';
 
   return (
     <div className="bg-foreground">
@@ -32,10 +29,10 @@ export default function M31Project() {
         description={myRole}
         media={'https://www.youtube.com/embed/bXaLimCtK50'}
         isImage={false}
-        title={'M31'}
+        title={'Project One'}
       />
       <PageScrollParallax
-        title={'Expanding the Non-Visual Output of Games'}
+        title={'Placeholder Project Title'}
         body={introduction}
         word={description}
         staticImgs={[Picture1, Picture2, Picture3]}

@@ -5,50 +5,31 @@ import Layout from '@/components/layout';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 
 // Gallery items data
+// Placeholder gallery items — replace with real project visuals/links.
 const galleryItems = [
   {
-    id: 'onethoughtaday',
-    title: 'One Thought A Day',
-    description:
-      'A minimalist journaling application with elegant typography - personal project',
+    id: 'placeholder-one',
+    title: 'Project One',
+    description: 'Placeholder description for a future project.',
     imagePath: '/images/onethoughtaday/homepage.png',
-    link: 'https://www.onethoughtaday.com',
-    tags: ['UI/UX Design', 'Minimalism']
+    link: '#',
+    tags: ['Placeholder']
   },
   {
-    id: 'walletcon',
-    title: 'WalletCon',
-    description:
-      'Annual conference for the WalletConnect ecosystem in Cannes, France - fully built and maintained by me',
+    id: 'placeholder-two',
+    title: 'Project Two',
+    description: 'Placeholder description for a future project.',
     imagePath: '/images/gallery/walletcon.png',
-    link: 'https://www.walletcon.com',
-    tags: ['Web3', 'Event']
+    link: '#',
+    tags: ['Placeholder']
   },
   {
-    id: 'walletconnect',
-    title: 'WalletConnect Network',
-    description:
-      'The connectivity layer for the financial internet, powering 700+ wallets and 70K+ apps - full-stack engineer',
-    imagePath: '/images/gallery/walletconnect.png',
-    link: 'https://walletconnect.com',
-    tags: ['Web3', 'Infrastructure']
-  },
-  {
-    id: 'reown',
-    title: 'Reown',
-    description:
-      'Infrastructure for onchain finance — from DeFi and payments to enterprises - full-stack engineer',
+    id: 'placeholder-three',
+    title: 'Project Three',
+    description: 'Placeholder description for a future project.',
     imagePath: '/images/gallery/reown.png',
-    link: 'https://reown.com',
-    tags: ['Web3', 'DeFi']
-  },
-  {
-    id: 'hivemind',
-    title: 'Hivemind',
-    description: 'AI-powered crypto marketing strategist (beta) - CTO',
-    imagePath: '/images/gallery/hivemind.png',
-    link: 'https://hivemind.myosin.xyz',
-    tags: ['AI', 'Marketing']
+    link: '#',
+    tags: ['Placeholder']
   }
 ];
 

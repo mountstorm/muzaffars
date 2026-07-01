@@ -19,49 +19,23 @@ interface TimelineItem {
 const journeyData: TimelineItem[] = [
   {
     year: 'Now',
-    title: 'Freelance Engineer & DevRel',
-    company: 'Independent',
+    title: 'Software Engineering Student',
+    company: 'Add your story here',
     description:
-      'I work independently across software engineering and DevRel. I lead the DevRel Guild at Myosin, work with teams such as WalletConnect, and I’m building HiveMind with a team of five, an AI product that scales developer and marketing workflows. My work spans the full funnel: reference apps, SDK and docs improvements, content, workshops, and builder programs.',
+      'Placeholder: add a short description of what you are currently working on or studying.',
     highlight: true
   },
   {
-    year: '2025',
-    title: 'Head of Engineering & Developer Relations',
-    company: 'Partisia Blockchain',
-    companyUrl: 'https://partisiablockchain.com/',
-    description:
-      'Led Engineering and DevRel for privacy-first infrastructure and multi-party computation. Shipped production smart contracts, revamped developer docs, and built the developer funnel through workshops, hackathons, and open-source. Launched their first bounty program resulting in the biggest developer contribution to their codebase to date.'
+    year: 'Add year',
+    title: 'Add your story here',
+    company: 'Add your story here',
+    description: 'Placeholder: add a previous role, project, or milestone.'
   },
   {
-    year: '2024',
-    title: 'AI & Trading Systems',
-    company: 'Catapult Labs',
-    companyUrl: 'https://www.catapult.xyz/',
-    description:
-      'Built an AI co-pilot for digital asset trading that unifies client conversations across chat clients using OpenAI models.'
-  },
-  {
-    year: '2022',
-    title: 'DeFi Protocols & Smart Contracts',
-    company: 'Catapult Labs',
-    companyUrl: 'https://www.catapult.xyz/',
-    description:
-      'Developed decentralised financial primitives for OTC crypto markets, including collateral management and margin trading. Learned Solidity for on-chain financial products.'
-  },
-  {
-    year: '2021',
-    title: 'Founding Full-Stack Engineer',
-    company: 'Sojo',
-    companyUrl: 'https://www.sojo.uk/',
-    description:
-      'Shipped the core platform for clothing repairs and customisation, from product design through deployment.'
-  },
-  {
-    year: '2021',
-    title: 'Design Engineering MEng',
-    company: 'Imperial College London',
-    description: 'Graduated from my masters with honours.'
+    year: 'Add year',
+    title: 'Add your story here',
+    company: 'Add your story here',
+    description: 'Placeholder: add a previous role, project, or milestone.'
   }
 ];
 

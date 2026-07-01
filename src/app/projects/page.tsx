@@ -7,97 +7,32 @@ import Modal from '@/app/projects/project/modal';
 import Layout from '@/components/layout';
 import { ModalContext } from './modalContext';
 
+// Placeholder projects — replace with real case studies.
 const projects = [
   {
-    title: 'M31 Controller',
+    title: 'Project One',
     src: 'm31/controller.jpg',
-    description:
-      'A video/audio game controller to make digital entertainment more approachable to those with visual impairments.',
+    description: 'Placeholder description for Project One.',
     href: '/projects/m31',
-    tag: 'Prototyping',
+    tag: 'Placeholder',
     color: '#000000'
   },
   {
-    title: 'AXO',
+    title: 'Project Two',
     src: 'axo/astronaut-square.png',
+    description: 'Placeholder description for Project Two.',
     href: '/projects/axo',
-    tag: 'Bio Materials',
+    tag: 'Placeholder',
     color: '#ee5622'
   },
   {
-    title: 'StyleSync',
-    src: 'stylesync/stylesync.png',
-    href: '/projects/stylesync',
-    tag: 'ML / AI',
-    color: 'pink'
-  },
-  {
-    title: 'StackeRs',
-    description:
-      'Reusable packaging made of highly recyclable materials for baby bathing products.',
-    src: 'bottles/block.png',
-    href: '/projects/stackers',
-    tag: 'Packaging',
-    color: '#EFE8D3'
-  },
-  {
-    title: 'ASTRA',
-    description: 'An interstellar games arcade with a hologram screen.',
+    title: 'Project Three',
+    description: 'Placeholder description for Project Three.',
     src: 'astra/astra.png',
     href: '/projects/astra',
-    tag: 'GIZMO',
+    tag: 'Placeholder',
     color: '#303030'
   }
-
-  // {
-  //   title: 'DAO social network',
-  //   src: 'sojo/astra.png',
-  //   href: '/projects/catapult-v1',
-  //   tag: 'Software',
-  //   color: '#303030'
-  // },
-  // {
-  //   title: 'SOJO',
-  //   src: 'sojo/astra.png',
-  //   href: '/projects/sojo',
-  //   tag: 'Software',
-  //   color: '#303030'
-  // },
-  // {
-  //   title: 'JENGA',
-  //   src: 'jenga.jpg',
-  //   href: '/projects/robot-jenga',
-  //   tag: 'Robotics',
-  //   color: '#706D63'
-  // },
-  // {
-  //   title: 'Woody',
-  //   src: 'woody.jpg',
-  //   href: '/projects/woody',
-  //   tag: 'Electronics',
-  //   color: '#706D63'
-  // },
-  // {
-  //   title: 'DAFT(PUNK)BOT',
-  //   src: 'cubo/cubo.jpg',
-  //   href: '/projects/cubo',
-  //   tag: 'Electronics',
-  //   color: '#EFE8D3'
-  // },
-  // {
-  //   title: 'Tandem bike',
-  //   src: 'bike.png',
-  //   href: '/projects/tandem-bike-bike',
-  //   tag: 'CAD & optimisation',
-  //   color: '#EFE8D3'
-  // },
-  // {
-  //   title: 'TETRIS',
-  //   src: 'tetris.png',
-  //   href: '/projects/tetris',
-  //   tag: 'Software',
-  //   color: '#EFE8D3'
-  // }
 ];
 
 export default function ProjectsHome() {

@@ -1,24 +1,10 @@
 import { blogPostSchema, type BlogPost } from './types';
 import { z } from 'zod';
 
-const MEDIUM_USERNAME = 'bettinasosarohl';
-const TWITTER_USERNAME = 'bettysrohl';
+const MEDIUM_USERNAME = 'yourusername';
 
-const EXTERNAL_POSTS: BlogPost[] = [
-  {
-    id: 'myosin-stablecoin-builders',
-    title: 'Why the Next Stablecoin Winners Start With Builders',
-    content:
-      "Builders who simplify real-world payments will define the next wave. Stablecoins have outgrown their roots as trading chips. In the past year they processed an estimated $46 trillion in on-chain transactions, even after filtering out bot activity the volume is roughly $9 trillion, comparable to PayPal and closing in on Visa's $16 trillion footprint.",
-    url: 'https://myosin.xyz/thinking/why-the-next-stablecoin-winners-start-with-builders',
-    publishedAt: '2025-11-04T00:00:00.000Z',
-    heroImage: '/images/blog/stablecoin.png',
-    author: {
-      name: 'Bettina Sosa',
-      handle: 'myosin'
-    }
-  }
-];
+// Placeholder posts — replace with real Medium/Twitter content.
+const EXTERNAL_POSTS: BlogPost[] = [];
 
 async function fetchMediumPosts(): Promise<BlogPost[]> {
   try {

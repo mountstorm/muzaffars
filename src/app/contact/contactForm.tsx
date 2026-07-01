@@ -28,7 +28,7 @@ export function ContactForm() {
 
   const onSubmit = (data: ContactFormData) => {
     const { subject, email, body } = data;
-    window.location.href = `mailto:bettinasosarohl@gmail.com?subject=${encodeURIComponent(
+    window.location.href = `mailto:mkhaydar@go.olemiss.edu?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}%0D%0A%0D%0AFrom: ${encodeURIComponent(
       email

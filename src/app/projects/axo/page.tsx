@@ -26,18 +26,12 @@ export default function AstraProject() {
   ];
   ``;
   const phrase =
-    'Fashion is one of the most polluting industries on earth, with shoes' +
-    ' having the highest impact. We have to rethink this industry.' +
-    ' This project aims to achieve the unprecedented level of' +
-    ' CIRCULARITY necessary to clothe a world FROM the GROUND UP.';
+    'Placeholder copy for Project Two. This page reuses the existing layout ' +
+    'to demonstrate the site structure — replace this copy with a real project write-up.';
 
-  const description = 'Pioneering Sustainable Footwear';
+  const description = 'Placeholder Project';
   const heroText =
-    'Discover Axowear, the first fully circular, modular, and monomaterial shoe ' +
-    'designed for the resource-scarce Martian environment. By harnessing cutting-edge' +
-    ' generative design techniques and sustainable potato-based biomaterials, Axowear' +
-    ' represents a groundbreaking step towards a more sustainable future for ' +
-    'fashion on Earth and beyond.';
+    'Placeholder description for Project Two. Replace with a real project summary.';
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -56,7 +50,7 @@ export default function AstraProject() {
         description={heroText}
         media={'https://player.vimeo.com/video/955515979'}
         isImage={false}
-        title={'AXOwear'}
+        title={'Project Two'}
       />
       <div className="h-[20vh] w-full bg-gradient-to-b from-foreground to-background opacity-60"></div>
       <TextGradient phrase={phrase} colour={'destructive'} />
