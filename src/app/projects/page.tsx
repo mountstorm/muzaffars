@@ -13,7 +13,7 @@ const projects = [
     title: 'NeuraBash',
     description:
       'Terminal-based AI coding assistant integrating GPT-4 and local LLMs (Ollama) for online/offline inference, repo analysis, and code explanation.',
-    imagePath: '/images/m31/controller.jpg',
+    imagePath: '/images/projects/neurabash.png',
     link: 'https://github.com/mountstorm/neurabash', // best-guess placeholder — update with real repo link
     tags: ['Python', 'Bash', 'OpenAI GPT-4', 'Ollama']
   },
@@ -22,7 +22,7 @@ const projects = [
     title: 'ValueStop',
     description:
       'EmoryHacks 2025 project — AI-powered shopping navigator that optimizes multi-store routes using the Gemini API and A* pathfinding.',
-    imagePath: '/images/axo/astronaut-square.png',
+    imagePath: '/images/projects/valuestop.png',
     link: 'https://github.com/mountstorm/valuestop', // best-guess placeholder — update with real repo link
     tags: ['React', 'Vite', 'Gemini API', 'Google Maps API', 'Firestore']
   }
@@ -30,7 +30,7 @@ const projects = [
 
 export default function ProjectsHome() {
   return (
-    <Layout title={'My Work'}>
+    <Layout title={'My Work'} center>
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {projects.map((project, index) => (

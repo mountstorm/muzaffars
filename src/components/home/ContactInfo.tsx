@@ -43,8 +43,9 @@ export default function ContactInfo() {
               <Image
                 fill
                 alt={'profile'}
-                src={`/images/profile.png`}
+                src={`/images/gallery/me-at-boston.jpg`}
                 priority
+                className="object-cover object-[center_55%]"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>

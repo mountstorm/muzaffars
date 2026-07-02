@@ -5,68 +5,62 @@ import Image from 'next/image';
 import Layout from '@/components/layout';
 
 // Personal/thematic gallery — "part of me / my becoming". Captions are
-// written thematically around real milestones from the resume (research,
-// coding, competitions, campus life) using the existing placeholder images.
+// derived from the real photo filenames provided for the site.
 const galleryItems = [
   {
-    src: '/images/m31/controller.jpg',
-    caption: 'Late nights building — NeuraBash, one CLI command at a time.',
+    src: '/images/gallery/me-at-boston.jpg',
+    caption: 'Me at Boston',
     aspect: 'aspect-[3/4]'
   },
   {
-    src: '/images/axo/astronaut-square.png',
-    caption: 'ValueStop, EmoryHacks 2025 — 36 hours, three teammates, one idea.',
+    src: '/images/gallery/programming-wlkata-robot.jpg',
+    caption: 'Programming a Wlkata robot',
     aspect: 'aspect-square'
   },
   {
-    src: '/images/posters/talksposter.jpg',
-    caption: 'Standing in front of a room, explaining what I built.',
+    src: '/images/gallery/cspire-office.jpg',
+    caption: 'C Spire office',
     aspect: 'aspect-[4/5]'
   },
   {
-    src: '/images/astra/astra.png',
-    caption: 'The Ole Miss research lab — where split-inference started as a whiteboard sketch.',
+    src: '/images/gallery/olemiss.jpg',
+    caption: 'Ole Miss',
     aspect: 'aspect-[3/4]'
   },
   {
-    src: '/images/bottles/stack1.png',
-    caption: 'Stacking abstractions: device, edge, cloud.',
+    src: '/images/gallery/nowruz-at-harvard.jpg',
+    caption: 'Nowruz at Harvard',
     aspect: 'aspect-square'
   },
   {
-    src: '/images/posters/coffee.jpg',
-    caption: 'Debugging sessions fueled by coffee and stubbornness.',
+    src: '/images/gallery/world-cup.jpg',
+    caption: 'World Cup',
     aspect: 'aspect-[4/5]'
   },
   {
-    src: '/images/art/draw1.png',
-    caption: 'Sketching ideas before they become code.',
+    src: '/images/gallery/san-fran.jpg',
+    caption: 'San Francisco',
     aspect: 'aspect-[3/4]'
   },
   {
-    src: '/images/onethoughtaday/homepage.png',
-    caption: 'Campus life at Ole Miss — Chancellor’s Roll, every semester.',
+    src: '/images/gallery/basketball.jpg',
+    caption: 'Basketball',
     aspect: 'aspect-square'
   },
   {
-    src: '/images/gallery/hivemind.png',
-    caption: 'Teaching 49+ students the fundamentals I once struggled with.',
+    src: '/images/gallery/waymo.jpg',
+    caption: 'Waymo',
     aspect: 'aspect-[4/5]'
   },
   {
-    src: '/images/posters/sustainability.jpg',
-    caption: 'Robots, pipelines, and the pharmaceutical automation lab.',
+    src: '/images/gallery/grass.jpg',
+    caption: 'Grass',
     aspect: 'aspect-[3/4]'
   },
   {
-    src: '/images/dresses/dress2.jpg',
-    caption: 'Still becoming — the next milestone, always in progress.',
+    src: '/images/gallery/chinese-food.jpg',
+    caption: 'Chinese food',
     aspect: 'aspect-square'
-  },
-  {
-    src: '/images/bottles/stack3.png',
-    caption: 'Profiling every split point until the numbers finally made sense.',
-    aspect: 'aspect-[4/5]'
   }
 ];
 
@@ -98,44 +92,33 @@ export default function Gallery() {
   }, []);
 
   return (
-    <Layout title="gallery">
-      <div className="min-h-screen bg-background px-4 py-12 md:px-8 lg:px-16">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-foreground">
-            Part of Me
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-foreground/70">
-            A visual thread through the research, code, and late nights that
-            make up my becoming.
-          </p>
-        </div>
-
-        <div
-          ref={wallRef}
-          className="columns-2 gap-4 md:columns-3 lg:columns-4"
-        >
-          {galleryItems.map((item, index) => (
-            <div
-              key={item.src + index}
-              data-parallax-speed={(index % 3) * 0.03 - 0.03}
-              className={`group relative mb-4 block w-full overflow-hidden rounded-xl break-inside-avoid ${item.aspect}`}
-            >
-              <Image
-                src={item.src}
-                alt={item.caption}
-                fill
-                loading="lazy"
-                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-              />
-              <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <p className="translate-y-full p-4 text-sm font-light text-white transition-transform duration-300 ease-out group-hover:translate-y-0">
-                  {item.caption}
-                </p>
-              </div>
+    <Layout
+      title="Part of Me"
+      subtitle="A visual thread through the research, code, and life that make up my becoming."
+      center
+    >
+      <div ref={wallRef} className="columns-2 gap-4 md:columns-3 lg:columns-4">
+        {galleryItems.map((item, index) => (
+          <div
+            key={item.src + index}
+            data-parallax-speed={(index % 3) * 0.03 - 0.03}
+            className={`group relative mb-4 block w-full overflow-hidden rounded-xl break-inside-avoid ${item.aspect}`}
+          >
+            <Image
+              src={item.src}
+              alt={item.caption}
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            />
+            <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <p className="translate-y-full p-4 text-sm font-light text-white transition-transform duration-300 ease-out group-hover:translate-y-0">
+                {item.caption}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </Layout>
   );
