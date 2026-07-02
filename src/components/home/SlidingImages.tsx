@@ -7,6 +7,7 @@ import Link from 'next/link';
 type Slider = {
   color: string;
   src: string;
+  href?: string;
 };
 type Props = {
   slider1: Slider[];
@@ -31,43 +32,65 @@ export default function SlidingImages({ slider1, slider2 }: Props) {
         style={{ x: x1 }}
         className="relative left-[-10vw] flex w-[300vw] gap-4 sm:w-[120vw] sm:gap-12"
       >
-        {slider1.map((project, index) => (
-          <div
-            key={index}
-            className="flex h-60 w-1/2 items-center justify-center shadow-lg sm:h-80 sm:w-1/4"
-            style={{ backgroundColor: project.color }}
-          >
+        {slider1.map((project, index) => {
+          const content = (
             <div className="relative h-full w-full">
               <Image
                 alt="image"
                 src={`/images/${project.src}`}
                 fill
-                objectFit="contain"
+                className="object-cover"
               />
             </div>
-          </div>
-        ))}
+          );
+          return (
+            <div
+              key={index}
+              className="flex h-60 w-1/2 items-center justify-center shadow-lg transition-transform duration-300 hover:scale-[1.03] sm:h-80 sm:w-1/4"
+              style={{ backgroundColor: project.color }}
+            >
+              {project.href ? (
+                <Link href={project.href} className="block h-full w-full">
+                  {content}
+                </Link>
+              ) : (
+                content
+              )}
+            </div>
+          );
+        })}
       </motion.div>
       <motion.div
         style={{ x: x2 }}
         className="relative left-[-10vw] flex  w-[300vw] gap-6 sm:w-[120vw] sm:gap-12"
       >
-        {slider2.map((project, index) => (
-          <div
-            key={index}
-            className="flex h-60 w-3/4 items-center justify-center sm:h-80 sm:w-1/4"
-            style={{ backgroundColor: project.color }}
-          >
-            <div key={index} className="relative h-full w-full shadow-lg ">
+        {slider2.map((project, index) => {
+          const content = (
+            <div className="relative h-full w-full shadow-lg">
               <Image
                 fill
                 alt="image"
                 src={`/images/${project.src}`}
-                objectFit="contain"
+                className="object-cover"
               />
             </div>
-          </div>
-        ))}
+          );
+          return (
+            <div
+              key={index}
+              className="flex h-60 w-3/4 items-center justify-center transition-transform duration-300 hover:scale-[1.03] sm:h-80 sm:w-1/4"
+              style={{ backgroundColor: project.color }}
+            >
+              {project.href ? (
+                <Link href={project.href} className="block h-full w-full">
+                  {content}
+                </Link>
+              ) : (
+                content
+              )}
+            </div>
+          );
+        })}
       </motion.div>
       <div className="flex w-full justify-center">
         <Link href={'/projects'}>

@@ -17,7 +17,7 @@ const projects = [
     id: 'dar-ticket-automation',
     title: 'DAR Ticket Automation',
     description:
-      "Python automation pipeline that queries C Spire's internal Discount Account Request database daily, compiles flagged billing accounts into a timestamped Excel report, and automatically files a ServiceNow ticket with the report attached. Fully YAML-configured, so the Billing team can change rules without touching code — it eliminated a recurring manual reporting task entirely.",
+      "A YAML-configured Python pipeline that daily scans C Spire's Discount Account Request database, builds an Excel report of flagged billing accounts, and auto-files a ServiceNow ticket with it attached, eliminating a recurring manual reporting task for the Billing team.",
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Python', 'YAML', 'ServiceNow (SNOW)', 'Excel Reporting']
   },
@@ -25,7 +25,7 @@ const projects = [
     id: 'intl-day-pass-audit',
     title: 'International Day Pass Audit',
     description:
-      "Python-powered audit tool that queries C Spire's Oracle billing catalogue to automatically detect mismatches between International Day Pass plans and the expected catalogue — catching billing configuration errors before they reach customers. Ships with CI/CD-ready exit codes, YAML-driven configuration, and multi-environment support, turning a tedious manual check into a repeatable, single-command safety net for the Billing team.",
+      "A Python audit tool that queries C Spire's Oracle billing catalogue to catch mismatched International Day Pass plans before they reach customers, replacing a tedious manual check with a single, CI/CD-ready command the Billing team can run in any environment.",
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Python', 'Oracle SQL', 'YAML', 'CI/CD']
   },
@@ -33,7 +33,7 @@ const projects = [
     id: 'bbva-lockbox-auto-ignore',
     title: 'BBVA Lockbox Zero-Payment Auto-Ignore',
     description:
-      'Fixed the error-checking logic (checkFDUErrors) in the BBVA lockbox payment flow so it automatically recognizes harmless $0 payment rejections and lets the flow finish on its own, while still halting on real errors. Removed a manual step operators previously had to clear by hand on every run. Tested on Red Hat Enterprise Linux via SSH.',
+      "Fixed the BBVA lockbox payment flow's error-checking logic so it auto-clears harmless $0 payment rejections while still halting on real errors, removing a manual step operators had to run by hand on every batch.",
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Perl', 'Oracle SQL', 'RHEL / Linux', 'SSH']
   },
