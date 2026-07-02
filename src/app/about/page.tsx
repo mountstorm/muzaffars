@@ -4,13 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSpotify } from '@/hooks/useSpotify';
-import { useGitHub } from '@/hooks/useGithub';
 import Layout from '@/components/layout';
 import AnimatedSection from '@/components/about/AnimatedSection';
 import TextReveal from '@/components/about/TextReveal';
 import JourneyTimeline from '@/components/about/JourneyTimeline';
 import SkillsCloud from '@/components/about/SkillsCloud';
-import GitHubContributionsGraph from '@/app/about/githubActivity';
 import SpotifyPlaylists from '@/app/about/spotifyPlaylists';
 
 export default function About() {
@@ -19,12 +17,6 @@ export default function About() {
     isLoading: spotifyLoading,
     error: spotifyError
   } = useSpotify();
-
-  const {
-    githubData,
-    isLoading: githubLoading,
-    error: githubError
-  } = useGitHub();
 
   return (
     <div className="relative overflow-hidden">
@@ -147,26 +139,6 @@ export default function About() {
             </AnimatedSection>
             <SkillsCloud />
           </section>
-
-          {/* GitHub Activity Section */}
-          {!githubLoading && !githubError && githubData && (
-            <section className="py-16">
-              <AnimatedSection animation="fade-up">
-                <Link
-                  href="https://github.com/mountstorm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block transition-transform hover:scale-[1.01]"
-                >
-                  <GitHubContributionsGraph
-                    contributions={githubData.contributions}
-                    totalContributions={githubData.totalContributions}
-                    restrictedContributions={githubData.restrictedContributions}
-                  />
-                </Link>
-              </AnimatedSection>
-            </section>
-          )}
 
           {/* Spotify Section */}
           {!spotifyLoading && !spotifyError && playlists.length > 0 && (
