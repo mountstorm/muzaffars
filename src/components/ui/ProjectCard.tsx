@@ -11,7 +11,7 @@ export interface ProjectCardProps {
   title: string;
   description: string;
   imagePath: string;
-  link: string;
+  link?: string;
   tags?: string[];
   publishedAt?: Date;
   index?: number;
@@ -88,22 +88,28 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
             </div>
           )}
 
-          <span className="inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-gray-200 dark:hover:bg-zinc-800">
-            {buttonText}
-            <svg
-              className="ml-2 h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-          </span>
+          {link ? (
+            <span className="inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-gray-200 dark:hover:bg-zinc-800">
+              {buttonText}
+              <svg
+                className="ml-2 h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </span>
+          ) : (
+            <span className="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-gray-400">
+              Internal project — no public link
+            </span>
+          )}
         </div>
       </>
     );
@@ -111,6 +117,12 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
     const linkProps = external
       ? { target: '_blank', rel: 'noopener noreferrer' }
       : {};
+
+    const cardShell = (
+      <div className="relative h-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900">
+        {cardContent}
+      </div>
+    );
 
     if (animated) {
       return (
@@ -125,11 +137,13 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           }}
           className="group h-full"
         >
-          <Link href={link} {...linkProps} className="block h-full">
-            <div className="relative h-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900">
-              {cardContent}
-            </div>
-          </Link>
+          {link ? (
+            <Link href={link} {...linkProps} className="block h-full">
+              {cardShell}
+            </Link>
+          ) : (
+            cardShell
+          )}
         </motion.div>
       );
     }
@@ -139,9 +153,13 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         ref={ref}
         className="group h-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
       >
-        <Link href={link} {...linkProps} className="block h-full">
-          {cardContent}
-        </Link>
+        {link ? (
+          <Link href={link} {...linkProps} className="block h-full">
+            {cardContent}
+          </Link>
+        ) : (
+          cardContent
+        )}
       </div>
     );
   }
