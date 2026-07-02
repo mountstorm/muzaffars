@@ -71,8 +71,8 @@ export default function ContactInfo() {
 
         <div className="mt-20 flex flex-col justify-between p-5 2xs:mt-52 sm:mx-[100px] sm:mt-48 sm:flex-row">
           <p className="min-w-screen mb-5 text-base sm:max-w-xs">
-            Software Eng. &amp; U Researcher — based in Oxford, MS, working on
-            distributed AI systems.
+            Software engineer | Distributed AI researcher | CS @ Ole Miss |
+            Always building.
           </p>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">

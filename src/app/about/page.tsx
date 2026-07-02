@@ -12,7 +12,6 @@ import JourneyTimeline from '@/components/about/JourneyTimeline';
 import SkillsCloud from '@/components/about/SkillsCloud';
 import GitHubContributionsGraph from '@/app/about/githubActivity';
 import SpotifyPlaylists from '@/app/about/spotifyPlaylists';
-import ContrastCursor from '@/components/animations/cursor/contrastCursor';
 
 export default function About() {
   const {
@@ -179,8 +178,6 @@ export default function About() {
           )}
         </div>
       </Layout>
-
-      <ContrastCursor isActive={false} text="" />
     </div>
   );
 }

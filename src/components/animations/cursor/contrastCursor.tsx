@@ -48,10 +48,10 @@ export default function ContrastCursor({ isActive, text }: BlurCursorProps) {
   return (
     <motion.div
       className={clsx(
-        'pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference shadow-md',
+        'pointer-events-none fixed left-0 top-0 z-50 shadow-md',
         isActive
-          ? 'w-400 bg-white bg-opacity-50 p-4 text-6xl font-bold text-white'
-          : 'h-10 w-10 rounded-full bg-white',
+          ? 'w-400 bg-red-900 bg-opacity-50 p-4 text-6xl font-bold text-white'
+          : 'h-10 w-10 rounded-full bg-red-900',
         isClicked ? 'scale-75' : 'scale-100'
       )}
       style={{

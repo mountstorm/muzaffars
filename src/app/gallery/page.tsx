@@ -61,6 +61,11 @@ const galleryItems = [
     src: '/images/gallery/chinese-food.jpg',
     caption: 'Chinese food',
     aspect: 'aspect-square'
+  },
+  {
+    src: '/images/gallery/soccer.jpg',
+    caption: 'Soccer',
+    aspect: 'aspect-[4/5]'
   }
 ];
 
@@ -94,7 +99,7 @@ export default function Gallery() {
   return (
     <Layout
       title="Part of Me"
-      subtitle="A visual thread through the research, code, and life that make up my becoming."
+      subtitle="Visual memory palace of my life through coding, travelling, sports, and learning."
       center
     >
       <div ref={wallRef} className="columns-2 gap-4 md:columns-3 lg:columns-4">

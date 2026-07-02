@@ -89,24 +89,22 @@ export default function Header() {
         </div>
         {!mobile && (
           <div className="flex flex-1 items-center justify-between font-semibold">
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <div className="flex flex-col">
-                <Magnetic>
-                  <Link href={'/about'}>About</Link>
-                </Magnetic>
-                <Magnetic>
-                  <Link href={'/projects'}>Projects</Link>
-                </Magnetic>
-              </div>
+            <div className="group relative z-10 flex cursor-pointer p-3">
+              <Magnetic>
+                <Link href={'/about'}>About</Link>
+              </Magnetic>
             </div>
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
-              <div className="flex flex-col">
-                <Magnetic>
-                  <Link href={'/gallery'}>Gallery</Link>
-                </Magnetic>
-              </div>
+            <div className="group relative z-10 flex cursor-pointer p-3">
+              <Magnetic>
+                <Link href={'/projects'}>Projects</Link>
+              </Magnetic>
             </div>
-            <div className="group relative z-10 flex cursor-pointer flex-col p-3">
+            <div className="group relative z-10 flex cursor-pointer p-3">
+              <Magnetic>
+                <Link href={'/gallery'}>Gallery</Link>
+              </Magnetic>
+            </div>
+            <div className="group relative z-10 flex cursor-pointer p-3">
               <Magnetic>
                 <div className="flex">
                   <Link href={'/contact'}>Contact</Link>
