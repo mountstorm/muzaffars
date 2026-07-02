@@ -10,6 +10,8 @@ import {
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import RoundedButton from '@/components/animations/roundedButton';
+import { useToast } from '@/components/ui/use-toast';
+import { sendContactEmail } from '@/app/contact/actions';
 
 type ContactFormData = {
   subject: string;
@@ -18,6 +20,7 @@ type ContactFormData = {
 };
 
 export function ContactForm() {
+  const { toast } = useToast();
   const form = useForm<ContactFormData>({
     defaultValues: {
       subject: '',
@@ -26,7 +29,19 @@ export function ContactForm() {
     }
   });
 
-  const onSubmit = (data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData) => {
+    const result = await sendContactEmail(data);
+
+    if (result.success) {
+      toast({ description: "Message sent! I'll get back to you soon." });
+      form.reset();
+      return;
+    }
+
+    toast({
+      description:
+        "Couldn't send that automatically — opening your email client instead."
+    });
     const { subject, email, body } = data;
     window.location.href = `mailto:mkhaydar@go.olemiss.edu?subject=${encodeURIComponent(
       subject
