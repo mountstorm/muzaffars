@@ -5,10 +5,7 @@ const octokit = new Octokit({ auth: process.env.GITHUB_PERSONAL_ACCESS_TOKEN });
 
 export async function GET() {
   try {
-    const username = process.env.GITHUB_USERNAME;
-    if (!username) {
-      throw new Error('GitHub username is not set in environment variables');
-    }
+    const username = process.env.GITHUB_USERNAME || 'mountstorm';
 
     const query = `
       query($username: String!) {
