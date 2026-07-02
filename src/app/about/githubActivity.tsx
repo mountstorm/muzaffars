@@ -107,7 +107,7 @@ export default function GitHubContributionsGraph({
   return (
     <div
       ref={containerRef}
-      className="rounded-2xl border border-foreground/5 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8"
+      className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md md:p-8"
     >
       <div className="mb-6 flex items-center justify-between">
         <div>

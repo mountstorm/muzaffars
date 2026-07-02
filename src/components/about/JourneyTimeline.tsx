@@ -39,20 +39,6 @@ const journeyData: TimelineItem[] = [
       'Guide 49+ students through OOP (Java), data structures, and algorithms; review and optimize 300+ programs weekly, improving code quality by 20%.'
   },
   {
-    year: 'Sept. 2025 – Oct. 2025',
-    title: 'NeuraBash',
-    company: 'Personal project',
-    description:
-      'Built a terminal-based AI coding assistant integrating GPT-4 and local LLMs (Ollama), with a modular CLI that cut RAM footprint by 30%.'
-  },
-  {
-    year: 'Nov. 2025',
-    title: 'ValueStop',
-    company: 'EmoryHacks 2025',
-    description:
-      'Built an AI-powered shopping navigator using the Gemini API and A* pathfinding, with a two-tier data architecture combining a pre-scraped database and real-time Playwright scraping.'
-  },
-  {
     year: 'Jan. 2026 – Present',
     title: 'Undergraduate Research Assistant, Distributed AI Systems',
     company: 'University of Mississippi (Prof. Feng Wang) x University of Memphis',
@@ -153,7 +139,7 @@ export default function JourneyTimeline() {
               }`}
             >
               <div
-                className={`group relative rounded-2xl border border-foreground/5 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md ${
+                className={`group relative rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md ${
                   item.highlight ? 'border-primary/20 shadow-md' : ''
                 }`}
               >

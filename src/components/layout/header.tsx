@@ -59,8 +59,9 @@ export default function Header() {
               <Image
                 height={32}
                 width={32}
-                src="/images/logo.jpg"
+                src="/images/logo.png"
                 alt="Muzaffar Khaydarov logo"
+                className="rounded-full object-cover"
                 priority
               />
             </Magnetic>

@@ -12,18 +12,18 @@ export default function Hero() {
             'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 45%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 40%)'
         }}
       />
-      <p className="relative z-10 text-sm uppercase tracking-[0.4em] text-white/60 sm:text-base">
+      <p className="relative z-10 text-sm uppercase tracking-[0.4em] text-background/60 sm:text-base">
         Hi, I&apos;m
       </p>
-      <h1 className="relative z-10 text-[15vw] font-semibold leading-[0.9] text-white sm:text-[10vw]">
+      <h1 className="relative z-10 text-[15vw] font-semibold leading-[0.9] text-background sm:text-[10vw]">
         Muzaffar
       </h1>
-      <div className="relative z-10 flex flex-wrap items-center justify-center gap-3 text-white/70">
+      <div className="relative z-10 flex flex-wrap items-center justify-center gap-3 text-background/70">
         {roles.map((role, index) => (
           <React.Fragment key={role}>
             <span className="text-lg sm:text-2xl">{role}</span>
             {index < roles.length - 1 && (
-              <span className="text-lg text-white/30 sm:text-2xl">/</span>
+              <span className="text-lg text-background/30 sm:text-2xl">/</span>
             )}
           </React.Fragment>
         ))}

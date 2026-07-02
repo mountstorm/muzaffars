@@ -19,7 +19,7 @@ export default function ContactInfo() {
   const y = useTransform(scrollYProgress, [0, 1], [-500, 0]);
   const animatedUnderlineStyle =
     'relative after:absolute after:left-1/2 after:mt-0.5 after:block after:h-px after:w-0' +
-    ' after:-translate-x-1/2 after:transform after:bg-white after:duration-200 ' +
+    ' after:-translate-x-1/2 after:transform after:bg-background after:duration-200' +
     "after:ease-linear after:content-[''] hover:after:w-full";
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function ContactInfo() {
     <motion.div
       style={{ y }}
       ref={container}
-      className="relative flex min-h-screen flex-col items-center justify-between bg-foreground p-6 pt-32 text-white sm:justify-center"
+      className="relative flex min-h-screen flex-col items-center justify-between bg-foreground p-6 pt-32 text-background sm:justify-center"
     >
       <div className="w-full bg-foreground pt-[150px] sm:max-w-[1800px]">
         <div className="relative border-b border-gray-600 pb-12 sm:mx-[100px]">
@@ -43,7 +43,7 @@ export default function ContactInfo() {
               <Image
                 fill
                 alt={'profile'}
-                src={`/images/profile2.jpg`}
+                src={`/images/profile.png`}
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
@@ -70,8 +70,8 @@ export default function ContactInfo() {
 
         <div className="mt-20 flex flex-col justify-between p-5 2xs:mt-52 sm:mx-[100px] sm:mt-48 sm:flex-row">
           <p className="min-w-screen mb-5 text-base sm:max-w-xs">
-            CS student at Ole Miss and Software Engineering Intern at C Spire,
-            researching distributed AI systems. Based in Oxford, MS.
+            Software Eng. &amp; U Researcher — based in Oxford, MS, working on
+            distributed AI systems.
           </p>
           <div className="flex items-end gap-2">
             <span className="flex flex-col gap-3">

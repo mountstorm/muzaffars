@@ -38,10 +38,10 @@ export default function About() {
             >
               <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/profile2.jpg"
+                  src="/images/profile.png"
                   alt="Muzaffar Khaydarov"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-center"
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                 />
@@ -95,7 +95,7 @@ export default function About() {
           {/* Education Section */}
           <section className="py-16">
             <AnimatedSection animation="fade-up">
-              <div className="rounded-2xl border border-foreground/5 bg-white p-6 shadow-sm sm:p-8">
+              <div className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm sm:p-8">
                 <h2 className="mb-4 text-xl font-bold text-foreground sm:text-2xl">
                   Education & Recognition
                 </h2>

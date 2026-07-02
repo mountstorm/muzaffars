@@ -64,7 +64,7 @@ const SpotifyPlaylists: React.FC<SpotifyPlaylistsProps> = ({ playlists }) => {
   return (
     <div
       ref={containerRef}
-      className="rounded-2xl border border-foreground/5 bg-white p-6 shadow-sm md:p-8"
+      className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm md:p-8"
     >
       <div className="mb-6 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500">

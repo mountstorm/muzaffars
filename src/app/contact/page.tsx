@@ -33,7 +33,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="-mt-20 bg-foreground text-white ">
+    <div className="-mt-20 bg-foreground text-background ">
       <div className="flex min-h-screen w-full items-center justify-center pt-44 align-middle text-[8.6vw] xs:text-[5.6vw]">
         <div className="p-12 xs:w-1/2 xs:p-0">
           <div className="flex justify-between uppercase">

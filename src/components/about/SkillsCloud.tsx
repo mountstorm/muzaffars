@@ -65,15 +65,15 @@ const skills: Skill[] = [
 
 const categoryColors: Record<string, string> = {
   languages:
-    'bg-blue-600/15 text-blue-800 border-blue-600/30 hover:bg-blue-600/25',
+    'bg-emerald-600/15 text-emerald-800 border-emerald-600/30 hover:bg-emerald-600/25 dark:text-emerald-300',
   frameworks:
-    'bg-green-600/15 text-green-800 border-green-600/30 hover:bg-green-600/25',
+    'bg-green-600/15 text-green-800 border-green-600/30 hover:bg-green-600/25 dark:text-green-300',
   systems:
-    'bg-purple-600/15 text-purple-800 border-purple-600/30 hover:bg-purple-600/25',
+    'bg-teal-600/15 text-teal-800 border-teal-600/30 hover:bg-teal-600/25 dark:text-teal-300',
   concepts:
-    'bg-slate-600/15 text-slate-800 border-slate-600/30 hover:bg-slate-600/25',
+    'bg-lime-600/15 text-lime-800 border-lime-600/30 hover:bg-lime-600/25 dark:text-lime-300',
   certifications:
-    'bg-amber-600/15 text-amber-800 border-amber-600/30 hover:bg-amber-600/25'
+    'bg-amber-600/15 text-amber-800 border-amber-600/30 hover:bg-amber-600/25 dark:text-amber-300'
 };
 
 export default function SkillsCloud() {
