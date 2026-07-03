@@ -3,21 +3,13 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSpotify } from '@/hooks/useSpotify';
 import Layout from '@/components/layout';
 import AnimatedSection from '@/components/about/AnimatedSection';
 import TextReveal from '@/components/about/TextReveal';
 import JourneyTimeline from '@/components/about/JourneyTimeline';
 import SkillsCloud from '@/components/about/SkillsCloud';
-import SpotifyPlaylists from '@/app/about/spotifyPlaylists';
 
 export default function About() {
-  const {
-    playlists,
-    isLoading: spotifyLoading,
-    error: spotifyError
-  } = useSpotify();
-
   return (
     <div className="relative overflow-hidden">
       <Layout title="About Me" center>
@@ -53,7 +45,7 @@ export default function About() {
               <AnimatedSection animation="fade-up" delay={0.1}>
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-foreground">
-                    What I'm Into
+                    What I&apos;m Into
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
                     I like problems that span layers — from billing systems
@@ -139,15 +131,6 @@ export default function About() {
             </AnimatedSection>
             <SkillsCloud />
           </section>
-
-          {/* Spotify Section */}
-          {!spotifyLoading && !spotifyError && playlists.length > 0 && (
-            <section className="py-16">
-              <AnimatedSection animation="fade-up">
-                <SpotifyPlaylists playlists={playlists} />
-              </AnimatedSection>
-            </section>
-          )}
         </div>
       </Layout>
     </div>

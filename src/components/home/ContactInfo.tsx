@@ -79,7 +79,7 @@ export default function ContactInfo() {
               <h3 className="m-0 cursor-default p-1 text-base font-light text-gray-500">
                 Version
               </h3>
-              <p className="relative m-0 cursor-pointer p-1">2024 © Edition</p>
+              <p className="relative m-0 cursor-pointer p-1">2026 © Edition</p>
             </span>
             <span className="flex flex-col gap-3">
               <h3 className="m-0 cursor-default p-1 text-base font-light text-gray-500">
