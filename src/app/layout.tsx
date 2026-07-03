@@ -11,18 +11,18 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Muzaffar Khaydarov — Portfolio',
+  title: "Muzaffar's World",
   description: 'Software engineer & builder. Portfolio, projects, and writing.',
   authors: [{ name: 'Muzaffar Khaydarov' }],
   openGraph: {
-    title: 'Muzaffar Khaydarov — Portfolio',
+    title: "Muzaffar's World",
     description: 'Software engineer & builder. Portfolio, projects, and writing.',
-    siteName: 'Muzaffar Khaydarov — Portfolio',
+    siteName: "Muzaffar's World",
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Muzaffar Khaydarov — Portfolio',
+    title: "Muzaffar's World",
     description: 'Software engineer & builder. Portfolio, projects, and writing.'
   }
 };
