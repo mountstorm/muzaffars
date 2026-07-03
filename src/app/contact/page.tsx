@@ -48,15 +48,7 @@ export default function Contact() {
             <p className="m-0">research</p>
             <p className="m-0">engineer</p>
           </div>
-          <div className="flex justify-between uppercase">
-            <p className="m-0">Oxford, MS </p>
-            <Link href={'https://www.linkedin.com/in/muzaffar-'}>
-              <TextDisperse setBackground={setBackground}>
-                <p>→Linkedin</p>
-              </TextDisperse>
-            </Link>
-          </div>
-          <div className="flex justify-between uppercase">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 text-[7vw] uppercase xs:text-[5.6vw]">
             <TextDisperse
               setBackground={setBackground}
               onClick={() => {
@@ -69,6 +61,12 @@ export default function Contact() {
             >
               <p className="m-0">→Email</p>
             </TextDisperse>
+
+            <Link href={'https://www.linkedin.com/in/muzaffar-'}>
+              <TextDisperse setBackground={setBackground}>
+                <p>→Linkedin</p>
+              </TextDisperse>
+            </Link>
 
             <Link href={'https://github.com/mountstorm'}>
               <TextDisperse setBackground={setBackground}>
