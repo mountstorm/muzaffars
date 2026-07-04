@@ -55,16 +55,14 @@ export default function Header() {
       >
         <div className="flex lg:pr-56">
           <Link href={'/'} className="group z-10 flex items-center space-x-2">
-            <Magnetic>
-              <Image
-                height={32}
-                width={32}
-                src="/images/logo.jpeg"
-                alt="Muzaffar Khaydarov logo"
-                className="object-contain"
-                priority
-              />
-            </Magnetic>
+            <Image
+              height={32}
+              width={32}
+              src="/images/img.png"
+              alt="Muzaffar Khaydarov logo"
+              className="object-contain"
+              priority
+            />
             {!mobile && (
               <>
                 <div className="hover:rotate-[360deg]">©</div>
