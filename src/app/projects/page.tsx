@@ -17,7 +17,7 @@ const projects = [
     id: 'distributed-ai-research',
     title: 'Split-Inference Distributed AI Systems',
     description:
-      'Undergraduate research with Prof. Feng Wang (Ole Miss) and the University of Memphis: built a two-machine distributed inference pipeline (Mac head + Linux edge node) over a length-prefixed TCP protocol, verified within 1e-4 of single-machine output, and profiled all 22 AlexNet split points across WiFi, LTE, and backhaul links to find the latency-optimal partition.',
+      'Built a distributed inference pipeline splitting neural networks across device, edge, and cloud — accurate within 1e-4 of single-machine output.',
     imagePath: '/images/gallery/programming-wlkata-robot.jpg',
     noLinkLabel: 'Ongoing research — no public repo yet',
     tags: ['Python', 'PyTorch', 'Distributed Systems', 'TCP', 'Edge Computing']
@@ -26,7 +26,7 @@ const projects = [
     id: 'dar-ticket-automation',
     title: 'DAR Ticket Automation',
     description:
-      "A YAML-configured Python pipeline that daily scans C Spire's Discount Account Request database, builds an Excel report of flagged billing accounts, and auto-files a ServiceNow ticket with it attached — replacing 10-20 manual account reviews a day and saving on-call operators 30 minutes daily.",
+      'Built a Python pipeline that auto-generates billing reports and files ServiceNow tickets — replaced 10-20 manual reviews a day, saving 30 min/day.',
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Python', 'YAML', 'ServiceNow (SNOW)', 'Excel Reporting']
   },
@@ -34,7 +34,7 @@ const projects = [
     id: 'intl-day-pass-audit',
     title: 'International Day Pass Audit',
     description:
-      "A Python audit tool that queries C Spire's Oracle billing catalogue to catch mismatched International Day Pass plans before they reach customers, replacing a tedious manual check with a single, CI/CD-ready command the Billing team can run in any environment.",
+      'Built a Python tool that catches mismatched billing plans before customers see them — replaced a manual check with one CI/CD-ready command.',
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Python', 'Oracle SQL', 'YAML', 'CI/CD']
   },
@@ -42,7 +42,7 @@ const projects = [
     id: 'bbva-lockbox-auto-ignore',
     title: 'BBVA Lockbox Zero-Payment Auto-Ignore',
     description:
-      "Fixed the BBVA lockbox payment flow's error-checking logic so it auto-clears 100+ weekly harmless $0 payment rejections while still halting on real errors, removing a manual step operators had to run by hand on every batch.",
+      'Fixed payment logic to auto-clear 100+ weekly harmless $0 rejections while still halting on real errors — eliminated a manual step operators ran by hand.',
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Perl', 'Oracle SQL', 'RHEL / Linux', 'SSH']
   },
@@ -50,7 +50,7 @@ const projects = [
     id: 'neurabash',
     title: 'NeuraBash',
     description:
-      'Terminal-based AI coding assistant integrating GPT-4 and local LLMs (Ollama) for online/offline inference, repo analysis, and code explanation, with a modular CLI architecture that cut RAM footprint by 30%.',
+      'Built a terminal AI coding assistant using GPT-4 and local LLMs (Ollama) — cut RAM footprint 30% with a modular CLI architecture.',
     imagePath: '/images/projects/neurabash.png',
     link: 'https://github.com/mountstorm/neurabash', // best-guess placeholder — update with real repo link
     tags: ['Python', 'Bash', 'OpenAI GPT-4', 'Ollama']
@@ -59,7 +59,7 @@ const projects = [
     id: 'valuestop',
     title: 'ValueStop',
     description:
-      'EmoryHacks 2025 project — AI-powered shopping navigator that optimizes multi-store routes using the Gemini API and A* pathfinding, backed by a pre-scraped catalogue of 150 products across 5 stores plus real-time Playwright scraping.',
+      'Built an AI shopping navigator optimizing routes across 150 products and 5 stores using the Gemini API and A* pathfinding.',
     imagePath: '/images/projects/valuestop.png',
     link: 'https://github.com/mountstorm/valuestop', // best-guess placeholder — update with real repo link
     tags: ['React', 'Vite', 'Gemini API', 'Google Maps API', 'Firestore']
