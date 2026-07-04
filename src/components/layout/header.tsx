@@ -59,7 +59,7 @@ export default function Header() {
               <Image
                 height={32}
                 width={32}
-                src="/images/logo.png"
+                src="/images/logo.jpeg"
                 alt="Muzaffar Khaydarov logo"
                 className="rounded-full object-cover"
                 priority
