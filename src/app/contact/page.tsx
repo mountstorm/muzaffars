@@ -2,38 +2,19 @@
 
 import TextDisperse from '@/app/contact/textDisperse/textDisperse';
 import { clsx } from 'clsx';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
-import { ContactForm } from '@/app/contact/contactForm';
-import { useToast } from '@/components/ui/use-toast';
 
 export default function Contact() {
   const background = useRef(null);
-  const emailRef = useRef(null);
-  const [emailCopied, setEmailCopied] = useState(false);
-  const { toast } = useToast();
 
   const setBackground = (isActive: any) => {
     gsap.to(background.current, { opacity: isActive ? 0.7 : 0 });
   };
 
-  const copyEmail = () => {
-    navigator.clipboard.writeText('mkhaydar@go.olemiss.edu');
-    setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 2000);
-  };
-
-  const scrollToEmail = () => {
-    const emailSection = document.getElementById('email');
-    copyEmail();
-    if (emailSection) {
-      emailSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="-mt-20 bg-foreground text-background ">
+    <div className="-mt-20 min-h-screen bg-foreground text-background ">
       <div className="flex min-h-screen w-full items-center justify-center pt-44 align-middle text-[8.6vw] xs:text-[5.6vw]">
         <div className="p-12 xs:w-1/2 xs:p-0">
           <div className="flex justify-between uppercase">
@@ -49,18 +30,11 @@ export default function Contact() {
             <p className="m-0">engineer</p>
           </div>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 text-[7vw] uppercase xs:text-[5.6vw]">
-            <TextDisperse
-              setBackground={setBackground}
-              onClick={() => {
-                toast({
-                  description:
-                    'Email copied to clipboard, alternatively write your enquiry on the form!'
-                });
-                scrollToEmail();
-              }}
-            >
-              <p className="m-0">→Email</p>
-            </TextDisperse>
+            <a href="mailto:mkhaydar@go.olemiss.edu">
+              <TextDisperse setBackground={setBackground}>
+                <p className="m-0">→Email</p>
+              </TextDisperse>
+            </a>
 
             <Link href={'https://www.linkedin.com/in/muzaffar-'}>
               <TextDisperse setBackground={setBackground}>
@@ -81,9 +55,6 @@ export default function Contact() {
             )}
           ></div>
         </div>
-      </div>
-      <div className="px-12 sm:px-56" id="email" ref={emailRef}>
-        <ContactForm />
       </div>
     </div>
   );

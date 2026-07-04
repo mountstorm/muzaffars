@@ -66,7 +66,9 @@ export default function ContactInfo() {
           </motion.div>
         </div>
         <div className="mt-6 flex gap-5 sm:mx-[100px]">
-          <RoundedButton>mkhaydar@go.olemiss.edu</RoundedButton>
+          <a href="mailto:mkhaydar@go.olemiss.edu">
+            <RoundedButton>mkhaydar@go.olemiss.edu</RoundedButton>
+          </a>
         </div>
 
         <div className="mt-20 flex flex-col justify-between p-5 2xs:mt-52 sm:mx-[100px] sm:mt-48 sm:flex-row">
