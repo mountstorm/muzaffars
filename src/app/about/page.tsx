@@ -34,10 +34,10 @@ export default function About() {
             <div className="space-y-8 lg:col-span-3">
               <AnimatedSection animation="fade-up">
                 <TextReveal
-                  text="Computer science student at the University of Mississippi, minoring in math, and an undergraduate researcher working on distributed AI systems. Currently a Software Engineering Intern at C Spire."
+                  text="Rising Junior studying Computer Science at the University of Mississippi, minoring in math, and an undergraduate researcher working on distributed AI systems. Currently a Software Engineering Intern at C Spire."
                   className="text-xl font-medium leading-relaxed text-foreground/90 sm:text-2xl"
                   as="p"
-                  highlightWords={['mississippi,', 'distributed', 'c', 'spire.']}
+                  highlightWords={['rising', 'junior', 'mississippi,', 'distributed', 'c', 'spire.']}
                   scrub={false}
                 />
               </AnimatedSection>

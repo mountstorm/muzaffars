@@ -4,6 +4,7 @@ import MenuButton from '@/components/nav/menuButton';
 import React, { useState } from 'react';
 import NavLinks from '@/components/nav/NavLinks';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import { Linkedin, Mail } from 'lucide-react';
 
 const links = [
   {
@@ -21,6 +22,10 @@ const links = [
   {
     title: 'gallery',
     href: '/gallery'
+  },
+  {
+    title: 'resume',
+    href: '/resume.pdf'
   },
   {
     title: 'contact',
@@ -60,7 +65,20 @@ export default function Menu() {
           {isActive && (
             <div className="box-border flex h-full flex-col justify-between p-[100px_40px_50px]">
               <NavLinks links={links} setIsActive={setIsActive} />
-              <ThemeToggle className="self-start text-background" />
+              <div className="flex items-center gap-4 text-background">
+                <a
+                  href="https://www.linkedin.com/in/muzaffar-"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a href="mailto:mkhaydar@go.olemiss.edu" aria-label="Email">
+                  <Mail size={20} />
+                </a>
+                <ThemeToggle className="text-background" />
+              </div>
             </div>
           )}
         </AnimatePresence>

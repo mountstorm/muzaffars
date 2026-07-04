@@ -1,6 +1,8 @@
 import React from 'react';
 
-const roles = ['Software Engineer', 'CS Researcher', "Ole Miss '28"];
+const roles = ['Software Engineer', 'CS Researcher', 'Rising Junior @ Ole Miss'];
+
+const terminalLines = ['$ touch grass', '$ sleep 8h', '$ while true; do code; done'];
 
 export default function Hero() {
   return (
@@ -26,6 +28,16 @@ export default function Hero() {
               <span className="text-lg text-background/30 sm:text-2xl">/</span>
             )}
           </React.Fragment>
+        ))}
+      </div>
+      <div className="relative z-10 rounded-lg border border-background/10 bg-background/5 px-5 py-4 text-left font-mono text-xs text-background/70 sm:text-sm">
+        {terminalLines.map((line, index) => (
+          <p key={line} className="m-0 leading-relaxed">
+            {line}
+            {index === terminalLines.length - 1 && (
+              <span className="ml-1 inline-block h-[1em] w-[0.5em] animate-pulse bg-background/70 align-middle" />
+            )}
+          </p>
         ))}
       </div>
     </div>

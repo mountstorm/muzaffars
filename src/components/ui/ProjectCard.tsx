@@ -19,6 +19,7 @@ export interface ProjectCardProps {
   animated?: boolean;
   imageClassName?: string;
   buttonText?: string;
+  noLinkLabel?: string;
 }
 
 export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
@@ -35,7 +36,8 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
       external = true,
       animated = false,
       imageClassName = '',
-      buttonText = 'View Project'
+      buttonText = 'View Project',
+      noLinkLabel = 'Internal project — no public link'
     },
     ref
   ) => {
@@ -107,7 +109,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
             </span>
           ) : (
             <span className="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-gray-400">
-              Internal project — no public link
+              {noLinkLabel}
             </span>
           )}
         </div>

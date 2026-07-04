@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import Menu from '../nav';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Linkedin, Mail } from 'lucide-react';
 import { useIsMobile } from '@/components/util';
 import Magnetic from '@/components/animations/magnetic';
 import Image from 'next/image';
@@ -106,13 +106,40 @@ export default function Header() {
             </div>
             <div className="group relative z-10 flex cursor-pointer p-3">
               <Magnetic>
+                <a href="/resume.pdf" download target="_blank" rel="noopener noreferrer">
+                  Resume
+                </a>
+              </Magnetic>
+            </div>
+            <div className="group relative z-10 flex cursor-pointer p-3">
+              <Magnetic>
                 <div className="flex">
                   <Link href={'/contact'}>Contact</Link>
                   <ArrowUpRight size={18} />
                 </div>
               </Magnetic>
             </div>
-            <div className="relative z-10 flex items-center p-3">
+            <div className="relative z-10 flex items-center gap-3 p-3">
+              <Magnetic>
+                <a
+                  href="https://www.linkedin.com/in/muzaffar-"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="flex"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="mailto:mkhaydar@go.olemiss.edu"
+                  aria-label="Email"
+                  className="flex"
+                >
+                  <Mail size={18} />
+                </a>
+              </Magnetic>
               <ThemeToggle className="text-white" />
             </div>
           </div>
