@@ -13,7 +13,6 @@ interface TimelineItem {
   company: string;
   companyUrl?: string;
   description: string;
-  highlight?: boolean;
 }
 
 const journeyData: TimelineItem[] = [
@@ -50,8 +49,7 @@ const journeyData: TimelineItem[] = [
     title: 'Software Engineering Intern',
     company: 'C Spire',
     description:
-      'Own 2-3 repositories handling billing audit logic and application flows, shipping code changes (not just reviews) across production Perl and Python systems. Fixed a production Perl billing flow handling 100+ weekly zero-payment errors, preventing batch-wide failures, and built a Python automation that auto-issues ServiceNow tickets for flagged accounts, saving on-call operators 30 minutes a day.',
-    highlight: true
+      'Own 2-3 repositories handling billing audit logic and application flows, shipping code changes (not just reviews) across production Perl and Python systems. Fixed a production Perl billing flow handling 100+ weekly zero-payment errors, preventing batch-wide failures, and built a Python automation that auto-issues ServiceNow tickets for flagged accounts, saving on-call operators 30 minutes a day.'
   }
 ];
 
@@ -138,11 +136,7 @@ export default function JourneyTimeline() {
                 i % 2 === 0 ? 'md:pr-16' : 'md:pl-16'
               }`}
             >
-              <div
-                className={`group relative rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md ${
-                  item.highlight ? 'border-primary/20 shadow-md' : ''
-                }`}
-              >
+              <div className="group relative rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm transition-all duration-300 hover:shadow-md">
                 <span className="mb-2 inline-block rounded-full bg-foreground/10 px-3 py-1 text-sm font-medium text-foreground">
                   {item.year}
                 </span>
@@ -169,11 +163,7 @@ export default function JourneyTimeline() {
 
             {/* Timeline dot */}
             <div className="absolute left-6 top-6 z-10 flex h-5 w-5 items-center justify-center rounded-full border-2 border-primary/40 bg-background md:left-1/2 md:-translate-x-1/2">
-              <div
-                className={`h-2 w-2 rounded-full ${
-                  item.highlight ? 'bg-primary' : 'bg-primary/50'
-                }`}
-              />
+              <div className="h-2 w-2 rounded-full bg-primary/50" />
             </div>
 
             {/* Empty space for the other side on desktop */}
