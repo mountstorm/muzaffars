@@ -49,7 +49,7 @@ const journeyData: TimelineItem[] = [
     title: 'Software Engineering Intern',
     company: 'C Spire',
     description:
-      'Own 2-3 repositories handling billing audit logic and application flows, shipping code changes (not just reviews) across production Perl and Python systems. Fixed a production Perl billing flow handling 100+ weekly zero-payment errors, preventing batch-wide failures, and built a Python automation that auto-issues ServiceNow tickets for flagged accounts, saving on-call operators 30 minutes a day.'
+      'Own two to three repositories handling billing audit logic and application flows, shipping code changes (not just reviews) across production Perl and Python systems. Fixed a production Perl billing flow handling 100+ weekly zero-payment errors, preventing batch-wide failures, and built a Python automation that auto-issues ServiceNow tickets for flagged accounts, saving on-call operators 30 minutes a day.'
   }
 ];
 

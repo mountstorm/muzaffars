@@ -48,7 +48,7 @@ export default function About() {
                     What I&apos;m Into
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    I like problems that span layers — from billing systems
+                    I like problems that span layers, from billing systems
                     processing thousands of records a week, to splitting a
                     neural network across a phone, an edge server, and the
                     cloud. Right now that means researching split-inference

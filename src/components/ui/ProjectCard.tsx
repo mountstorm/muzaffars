@@ -37,7 +37,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
       animated = false,
       imageClassName = '',
       buttonText = 'View Project',
-      noLinkLabel = 'Internal project — no public link'
+      noLinkLabel = 'Internal project, no public link'
     },
     ref
   ) => {

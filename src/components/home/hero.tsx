@@ -2,8 +2,6 @@ import React from 'react';
 
 const roles = ['Software Engineer', 'CS Researcher', 'Rising Junior @ Ole Miss'];
 
-const terminalLines = ['$ touch grass', '$ sleep 8h', '$ while true; do code; done'];
-
 export default function Hero() {
   return (
     <div className="relative flex min-h-screen w-full flex-col items-center justify-center gap-8 overflow-hidden bg-foreground px-6 text-center align-middle">
@@ -30,16 +28,10 @@ export default function Hero() {
           </React.Fragment>
         ))}
       </div>
-      <div className="relative z-10 rounded-lg border border-background/10 bg-background/5 px-5 py-4 text-left font-mono text-xs text-background/70 sm:text-sm">
-        {terminalLines.map((line, index) => (
-          <p key={line} className="m-0 leading-relaxed">
-            {line}
-            {index === terminalLines.length - 1 && (
-              <span className="ml-1 inline-block h-[1em] w-[0.5em] animate-pulse bg-background/70 align-middle" />
-            )}
-          </p>
-        ))}
-      </div>
+      <p className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap font-mono text-xs text-background/40 sm:text-sm">
+        $ touch grass &lt; today
+        <span className="ml-1 inline-block h-[1em] w-[0.5em] animate-pulse bg-background/40 align-middle" />
+      </p>
     </div>
   );
 }

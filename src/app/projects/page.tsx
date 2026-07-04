@@ -17,16 +17,16 @@ const projects = [
     id: 'distributed-ai-research',
     title: 'Split-Inference Distributed AI Systems',
     description:
-      'Built a distributed inference pipeline splitting neural networks across device, edge, and cloud — accurate within 1e-4 of single-machine output.',
+      'Built a distributed inference pipeline splitting neural networks across device, edge, and cloud, accurate within 1e-4 of single-machine output.',
     imagePath: '/images/gallery/programming-wlkata-robot.jpg',
-    noLinkLabel: 'Ongoing research — no public repo yet',
+    noLinkLabel: 'Ongoing research, no public repo yet',
     tags: ['Python', 'PyTorch', 'Distributed Systems', 'TCP', 'Edge Computing']
   },
   {
     id: 'dar-ticket-automation',
     title: 'DAR Ticket Automation',
     description:
-      'Built a Python pipeline that auto-generates billing reports and files ServiceNow tickets — replaced 10-20 manual reviews a day, saving 30 min/day.',
+      'Built a Python pipeline that auto-generates billing reports and files ServiceNow tickets, replacing 10 to 20 manual reviews a day and saving 30 min/day.',
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Python', 'YAML', 'ServiceNow (SNOW)', 'Excel Reporting']
   },
@@ -34,7 +34,7 @@ const projects = [
     id: 'intl-day-pass-audit',
     title: 'International Day Pass Audit',
     description:
-      'Built a Python tool that catches mismatched billing plans before customers see them — replaced a manual check with one CI/CD-ready command.',
+      'Built a Python tool that catches mismatched billing plans before customers see them, replacing a manual check with one CI/CD-ready command.',
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Python', 'Oracle SQL', 'YAML', 'CI/CD']
   },
@@ -42,7 +42,7 @@ const projects = [
     id: 'bbva-lockbox-auto-ignore',
     title: 'BBVA Lockbox Zero-Payment Auto-Ignore',
     description:
-      'Fixed payment logic to auto-clear 100+ weekly harmless $0 rejections while still halting on real errors — eliminated a manual step operators ran by hand.',
+      'Fixed payment logic to auto-clear 100+ weekly harmless $0 rejections while still halting on real errors, eliminating a manual step operators ran by hand.',
     imagePath: '/images/gallery/cspire-office.jpg',
     tags: ['Perl', 'Oracle SQL', 'RHEL / Linux', 'SSH']
   },
@@ -50,7 +50,7 @@ const projects = [
     id: 'neurabash',
     title: 'NeuraBash',
     description:
-      'Built a terminal AI coding assistant using GPT-4 and local LLMs (Ollama) — cut RAM footprint 30% with a modular CLI architecture.',
+      'Built a terminal AI coding assistant using GPT-4 and local LLMs (Ollama), cutting RAM footprint 30% with a modular CLI architecture.',
     imagePath: '/images/projects/neurabash.png',
     link: 'https://github.com/mountstorm/neurabash', // best-guess placeholder — update with real repo link
     tags: ['Python', 'Bash', 'OpenAI GPT-4', 'Ollama']
