@@ -25,7 +25,7 @@ const links = [
   },
   {
     title: 'resume',
-    href: '/resume.pdf'
+    href: '/Muzaffar_Khaydarov_Resume.pdf'
   },
   {
     title: 'contact',

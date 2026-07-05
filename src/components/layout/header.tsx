@@ -104,7 +104,7 @@ export default function Header() {
             </div>
             <div className="group relative z-10 flex cursor-pointer p-3">
               <Magnetic>
-                <a href="/resume.pdf" download target="_blank" rel="noopener noreferrer">
+                <a href="/Muzaffar_Khaydarov_Resume.pdf" download target="_blank" rel="noopener noreferrer">
                   Resume
                 </a>
               </Magnetic>
