@@ -128,7 +128,7 @@ export default function SkillsCloud() {
       <div className="flex shrink-0 flex-row gap-2 sm:w-40 sm:flex-col">
         <button
           onClick={() => setActiveLevel('all')}
-          className={`w-full rounded-full border px-4 py-2 text-center text-sm font-medium transition-colors duration-300 ${
+          className={`w-full rounded-full border px-4 py-2 text-center text-sm font-medium transition-colors duration-300 md:px-6 md:py-3 md:text-base ${
             activeLevel === 'all'
               ? 'border-foreground bg-foreground text-background'
               : 'border-foreground/20 text-foreground/70 hover:border-foreground/50'
@@ -140,7 +140,7 @@ export default function SkillsCloud() {
           <button
             key={level}
             onClick={() => setActiveLevel(level)}
-            className={`flex w-full items-center justify-center gap-1 rounded-full border px-4 py-2 transition-colors duration-300 ${
+            className={`flex w-full items-center justify-center gap-1 rounded-full border px-4 py-2 transition-colors duration-300 md:px-6 md:py-3 ${
               activeLevel === level
                 ? 'border-foreground bg-foreground text-background'
                 : 'border-foreground/20 text-foreground/70 hover:border-foreground/50'
