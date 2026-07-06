@@ -45,7 +45,17 @@ export default function RootTemplate({ children }: PropsWithChildren) {
         {isLoading && <PreLoader />}
       </AnimatePresence>
       <div ref={container} className={clsx('relative z-10', bgColour)}>
-        {children}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -24 }}
+            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
         <motion.div style={{ height }} className="relative">
           <div
             className={clsx(

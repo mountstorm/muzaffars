@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Star } from 'lucide-react';
 import Magnetic from '@/components/animations/magnetic';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,57 +11,58 @@ gsap.registerPlugin(ScrollTrigger);
 interface Skill {
   name: string;
   category: 'languages' | 'frameworks' | 'systems' | 'concepts' | 'certifications';
+  proficiency: number; // 0-100
 }
 
 const skills: Skill[] = [
   // Languages
-  { name: 'Java', category: 'languages' },
-  { name: 'Python', category: 'languages' },
-  { name: 'C++', category: 'languages' },
-  { name: 'C', category: 'languages' },
-  { name: 'JavaScript', category: 'languages' },
-  { name: 'TypeScript', category: 'languages' },
-  { name: 'Perl', category: 'languages' },
-  { name: 'SQL', category: 'languages' },
-  { name: 'Bash', category: 'languages' },
+  { name: 'Java', category: 'languages', proficiency: 90 },
+  { name: 'Python', category: 'languages', proficiency: 90 },
+  { name: 'C++', category: 'languages', proficiency: 75 },
+  { name: 'C', category: 'languages', proficiency: 70 },
+  { name: 'JavaScript', category: 'languages', proficiency: 85 },
+  { name: 'TypeScript', category: 'languages', proficiency: 80 },
+  { name: 'Perl', category: 'languages', proficiency: 60 },
+  { name: 'SQL', category: 'languages', proficiency: 85 },
+  { name: 'Bash', category: 'languages', proficiency: 75 },
   // Frameworks & tools
-  { name: 'Spring Boot', category: 'frameworks' },
-  { name: 'Node.js', category: 'frameworks' },
-  { name: 'Next.js', category: 'frameworks' },
-  { name: 'Flask', category: 'frameworks' },
-  { name: 'LangChain', category: 'frameworks' },
-  { name: 'Vite', category: 'frameworks' },
-  { name: 'Git', category: 'frameworks' },
-  { name: 'Docker', category: 'frameworks' },
-  { name: 'Kubernetes', category: 'frameworks' },
-  { name: 'AWS (EC2)', category: 'frameworks' },
-  { name: 'Firebase', category: 'frameworks' },
-  { name: 'ServiceNow', category: 'frameworks' },
-  { name: 'PyTorch', category: 'frameworks' },
-  { name: 'Ollama', category: 'frameworks' },
-  { name: 'Claude Code', category: 'frameworks' },
-  { name: 'Cursor', category: 'frameworks' },
+  { name: 'Spring Boot', category: 'frameworks', proficiency: 80 },
+  { name: 'Node.js', category: 'frameworks', proficiency: 80 },
+  { name: 'Next.js', category: 'frameworks', proficiency: 85 },
+  { name: 'Flask', category: 'frameworks', proficiency: 75 },
+  { name: 'LangChain', category: 'frameworks', proficiency: 70 },
+  { name: 'Vite', category: 'frameworks', proficiency: 75 },
+  { name: 'Git', category: 'frameworks', proficiency: 90 },
+  { name: 'Docker', category: 'frameworks', proficiency: 75 },
+  { name: 'Kubernetes', category: 'frameworks', proficiency: 65 },
+  { name: 'AWS (EC2)', category: 'frameworks', proficiency: 75 },
+  { name: 'Firebase', category: 'frameworks', proficiency: 70 },
+  { name: 'ServiceNow', category: 'frameworks', proficiency: 80 },
+  { name: 'PyTorch', category: 'frameworks', proficiency: 65 },
+  { name: 'Ollama', category: 'frameworks', proficiency: 70 },
+  { name: 'Claude Code', category: 'frameworks', proficiency: 85 },
+  { name: 'Cursor', category: 'frameworks', proficiency: 85 },
   // Systems & platforms
-  { name: 'Linux', category: 'systems' },
-  { name: 'RHEL', category: 'systems' },
-  { name: 'Billing Systems', category: 'systems' },
-  { name: 'Production Support', category: 'systems' },
+  { name: 'Linux', category: 'systems', proficiency: 85 },
+  { name: 'RHEL', category: 'systems', proficiency: 80 },
+  { name: 'Billing Systems', category: 'systems', proficiency: 85 },
+  { name: 'Production Support', category: 'systems', proficiency: 85 },
   // Concepts
-  { name: 'Microservices', category: 'concepts' },
-  { name: 'Distributed Systems', category: 'concepts' },
-  { name: 'REST APIs', category: 'concepts' },
-  { name: 'Workflow Automation', category: 'concepts' },
-  { name: 'Prompt Engineering', category: 'concepts' },
-  { name: 'pandas', category: 'concepts' },
-  { name: 'NumPy', category: 'concepts' },
-  { name: 'pytest', category: 'concepts' },
-  { name: 'Relational Databases', category: 'concepts' },
-  { name: 'Algorithms', category: 'concepts' },
-  { name: 'Edge Computing', category: 'concepts' },
-  { name: 'Workload Partitioning', category: 'concepts' },
+  { name: 'Microservices', category: 'concepts', proficiency: 75 },
+  { name: 'Distributed Systems', category: 'concepts', proficiency: 70 },
+  { name: 'REST APIs', category: 'concepts', proficiency: 90 },
+  { name: 'Workflow Automation', category: 'concepts', proficiency: 80 },
+  { name: 'Prompt Engineering', category: 'concepts', proficiency: 85 },
+  { name: 'pandas', category: 'concepts', proficiency: 80 },
+  { name: 'NumPy', category: 'concepts', proficiency: 75 },
+  { name: 'pytest', category: 'concepts', proficiency: 75 },
+  { name: 'Relational Databases', category: 'concepts', proficiency: 85 },
+  { name: 'Algorithms', category: 'concepts', proficiency: 80 },
+  { name: 'Edge Computing', category: 'concepts', proficiency: 65 },
+  { name: 'Workload Partitioning', category: 'concepts', proficiency: 65 },
   // Certifications
-  { name: 'AWS Generative AI Applications', category: 'certifications' },
-  { name: 'IBM Data Analysis Professional', category: 'certifications' }
+  { name: 'AWS Generative AI Applications', category: 'certifications', proficiency: 100 },
+  { name: 'IBM Data Analysis Professional', category: 'certifications', proficiency: 100 }
 ];
 
 const categoryColors: Record<string, string> = {
@@ -79,6 +81,7 @@ const categoryColors: Record<string, string> = {
 export default function SkillsCloud() {
   const containerRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement[]>([]);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -123,20 +126,51 @@ export default function SkillsCloud() {
 
   return (
     <div ref={containerRef} className="flex flex-wrap justify-center gap-3">
-      {skills.map((skill, i) => (
-        <Magnetic key={skill.name}>
-          <div
-            ref={(el) => {
-              if (el) skillsRef.current[i] = el;
-            }}
-            className={`cursor-default rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 md:px-6 md:py-3 md:text-base ${
-              categoryColors[skill.category]
-            }`}
-          >
-            {skill.name}
-          </div>
-        </Magnetic>
-      ))}
+      {skills.map((skill, i) => {
+        const isHovered = hovered === skill.name;
+        const filledStars = Math.round(skill.proficiency / 20);
+        return (
+          <Magnetic key={skill.name}>
+            <div
+              ref={(el) => {
+                if (el) skillsRef.current[i] = el;
+              }}
+              onMouseEnter={() => setHovered(skill.name)}
+              onMouseLeave={() => setHovered(null)}
+              onFocus={() => setHovered(skill.name)}
+              onBlur={() => setHovered(null)}
+              tabIndex={0}
+              className={`group relative cursor-default rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 md:px-6 md:py-3 md:text-base ${
+                categoryColors[skill.category]
+              }`}
+            >
+              {skill.name}
+              <div
+                className={`pointer-events-none absolute left-1/2 top-full z-20 mt-2 flex -translate-x-1/2 flex-col items-center gap-1 whitespace-nowrap rounded-lg border border-foreground/10 bg-background px-3 py-2 text-xs text-foreground shadow-lg transition-all duration-200 ${
+                  isHovered
+                    ? 'translate-y-0 opacity-100'
+                    : '-translate-y-1 opacity-0'
+                }`}
+              >
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, starIndex) => (
+                    <Star
+                      key={starIndex}
+                      size={14}
+                      className={
+                        starIndex < filledStars
+                          ? 'fill-current text-amber-500'
+                          : 'text-foreground/20'
+                      }
+                    />
+                  ))}
+                </div>
+                <span className="font-semibold">{skill.proficiency}% proficiency</span>
+              </div>
+            </div>
+          </Magnetic>
+        );
+      })}
     </div>
   );
 }
