@@ -2,11 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Star } from 'lucide-react';
 import Magnetic from '@/components/animations/magnetic';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Skill {
   name: string;
@@ -78,10 +75,23 @@ const categoryColors: Record<string, string> = {
     'bg-amber-600/15 text-amber-800 border-amber-600/30 hover:bg-amber-600/25 dark:text-amber-300'
 };
 
+function starsFor(proficiency: number) {
+  return Math.max(1, Math.min(5, Math.round(proficiency / 20)));
+}
+
+const starLevels = Array.from(new Set(skills.map((s) => starsFor(s.proficiency)))).sort(
+  (a, b) => b - a
+);
+
 export default function SkillsCloud() {
   const containerRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement[]>([]);
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [activeLevel, setActiveLevel] = useState<number | 'all'>('all');
+
+  const visibleSkills =
+    activeLevel === 'all'
+      ? skills
+      : skills.filter((skill) => starsFor(skill.proficiency) === activeLevel);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -106,71 +116,68 @@ export default function SkillsCloud() {
         stagger: {
           each: 0.05,
           from: 'random'
-        },
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
         }
       }
     );
+  }, [activeLevel]);
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === container) {
-          trigger.kill();
-        }
-      });
-    };
-  }, []);
+  skillsRef.current = [];
 
   return (
-    <div ref={containerRef} className="flex flex-wrap justify-center gap-3">
-      {skills.map((skill, i) => {
-        const isHovered = hovered === skill.name;
-        const filledStars = Math.round(skill.proficiency / 20);
-        return (
+    <div className="mx-auto flex max-w-5xl flex-col items-start gap-8 sm:flex-row">
+      <div className="flex shrink-0 flex-row gap-2 sm:w-40 sm:flex-col">
+        <button
+          onClick={() => setActiveLevel('all')}
+          className={`w-full rounded-full border px-4 py-2 text-center text-sm font-medium transition-colors duration-300 ${
+            activeLevel === 'all'
+              ? 'border-foreground bg-foreground text-background'
+              : 'border-foreground/20 text-foreground/70 hover:border-foreground/50'
+          }`}
+        >
+          All skills
+        </button>
+        {starLevels.map((level) => (
+          <button
+            key={level}
+            onClick={() => setActiveLevel(level)}
+            className={`flex w-full items-center justify-center gap-1 rounded-full border px-4 py-2 transition-colors duration-300 ${
+              activeLevel === level
+                ? 'border-foreground bg-foreground text-background'
+                : 'border-foreground/20 text-foreground/70 hover:border-foreground/50'
+            }`}
+          >
+            {Array.from({ length: 5 }).map((_, starIndex) => (
+              <Star
+                key={starIndex}
+                size={16}
+                className={
+                  starIndex < level
+                    ? 'fill-current text-amber-500'
+                    : activeLevel === level
+                      ? 'text-background/30'
+                      : 'text-foreground/15'
+                }
+              />
+            ))}
+          </button>
+        ))}
+      </div>
+      <div ref={containerRef} className="flex flex-1 flex-wrap gap-3">
+        {visibleSkills.map((skill, i) => (
           <Magnetic key={skill.name}>
             <div
               ref={(el) => {
                 if (el) skillsRef.current[i] = el;
               }}
-              onMouseEnter={() => setHovered(skill.name)}
-              onMouseLeave={() => setHovered(null)}
-              onFocus={() => setHovered(skill.name)}
-              onBlur={() => setHovered(null)}
-              tabIndex={0}
-              className={`group relative cursor-default rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 md:px-6 md:py-3 md:text-base ${
+              className={`cursor-default rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300 md:px-6 md:py-3 md:text-base ${
                 categoryColors[skill.category]
               }`}
             >
               {skill.name}
-              <div
-                className={`pointer-events-none absolute left-1/2 top-full z-20 mt-2 flex -translate-x-1/2 flex-col items-center gap-1 whitespace-nowrap rounded-lg border border-foreground/10 bg-background px-3 py-2 text-xs text-foreground shadow-lg transition-all duration-200 ${
-                  isHovered
-                    ? 'translate-y-0 opacity-100'
-                    : '-translate-y-1 opacity-0'
-                }`}
-              >
-                <div className="flex gap-0.5">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <Star
-                      key={starIndex}
-                      size={14}
-                      className={
-                        starIndex < filledStars
-                          ? 'fill-current text-amber-500'
-                          : 'text-foreground/20'
-                      }
-                    />
-                  ))}
-                </div>
-                <span className="font-semibold">{skill.proficiency}% proficiency</span>
-              </div>
             </div>
           </Magnetic>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 }

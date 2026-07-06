@@ -1,8 +1,6 @@
 'use client';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import gsap from 'gsap';
 import Menu from '../nav';
 import Link from 'next/link';
 import { ArrowUpRight, Linkedin, Mail } from 'lucide-react';
@@ -14,37 +12,21 @@ import ThemeToggle from '@/components/ui/ThemeToggle';
 export default function Header() {
   const header = useRef(null);
   const [isActive, setIsActive] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const button = useRef(null);
   const mobile = useIsMobile();
 
   useEffect(() => {
     if (isActive) setIsActive(false);
   }, [pathname]);
 
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.to(button.current, {
-      scrollTrigger: {
-        trigger: document.documentElement,
-        start: 0,
-        end: window.innerHeight,
-        onLeave: () => {
-          gsap.to(button.current, {
-            scale: 1,
-            duration: 0.25,
-            ease: 'power1.out'
-          });
-        },
-        onEnterBack: () => {
-          gsap.to(button.current, {
-            scale: 0,
-            duration: 0.25,
-            ease: 'power1.out'
-          });
-        }
-      }
-    });
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > window.innerHeight * 0.9);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -142,7 +124,11 @@ export default function Header() {
         )}
       </div>
       {!mobile && (
-        <div ref={button} className="fixed right-0 z-20 scale-0 transform">
+        <div
+          className={`fixed right-0 top-0 z-20 transform transition-transform duration-300 ease-out ${
+            isScrolled ? 'scale-100' : 'scale-0'
+          }`}
+        >
           <Menu />
         </div>
       )}
