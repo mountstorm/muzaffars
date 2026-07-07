@@ -49,7 +49,7 @@ const galleryItems = [
   },
   {
     src: '/images/gallery/waymo.jpg',
-    caption: 'Riding on a Waymo first time',
+    caption: 'Riding on a Waymo for the first time',
     aspect: 'aspect-[4/5]'
   },
   {
@@ -59,7 +59,8 @@ const galleryItems = [
   },
   {
     src: '/images/gallery/chinese-food.jpg',
-    caption: 'Enjoying Chinese food after final exams',
+    caption: 'Enjoying Chi' +
+      'nese food after final exams',
     aspect: 'aspect-square'
   },
   {
