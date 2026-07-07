@@ -64,11 +64,9 @@ export default function About() {
                     Beyond Code
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
-                    Outside of research and my internship, I TA core CS
-                    courses at Ole Miss, guiding 49+ students through
-                    object-oriented programming, data structures, and
-                    algorithms, and I build side projects at hackathons like
-                    EmoryHacks.
+                    Outside of research and my internship, I like to play chess,
+                    soccer, and video games. I enjoy reading classics like Camus,
+                    Kafka, and Dostoevsky.
                   </p>
                 </div>
               </AnimatedSection>
