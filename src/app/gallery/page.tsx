@@ -9,62 +9,62 @@ import Layout from '@/components/layout';
 const galleryItems = [
   {
     src: '/images/gallery/me-at-boston.jpg',
-    caption: 'Me at Boston',
+    caption: 'Happy before HackHarvard',
     aspect: 'aspect-[3/4]'
   },
   {
     src: '/images/gallery/programming-wlkata-robot.jpg',
-    caption: 'Programming a Wlkata robot',
+    caption: 'Programming a Wlkata robot for Pharmaceutical research project',
     aspect: 'aspect-square'
   },
   {
     src: '/images/gallery/cspire-office.jpg',
-    caption: 'C Spire office',
+    caption: 'My first day at C Spire Headquarters',
     aspect: 'aspect-[4/5]'
   },
   {
     src: '/images/gallery/olemiss.jpg',
-    caption: 'Ole Miss',
+    caption: 'Attending an Ole Miss 2026 graduation',
     aspect: 'aspect-[3/4]'
   },
   {
     src: '/images/gallery/nowruz-at-harvard.jpg',
-    caption: 'Nowruz at Harvard',
+    caption: 'Organizing Uzbek corner for Nowruz at Harvard',
     aspect: 'aspect-square'
   },
   {
     src: '/images/gallery/world-cup.jpg',
-    caption: 'World Cup',
+    caption: 'Uzbekistan v Congo World Cup 2026 match',
     aspect: 'aspect-[4/5]'
   },
   {
     src: '/images/gallery/san-fran.jpg',
-    caption: 'San Francisco',
+    caption: 'Attended SilkRoad Innovation Hub conference in Palo Alto and explored San Francisco',
     aspect: 'aspect-[3/4]'
   },
   {
     src: '/images/gallery/basketball.jpg',
-    caption: 'Basketball',
+    caption: 'After 3pm labs, I enjoy playing basketball',
     aspect: 'aspect-square'
   },
   {
     src: '/images/gallery/waymo.jpg',
-    caption: 'Waymo',
+    caption: 'Riding on a Waymo first time',
     aspect: 'aspect-[4/5]'
   },
   {
     src: '/images/gallery/grass.jpg',
-    caption: 'Grass',
+    caption: 'Walk in the park in Boston',
     aspect: 'aspect-[3/4]'
   },
   {
     src: '/images/gallery/chinese-food.jpg',
-    caption: 'Chinese food',
+    caption: 'Enjoying Chinese food after final exams',
     aspect: 'aspect-square'
   },
   {
     src: '/images/gallery/soccer.jpg',
-    caption: 'Soccer',
+    caption: 'Nice soccer poster in Brussels Metro (Subway)',
     aspect: 'aspect-[4/5]'
   }
 ];
