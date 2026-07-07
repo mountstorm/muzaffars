@@ -81,12 +81,12 @@ export default function Header() {
             </div>
             <div className="group relative z-10 flex cursor-pointer p-3">
               <Magnetic>
-                <Link href={'/gallery'}>Gallery</Link>
+                <Link href={'/resume'}>Resume</Link>
               </Magnetic>
             </div>
             <div className="group relative z-10 flex cursor-pointer p-3">
               <Magnetic>
-                <Link href={'/resume'}>Resume</Link>
+                <Link href={'/gallery'}>Gallery</Link>
               </Magnetic>
             </div>
             <div className="group relative z-10 flex cursor-pointer p-3">

@@ -20,12 +20,12 @@ const links = [
     href: '/projects'
   },
   {
-    title: 'gallery',
-    href: '/gallery'
-  },
-  {
     title: 'resume',
     href: '/resume'
+  },
+  {
+    title: 'gallery',
+    href: '/gallery'
   },
   {
     title: 'contact',
