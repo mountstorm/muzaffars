@@ -1,12 +1,8 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import Layout from '@/components/layout';
-import AnimatedSection from '@/components/about/AnimatedSection';
-import GitHubContributionsGraph from '@/app/about/githubActivity';
-import { useGitHub } from '@/hooks/useGithub';
 
 // Real projects from resume/experience. Live/demo URLs are unconfirmed for the
 // public repos — hrefs below are best-guess GitHub links under
@@ -67,32 +63,9 @@ const projects = [
 ];
 
 export default function ProjectsHome() {
-  const {
-    githubData,
-    isLoading: githubLoading,
-    error: githubError
-  } = useGitHub();
-
   return (
     <Layout title={'My Work'} center>
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        {!githubLoading && !githubError && githubData && (
-          <AnimatedSection animation="fade-up" className="mb-16">
-            <Link
-              href="https://github.com/mountstorm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block transition-transform hover:scale-[1.01]"
-            >
-              <GitHubContributionsGraph
-                contributions={githubData.contributions}
-                totalContributions={githubData.totalContributions}
-                restrictedContributions={githubData.restrictedContributions}
-              />
-            </Link>
-          </AnimatedSection>
-        )}
-
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {projects.map((project, index) => (
             <ProjectCard

@@ -19,13 +19,12 @@ export default function Contact() {
         <div className="p-12 xs:w-1/2 xs:p-0">
           <div className="flex justify-between uppercase">
             <p className="m-0">Muzaffar</p>
-            <p className="m-0"> Khaydarov</p>
           </div>
           <div className="flex justify-between uppercase">
-            <p className="m-0">software</p>
+            <p className="m-0">Khaydarov</p>
           </div>
-          <div className="flex justify-between uppercase">
-            <p className="m-0">engineer</p>
+          <div className="flex uppercase">
+            <p className="m-0">software-engineer</p>
           </div>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 text-[7vw] uppercase xs:text-[5.6vw]">
             <a href="mailto:mkhaydar@go.olemiss.edu">
