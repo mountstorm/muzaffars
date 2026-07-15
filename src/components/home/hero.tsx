@@ -29,7 +29,7 @@ export default function Hero() {
         ))}
       </div>
       <p className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap font-mono text-xs text-background/40 sm:text-sm">
-        $ touch grass &lt; today
+        $ while (awake) {'{'} build(); {'}'}
         <span className="ml-1 inline-block h-[1em] w-[0.5em] animate-pulse bg-background/40 align-middle" />
       </p>
     </div>
