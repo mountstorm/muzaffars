@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react';
-import ContrastCursor from '@/components/animations/cursor/contrastCursor';
 import { clsx } from 'clsx';
 
 type Props = {
@@ -37,7 +36,6 @@ export default function Layout({
         )}
       </div>
       {children}
-      <ContrastCursor isActive={false} text={''} />
     </div>
   );
 }
