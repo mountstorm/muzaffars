@@ -119,3 +119,29 @@
     transparent
   );
 }
+
+/* 3D flip for the menu button label (Menu/Close) */
+.perspective-text {
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.perspective-text p {
+  transition:
+    transform 0.75s cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.perspective-text p:nth-of-type(2) {
+  transform-origin: bottom center;
+  transform: rotateX(-90deg) translateY(9px);
+  opacity: 0;
+}
+.menu-face:hover .perspective-text {
+  transform: rotateX(90deg);
+}
+.menu-face:hover .perspective-text p:nth-of-type(1) {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.menu-face:hover .perspective-text p:nth-of-type(2) {
+  opacity: 1;
+}

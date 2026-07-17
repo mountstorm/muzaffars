@@ -22,22 +22,30 @@ const animateLettersOnScroll = (containerRef: MutableRefObject<any>) => {
   const lettersContainer = containerRef.current;
   const letterElements = lettersContainer?.querySelectorAll('.letter');
 
-  letterElements.forEach((letter: Element, index: number) => {
-    gsap.to(letter, {
-      y: (i, el) =>
-        (1 - parseFloat(el.getAttribute('data-speed'))) *
-        ScrollTrigger.maxScroll(window),
-      ease: 'power2.out',
-      duration: 0.8,
-      scrollTrigger: {
-        trigger: document.documentElement,
-        start: 0,
-        end: window.innerHeight,
-        invalidateOnRefresh: true,
-        scrub: 0.5
+  // One shared ScrollTrigger driving a single timeline is far cheaper than a
+  // scrubbed trigger per letter.
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: document.documentElement,
+      start: 0,
+      end: window.innerHeight,
+      invalidateOnRefresh: true,
+      scrub: 0.5
+    }
+  });
+  letterElements.forEach((letter: Element) => {
+    tl.to(
+      letter,
+      {
+        y: (i, el) =>
+          (1 - parseFloat(el.getAttribute('data-speed'))) *
+          ScrollTrigger.maxScroll(window),
+        ease: 'power2.out',
+        duration: 0.8,
+        rotation: getRandomRotation()
       },
-      rotation: getRandomRotation()
-    });
+      0
+    );
   });
 };
 

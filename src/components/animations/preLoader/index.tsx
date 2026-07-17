@@ -7,18 +7,17 @@ import { clsx } from 'clsx';
 import { usePathname } from 'next/navigation';
 
 const words = [
-  { text: 'Hola', colour: 'primary' },
-  { text: 'Hello', colour: 'secondary' },
-  { text: 'Salut', colour: 'accent' },
-  { text: 'Bonjour', colour: 'destructive' },
-  { text: 'Ciao', colour: 'bg-purple-500' }
+  { text: 'Hola', dot: 'bg-emerald-400' },
+  { text: 'Hello', dot: 'bg-sky-400' },
+  { text: 'Salut', dot: 'bg-amber-400' },
+  { text: 'Bonjour', dot: 'bg-rose-400' },
+  { text: 'Ciao', dot: 'bg-purple-400' }
 ];
 
 export default function PreLoader() {
   const [index, setIndex] = useState(0);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const pathname = usePathname().split('/').pop();
-  console.log('pathname', pathname);
 
   useEffect(() => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
@@ -66,18 +65,14 @@ export default function PreLoader() {
             variants={opacity}
             initial="initial"
             animate="enter"
-            className={clsx(
-              'absolute flex items-center justify-center text-4xl text-white',
-              `text-${words[index].colour}`
-            )}
+            className="absolute flex items-center justify-center text-4xl text-white"
           >
             <span
               className={clsx(
                 'size-3 mr-3 block rounded-full',
-                `bg-${words[index].colour}`
+                words[index].dot
               )}
             ></span>
-            hii
             {pathname === '' ? words[index].text : pathname}
           </motion.p>
           <svg className="absolute top-0 h-[calc(100%+300px)] w-full fill-[#141516]">
