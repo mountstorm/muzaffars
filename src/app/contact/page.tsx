@@ -25,7 +25,7 @@ export default function Contact() {
           </div>
           <div className="flex uppercase">
             <p className="m-0 text-[3vw] tracking-wide opacity-70 xs:text-[1.6vw]">
-              software engineer;)
+              software engineer
             </p>
           </div>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 text-[7vw] uppercase xs:text-[5.6vw]">
