@@ -43,16 +43,16 @@
     --popover: 20 14.3% 8%;
     --popover-foreground: 0 0% 96%;
 
-    --primary: 142 70% 55%;
+    --primary: 217 90% 62%; /* hero blue, brightened for dark bg */
     --primary-foreground: 0 0% 8%;
 
-    --secondary: 160 40% 35%;
+    --secondary: 217 60% 42%;
     --secondary-foreground: 0 0% 96%;
 
-    --muted: 293 10% 18%;
-    --muted-foreground: 240 5% 70%;
+    --muted: 217 25% 16%;
+    --muted-foreground: 217 15% 70%;
 
-    --accent: 240 5% 18%;
+    --accent: 217 30% 18%;
     --accent-foreground: 0 0% 96%;
 
     --destructive: 2 90% 60%; /* softened red for dark backgrounds */
@@ -60,7 +60,7 @@
 
     --border: 217.2 20% 25%;
     --input: 217.2 20% 25%;
-    --ring: 142 70% 55%;
+    --ring: 217 90% 62%;
   }
 }
 
