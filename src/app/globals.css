@@ -13,24 +13,24 @@
     --popover: 0 0% 100%; /* ffffff white */
     --popover-foreground: 20 14.3% 4.1%; /* 0c0a09 smoky black */
 
-    --primary: 142 76% 45%; /* terminal green */
-    --primary-foreground: 0 0% 8%;
+    --primary: 217 90% 50%; /* hero blue */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 160 50% 25%; /* deep green */
+    --secondary: 217 75% 32%; /* deep hero blue */
     --secondary-foreground: 0 0% 96%; /* off-white */
 
-    --muted: 293 33% 91%; /* eddfef pale purple */
-    --muted-foreground: 25 5.3% 44.7%;
+    --muted: 217 60% 93%; /* pale blue */
+    --muted-foreground: 217 15% 45%;
 
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
+    --accent: 217 45% 95%;
+    --accent-foreground: 217 60% 15%;
 
     --destructive: 2 100% 50%; /* ff0800 candy apple red */
     --destructive-foreground: 60 9.1% 97.8%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 142 76% 45%;
+    --ring: 217 90% 50%;
   }
 
   .dark {
