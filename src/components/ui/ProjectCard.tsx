@@ -20,6 +20,8 @@ export interface ProjectCardProps {
   imageClassName?: string;
   buttonText?: string;
   noLinkLabel?: string;
+  secondaryLink?: string;
+  secondaryButtonText?: string;
 }
 
 export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
@@ -37,11 +39,31 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
       animated = false,
       imageClassName = '',
       buttonText = 'View Project',
-      noLinkLabel = 'Internal project, no public link'
+      noLinkLabel = 'Internal project, no public link',
+      secondaryLink,
+      secondaryButtonText = 'Live Demo'
     },
     ref
   ) => {
     const [imageError, setImageError] = useState(false);
+
+    const linkProps = external
+      ? { target: '_blank', rel: 'noopener noreferrer' }
+      : {};
+
+    const buttonClass =
+      'inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-gray-200 dark:hover:bg-zinc-800';
+
+    const arrowIcon = (
+      <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M14 5l7 7m0 0l-7 7m7-7H3"
+        />
+      </svg>
+    );
 
     const cardContent = (
       <>
@@ -90,22 +112,21 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
             </div>
           )}
 
-          {link ? (
-            <span className="inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-gray-200 dark:hover:bg-zinc-800">
+          {link && secondaryLink ? (
+            <div className="flex flex-wrap gap-2">
+              <Link href={link} {...linkProps} className={buttonClass}>
+                {buttonText}
+                {arrowIcon}
+              </Link>
+              <Link href={secondaryLink} {...linkProps} className={buttonClass}>
+                {secondaryButtonText}
+                {arrowIcon}
+              </Link>
+            </div>
+          ) : link ? (
+            <span className={buttonClass}>
               {buttonText}
-              <svg
-                className="ml-2 h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
+              {arrowIcon}
             </span>
           ) : (
             <span className="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-500 dark:border-zinc-700 dark:bg-zinc-800 dark:text-gray-400">
@@ -115,10 +136,6 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         </div>
       </>
     );
-
-    const linkProps = external
-      ? { target: '_blank', rel: 'noopener noreferrer' }
-      : {};
 
     const cardShell = (
       <div className="relative h-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900">
@@ -139,7 +156,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           }}
           className="group h-full"
         >
-          {link ? (
+          {link && !secondaryLink ? (
             <Link href={link} {...linkProps} className="block h-full">
               {cardShell}
             </Link>
@@ -155,7 +172,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         ref={ref}
         className="group h-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
       >
-        {link ? (
+        {link && !secondaryLink ? (
           <Link href={link} {...linkProps} className="block h-full">
             {cardContent}
           </Link>

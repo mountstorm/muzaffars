@@ -10,6 +10,18 @@ import Layout from '@/components/layout';
 // available. The C Spire projects are internal and have no public link.
 const projects = [
   {
+    id: 'worldcup-predictor',
+    title: 'World Cup Final Predictor',
+    description:
+      'Predicted the 2026 World Cup final (Argentina vs Spain) from 35k international matches: Elo ratings feed a recency-weighted Poisson goal model, resolved over 10,000 Monte Carlo simulations into score, event, and player probabilities with a visual dashboard.',
+    imagePath: '/images/projects/worldcup-predictor.png',
+    link: 'https://github.com/mountstorm/worldcup-predictor',
+    secondaryLink:
+      'https://claude.ai/code/artifact/839a7d75-0845-47af-861c-a69d38793dad',
+    secondaryButtonText: 'View Dashboard',
+    tags: ['Python', 'pandas', 'scikit-learn', 'Monte Carlo', 'matplotlib']
+  },
+  {
     id: 'whosponsors',
     title: 'WhoSponsors',
     description:
