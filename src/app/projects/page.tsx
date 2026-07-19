@@ -10,6 +10,15 @@ import Layout from '@/components/layout';
 // available. The C Spire projects are internal and have no public link.
 const projects = [
   {
+    id: 'whosponsors',
+    title: 'WhoSponsors',
+    description:
+      'Built the honest H-1B sponsorship database: ETL over 831k USCIS filings with entity resolution across 324k employers, plus a reverse-engineered Tableau extraction for FY2024+ data, served as searchable per-company trend charts.',
+    imagePath: '/images/projects/whosponsors.svg',
+    link: 'https://github.com/mountstorm/whosponsors',
+    tags: ['Python', 'SQLite', 'Next.js', 'Data Engineering', 'SVG Charts']
+  },
+  {
     id: 'distributed-ai-research',
     title: 'Split-Inference Distributed AI Systems',
     description:
