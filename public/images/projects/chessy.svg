@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750">
+<rect width="1200" height="750" fill="#1b1a17"/>
+<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#c8791f" stop-opacity="0.20"/><stop offset="1" stop-color="#c8791f" stop-opacity="0"/></linearGradient></defs>
+<rect width="1200" height="750" fill="url(#cg)"/>
+<g transform="translate(110,180)">
+<g>
+<rect width="360" height="360" fill="#2a2823"/>
+<g fill="#3a382f">
+<rect x="0" y="0" width="45" height="45"/><rect x="90" y="0" width="45" height="45"/><rect x="180" y="0" width="45" height="45"/><rect x="270" y="0" width="45" height="45"/>
+<rect x="45" y="45" width="45" height="45"/><rect x="135" y="45" width="45" height="45"/><rect x="225" y="45" width="45" height="45"/><rect x="315" y="45" width="45" height="45"/>
+<rect x="0" y="90" width="45" height="45"/><rect x="90" y="90" width="45" height="45"/><rect x="180" y="90" width="45" height="45"/><rect x="270" y="90" width="45" height="45"/>
+</g>
+<rect x="135" y="135" width="45" height="45" fill="#b3372f" opacity="0.7"/>
+</g>
+<text x="150" y="168" font-size="40" fill="#f2efe6" font-family="serif">♞</text>
+</g>
+<text x="560" y="290" font-size="56" font-weight="700" fill="#f2efe6" font-family="system-ui,sans-serif">Chessy <tspan fill="#c8791f">♞</tspan></text>
+<text x="560" y="336" font-size="26" fill="#b8b4a6" font-family="system-ui,sans-serif">a knight that reviews your games</text>
+<g font-family="system-ui,sans-serif" font-size="22" fill="#b8b4a6">
+<text x="560" y="410">hover the board — the knight coaches you</text>
+<text x="560" y="450">post-game only · Stockfish 16 · lichess</text>
+</g>
+</svg>

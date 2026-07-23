@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750">
+<rect width="1200" height="750" fill="#fbfcf9"/>
+<defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#1c6e46" stop-opacity="0.16"/><stop offset="1" stop-color="#1c6e46" stop-opacity="0"/></linearGradient></defs>
+<rect width="1200" height="750" fill="url(#rg)"/>
+<text x="110" y="120" font-size="52" font-weight="700" fill="#14140f" font-family="ui-monospace,monospace">resume<tspan fill="#1c6e46">Git</tspan></text>
+<text x="110" y="168" font-size="26" fill="#565349" font-family="system-ui,sans-serif">git version control for your resume</text>
+<g font-family="ui-monospace,monospace" font-size="22">
+<circle cx="150" cy="300" r="9" fill="#1c6e46"/><text x="185" y="308" fill="#14140f">main</text>
+<circle cx="150" cy="380" r="9" fill="#2a78d6"/><text x="185" y="388" fill="#565349">openai — AI Engineer</text>
+<circle cx="150" cy="460" r="9" fill="#e34948"/><text x="185" y="468" fill="#565349">boston-dynamics — Robotics</text>
+<line x1="150" y1="300" x2="150" y2="460" stroke="#d2cfc2" stroke-width="3"/>
+<line x1="150" y1="380" x2="420" y2="380" stroke="#2a78d6" stroke-width="2" stroke-dasharray="5 5"/>
+<line x1="150" y1="460" x2="470" y2="460" stroke="#e34948" stroke-width="2" stroke-dasharray="5 5"/>
+</g>
+<text x="110" y="620" font-size="20" fill="#898781" font-family="system-ui,sans-serif">semantic merge · one commit updates every tailored branch</text>
+</svg>

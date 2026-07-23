@@ -10,6 +10,33 @@ import Layout from '@/components/layout';
 // available. The C Spire projects are internal and have no public link.
 const projects = [
   {
+    id: 'resumegit',
+    title: 'resumeGit',
+    description:
+      'Git version control for your resume: a branch per application, and a GPT-5.6 semantic merge engine that propagates one life update into every tailored branch, each rewritten in its own voice. Every resume is a real git repository — history, diffs, and blame for free.',
+    imagePath: '/images/projects/resumegit.svg',
+    link: 'https://github.com/mountstorm/resumegit',
+    tags: ['Next.js', 'TypeScript', 'GPT-5.6', 'simple-git', 'zod']
+  },
+  {
+    id: 'top-ai',
+    title: "to'p ai",
+    description:
+      'On-device football coach: point a phone camera at yourself and it counts juggles, grades shooting form, and tracks progress over time using real-time pose estimation. Built for youth players who cannot afford analysis tools, starting in Uzbekistan.',
+    imagePath: '/images/projects/top-ai.svg',
+    noLinkLabel: 'Private — in development',
+    tags: ['MediaPipe', 'Computer Vision', 'JavaScript', 'On-device ML']
+  },
+  {
+    id: 'chessy',
+    title: 'Chessy',
+    description:
+      'A browser extension whose cursor becomes a knight that reviews your finished chess games: hover the board or move list and it coaches you on each move. Post-game only, powered by Stockfish 16 running locally in the browser.',
+    imagePath: '/images/projects/chessy.svg',
+    noLinkLabel: 'Private — in development',
+    tags: ['Browser Extension', 'Stockfish (WASM)', 'chess.js', 'JavaScript']
+  },
+  {
     id: 'worldcup-predictor',
     title: 'World Cup Final Predictor',
     description:
