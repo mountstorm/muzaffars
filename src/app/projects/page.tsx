@@ -19,15 +19,6 @@ const projects = [
     tags: ['Next.js', 'TypeScript', 'GPT-5.6', 'simple-git', 'zod']
   },
   {
-    id: 'top-ai',
-    title: "to'p ai",
-    description:
-      'On-device football coach: point a phone camera at yourself and it counts juggles, grades shooting form, and tracks progress over time using real-time pose estimation. Built for youth players who cannot afford analysis tools, starting in Uzbekistan.',
-    imagePath: '/images/projects/top-ai.svg',
-    noLinkLabel: 'Private — in development',
-    tags: ['MediaPipe', 'Computer Vision', 'JavaScript', 'On-device ML']
-  },
-  {
     id: 'chessy',
     title: 'Chessy',
     description:
