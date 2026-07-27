@@ -43,3 +43,7 @@ whosponsors/
 worldcup-predictor/
 openai-build-week/
 top-ai/
+chessy/
+
+# Claude Code local config & worktrees
+.claude/

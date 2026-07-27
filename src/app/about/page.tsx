@@ -65,8 +65,8 @@ export default function About() {
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
                     Outside of research and my internship, I like to play chess,
-                    soccer, and video games. I enjoy reading classics like Camus,
-                    Kafka, and Dostoevsky.
+                    soccer. I enjoy reading classics like Camus,
+                    Kafka, and Dostoevsky. I like solving math quizzes.
                   </p>
                 </div>
               </AnimatedSection>
