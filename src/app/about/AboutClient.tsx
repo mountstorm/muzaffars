@@ -34,10 +34,10 @@ export default function AboutClient() {
             <div className="space-y-8 lg:col-span-3">
               <AnimatedSection animation="fade-up">
                 <TextReveal
-                  text="Junior studying Computer Science at the University of Mississippi, minoring in math, and an undergraduate researcher working on distributed AI systems. Currently a Software Engineering Intern at C Spire."
+                  text="Junior studying Computer Science at the University of Mississippi, minoring in math, and an undergraduate researcher working on distributed AI systems. Spent summer 2026 as a Software Engineering Intern on the billing team at C Spire, and received a return offer."
                   className="text-xl font-medium leading-relaxed text-foreground/90 sm:text-2xl"
                   as="p"
-                  highlightWords={['junior', 'mississippi,', 'distributed', 'c', 'spire.']}
+                  highlightWords={['junior', 'mississippi,', 'distributed', 'c', 'spire,', 'offer.']}
                   scrub={false}
                 />
               </AnimatedSection>
@@ -49,11 +49,11 @@ export default function AboutClient() {
                   </h3>
                   <p className="leading-relaxed text-foreground/70">
                     I like problems that span layers, from billing systems
-                    processing thousands of records a week, to splitting a
-                    neural network across a phone, an edge server, and the
-                    cloud. Right now that means researching split-inference
-                    systems with Prof. Feng Wang, in collaboration with the
-                    University of Memphis.
+                    processing thousands of records a week, to running one
+                    object detection model across a laptop and two Linux VMs
+                    and proving the answer is still the same. Right now that
+                    means distributed inference research with Prof. Feng Wang,
+                    in collaboration with the University of Memphis.
                   </p>
                 </div>
               </AnimatedSection>

@@ -4,7 +4,7 @@ export const SITE = {
   shortName: "Muzaffar's World",
   title: 'Muzaffar Khaydarov — Software Engineer & Distributed AI Researcher',
   description:
-    'CS @ Ole Miss. I build systems that span device, edge, and cloud — production billing at C Spire and split-inference research with Prof. Feng Wang.',
+    'CS @ Ole Miss. I build production software and distributed AI systems — billing systems at C Spire, where I received a return offer, and distributed inference research with Prof. Feng Wang.',
   email: 'mkhaydar@go.olemiss.edu',
   github: 'https://github.com/mountstorm',
   linkedin: 'https://www.linkedin.com/in/muzaffar-',

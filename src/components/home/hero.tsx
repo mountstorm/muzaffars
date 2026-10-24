@@ -45,8 +45,8 @@ export default function Hero() {
 
         <p className="mt-6 max-w-[62ch] text-base leading-relaxed text-background/70 sm:text-lg">
           I build production software and distributed AI systems. Computer
-          science student at Ole Miss and Software Engineering Intern at C
-          Spire.
+          science student at Ole Miss, and a 2026 Software Engineering Intern
+          at C Spire, where I received a return offer.
         </p>
 
         <p className="mt-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-background/25 px-4 py-2 text-sm text-background/80">

@@ -136,31 +136,32 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'split-inference',
     projectId: 'distributed-ai-research',
-    title: 'Split-Inference Distributed AI',
-    metaTitle: 'Split-Inference Across Device, Edge and Cloud — Research Case Study',
+    title: 'Distributed AI Systems Research',
+    metaTitle: 'Distributed Inference Research — Verifying a Split YOLO Pipeline',
     metaDescription:
-      'Partitioning DNN execution across device, edge, and cloud in PyTorch: a two-machine TCP pipeline verified within 1e-4 of single-machine output, with all 22 AlexNet split points profiled.',
+      'Profiling all 22 AlexNet split points across WiFi, LTE and backhaul, then verifying a distributed YOLO pipeline across an Apple M3 Mac and two Linux VMs to within 0.000137 across all 300 outputs.',
     standfirst:
-      'Partitioning neural network execution across a device, an edge server, and the cloud — and working out where the cut should go.',
+      'Splitting neural network execution across machines — finding where to cut it, and proving the answer is still the same.',
     overview: {
       heading: 'Overview',
       body: [
         'Ongoing undergraduate research with Prof. Feng Wang at the University of Mississippi, in collaboration with the University of Memphis, running since January 2026.',
-        'The work implements split inference: running the first layers of a neural network near the data and the remainder on more capable hardware, so that neither the device\'s limited compute nor the network link alone determines end-to-end latency.'
+        'The work has run in two phases. The first partitioned AlexNet across a two-machine pipeline over TCP and profiled all 22 candidate split points against WiFi, LTE and backhaul link characteristics, to establish where the end-to-end latency minimum actually falls. The second moved to YOLO object detection across heterogeneous hardware — an Apple M3 Mac and two Linux VMs — and focused on proving the distributed result is numerically faithful.'
       ]
     },
     problem: {
       heading: 'Problem',
       body: [
-        'Running a DNN entirely on a phone pays the full compute cost on the weakest processor. Shipping the raw input to a server pays the full network cost on the slowest link. Neither extreme is reliably best, and which one wins depends on the network conditions at that moment.',
-        'Choosing a split point in between requires knowing, for every candidate cut, how long the device takes to reach it, how large the intermediate tensor is, and how long the remainder takes on the far side.'
+        'Splitting a model across machines raises two separate questions. Where should the cut go, and is the distributed result still the same result?',
+        'The first is not obvious, because activation sizes do not shrink monotonically — AlexNet\'s balloon after the first convolution before collapsing through pooling, so the cheapest cut depends on how expensive a byte is on that link. The second is easy to get wrong silently: a partitioned pipeline can diverge from the single-machine baseline while still producing output that looks like a plausible detection.',
+        'Across a heterogeneous cluster the sources of divergence multiply. The Mac and the Linux VMs resolve different dependency versions, the machines have to authenticate to each other before anything runs, and partial results can arrive out of order.'
       ]
     },
     contribution: {
       heading: 'My contribution',
       body: [
-        'I implement the split-inference systems in PyTorch that partition DNN execution across device, edge, and cloud tiers.',
-        'I built the two-machine distributed inference pipeline that carries activations over TCP, and profiled all 22 AlexNet split points against WiFi, LTE, and backhaul link characteristics.'
+        'I built the two-machine distributed inference pipeline that carries activations over TCP, and profiled all 22 AlexNet split points against WiFi, LTE and backhaul link characteristics.',
+        'On the YOLO pipeline I verified all 300 outputs against the single-machine baseline and tracked down the failures that stood in the way. Those fell into three classes: dependency mismatches between the Mac and the Linux VMs, authentication between the machines, and ordering errors where partial results were assembled in the wrong sequence.'
       ]
     },
     architecture: {
@@ -169,27 +170,32 @@ export const caseStudies: CaseStudy[] = [
         {
           label: 'Partition',
           detail:
-            'The model is cut at a chosen layer index, producing a head that runs on the device tier and a tail that runs on the edge tier.'
+            'The model is cut at a chosen layer, producing a head that runs on the near tier and a tail that runs on the far one.'
         },
         {
-          label: 'Execute head',
+          label: 'Tiers',
           detail:
-            'The device runs layers 1..k and produces the intermediate activation tensor.'
+            'A two-machine TCP pipeline for the AlexNet profiling; an Apple M3 Mac and two Linux VMs for the YOLO work.'
         },
         {
           label: 'Transfer',
           detail:
-            'The activation is serialized and sent to the second machine over TCP.'
+            'The intermediate activation is serialized and sent across the link, whose cost depends on the tensor size at that cut.'
         },
         {
-          label: 'Execute tail',
+          label: 'Authenticate',
           detail:
-            'The edge machine runs layers k+1..n and produces the final output.'
+            'The machines establish trust with each other before any stage will run.'
+        },
+        {
+          label: 'Order',
+          detail:
+            'Partial results are reassembled in the correct sequence, which is where several early mismatches originated.'
         },
         {
           label: 'Verify',
           detail:
-            'The distributed result is compared against the same input run end to end on a single machine.'
+            'Every output is compared against the same input run end to end on a single machine.'
         }
       ]
     },
@@ -197,14 +203,24 @@ export const caseStudies: CaseStudy[] = [
       heading: 'Engineering decisions',
       items: [
         {
-          choice: 'Verifying numerical equivalence before measuring anything',
+          choice: 'Verifying correctness before measuring anything',
           why:
-            'A split pipeline that is fast but subtly wrong is worthless, and the error is easy to miss — activations still look plausible. Establishing that the distributed output matches the single-machine run to within 1e-4 first means every later latency number describes a pipeline that is actually computing the right thing.'
+            'A distributed pipeline that is fast but subtly wrong is worthless, and the error is easy to miss — a shifted bounding box still looks like a detection. Establishing numerical equivalence first means every later result describes a pipeline that is actually computing the right thing.'
         },
         {
           choice: 'Profiling every split point rather than a promising few',
           why:
-            'AlexNet\'s activation sizes do not shrink monotonically — they grow after the first convolution before collapsing through pooling. Sampling a few plausible cuts would miss the minimum, because where it lands depends on the link.'
+            'Activation sizes do not shrink monotonically through the network, so the latency minimum is not where intuition puts it — and it moves with the link. Sampling a few plausible cuts would miss it. Profiling all 22 across WiFi, LTE and backhaul is what makes the choice defensible rather than guessed.'
+        },
+        {
+          choice: 'Checking all 300 outputs rather than sampling',
+          why:
+            'The failures were not uniform. Ordering errors in particular affect specific outputs rather than degrading everything slightly, so a sample can pass while the pipeline is still wrong.'
+        },
+        {
+          choice: 'Running across genuinely heterogeneous machines',
+          why:
+            'A Mac and two Linux VMs surface the dependency and authentication problems that a homogeneous cluster hides — and those are the problems a real device-to-edge deployment would hit.'
         }
       ]
     },
@@ -212,18 +228,22 @@ export const caseStudies: CaseStudy[] = [
       heading: 'Results',
       outcomes: [
         'A two-machine distributed inference pipeline running over TCP.',
-        'Distributed output verified within 1e-4 of the single-machine result — that is, the maximum absolute elementwise difference between the two output tensors stays below 0.0001, which rules out a partition that silently changes the computation.',
-        'All 22 AlexNet split points profiled against WiFi, LTE, and backhaul link characteristics.'
+        'All 22 AlexNet split points profiled against WiFi, LTE and backhaul link characteristics.',
+        'All 300 outputs of the distributed YOLO pipeline verified against the single-machine baseline.',
+        'Maximum error of 0.000137 — that is, the largest absolute difference between any distributed output value and its single-machine counterpart, which rules out a partition that silently changes the computation.',
+        'Dependency, authentication, and ordering errors identified and resolved across the Mac and the two Linux VMs.'
       ],
       limitations: [
         'The work is ongoing and there is no public repository yet.',
-        'Results so far cover AlexNet; generalization to other architectures is not yet established.'
+        'Results so far cover AlexNet and YOLO; generalization to other architectures is not yet established.',
+        'Verification establishes correctness, not a latency benefit — the performance question is separate.'
       ]
     },
     missing: [
-      'Measured latency figures per split point (the numbers behind the profiling)',
-      'Why AlexNet specifically, and what the next architecture is',
-      'How the link characteristics were obtained — measured on real networks or applied as profiles'
+      'The measured latency per AlexNet split point — the numbers behind the profiling, and where the minimum landed on each link',
+      'The verification tolerance for the AlexNet pipeline (the old site said "within 1e-4"; the resume gives 0.000137 for YOLO)',
+      'How the link characteristics were obtained — measured on real networks or applied as published profiles',
+      'How execution is partitioned across the three machines in the YOLO phase, and whether the split point is fixed or chosen'
     ]
   },
   {

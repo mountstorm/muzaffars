@@ -5,17 +5,18 @@ import { SITE } from '@/lib/site';
 import {
   education,
   experience,
+  leadership,
   skillGroups,
   certifications
 } from '@/lib/resume';
 import { projects } from '@/lib/projects';
 
-const RESUME_PATH = '/Muzaffar_Khaydarov_Resume.pdf';
+const RESUME_PATH = '/Muzaffar-Khaydarov-Resume.pdf';
 
 export const metadata = pageMetadata({
   title: 'Resume',
   description:
-    'Software Engineering Intern at C Spire and distributed AI researcher at Ole Miss. Production Perl and Python billing systems, PyTorch split inference, 3.87 GPA.',
+    'Summer 2026 Software Engineering Intern at C Spire with a return offer, and distributed AI researcher at Ole Miss. Production Python, KornShell and Django billing systems, 3.87 GPA.',
   path: '/resume',
   og: 'resume'
 });
@@ -91,6 +92,10 @@ export default function ResumePage() {
                 <li key={h}>{h}</li>
               ))}
             </ul>
+            <p className="mt-2 text-foreground/70">
+              <span className="font-medium text-foreground">Coursework:</span>{' '}
+              {education.coursework.join(', ')}
+            </p>
           </Section>
 
           <Section title="Experience">
@@ -104,9 +109,40 @@ export default function ResumePage() {
                   <p className="text-foreground/80">
                     {role.company}
                     {role.location ? ` · ${role.location}` : ''}
+                    {role.company.startsWith('C Spire') && (
+                      <span className="ml-2 rounded-full border border-emerald-600/30 bg-emerald-600/10 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                        Received return offer
+                      </span>
+                    )}
                   </p>
                   <ul className="mt-2 list-disc space-y-1 pl-5 text-foreground/70">
                     {role.bullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Leadership">
+            <div className="space-y-6">
+              {leadership.map((entry) => (
+                <div key={entry.title}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+                    <h4 className="font-semibold text-foreground">
+                      {entry.title}
+                    </h4>
+                    <span className="text-sm text-foreground/60">
+                      {entry.year}
+                    </span>
+                  </div>
+                  <p className="text-foreground/80">
+                    {entry.organization}
+                    {entry.location ? ` · ${entry.location}` : ''}
+                  </p>
+                  <ul className="mt-2 list-disc space-y-1 pl-5 text-foreground/70">
+                    {entry.bullets.map((b) => (
                       <li key={b}>{b}</li>
                     ))}
                   </ul>

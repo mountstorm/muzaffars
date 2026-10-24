@@ -9,13 +9,22 @@ the `missing` field of each entry in `src/lib/case-studies.ts` and are **not**
 rendered on the page — so the live pages read as complete, they are just
 thinner than they could be.
 
-## Split-Inference (`/projects/split-inference`) — thinnest
+## Distributed AI Systems (`/projects/split-inference`) — thinnest
 
-1. **Measured latency figures per split point.** The page says you profiled all
-   22; it cannot say what you found. This is the single biggest gap.
-2. **Why AlexNet specifically**, and what architecture comes next.
+Confirmed with you: both phases are real — the AlexNet split-point profiling
+and the YOLO verification. The page now covers both.
+
+1. **Measured latency per AlexNet split point.** The page says you profiled all
+   22 and cannot say what you found, or where the minimum landed on each link.
+   This is the single biggest gap, and it is also what the parked benchmark
+   explorer needs — see MEASUREMENT.md.
+2. **The verification tolerance for the AlexNet pipeline.** The old site said
+   "within 1e-4"; your resume gives 0.000137 for YOLO. Those are different
+   numbers about different runs, so the AlexNet one is currently unstated.
 3. **How the link characteristics were obtained** — measured on real WiFi/LTE
    links, or applied as published profiles?
+4. **How execution is partitioned in the YOLO phase**, and whether the split
+   point is fixed or chosen at runtime.
 
 ## resumeGit (`/projects/resumegit`)
 
@@ -29,6 +38,10 @@ figure, which comes from your site copy rather than the README.
 
 ## Also worth your attention
 
+- **ValueStop is not featured.** You chose to keep WhoSponsors,
+  Split-Inference and resumeGit as the homepage three. Worth revisiting — 100
+  active users and 20 paying customers is the strongest traction signal you
+  have, and it currently sits on the Projects page.
 - **The Split-Inference card image** currently uses
   `/images/gallery/programming-wlkata-robot.jpg`, which is a photo from the
   earlier Thad Cochran robotics work, not this project. A simple architecture

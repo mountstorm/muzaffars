@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { roles, education } from '@/lib/resume';
+import { roles, education, leadership } from '@/lib/resume';
 
 // C Spire first, then the research role, then teaching — the order a reviewer
 // cares about. Education stays as a one-line summary; the detail is on /about.
 const HOMEPAGE_ROLES = [
   'Software Engineering Intern',
-  'Undergraduate Research Assistant, Distributed AI Systems',
+  'Undergraduate Research Assistant — Distributed AI Systems',
   'Computer Science Teaching Assistant'
 ];
 
@@ -46,6 +46,31 @@ export default function ExperienceSummary() {
               </div>
               <ul className="mt-3 max-w-[75ch] list-disc space-y-1.5 pl-5 text-left text-foreground/75">
                 {role.bullets.slice(0, 3).map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+
+        <h3 className="mt-12 text-lg font-semibold">Leadership</h3>
+        <ol className="mt-4 space-y-6">
+          {leadership.map((entry) => (
+            <li key={entry.title}>
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                <h4 className="font-semibold">
+                  {entry.title}
+                  <span className="font-normal text-foreground/60">
+                    {' '}
+                    · {entry.organization}
+                  </span>
+                </h4>
+                <p className="shrink-0 text-sm tabular-nums text-foreground/60">
+                  {entry.year}
+                </p>
+              </div>
+              <ul className="mt-3 max-w-[75ch] list-disc space-y-1.5 pl-5 text-left text-foreground/75">
+                {entry.bullets.map((b) => (
                   <li key={b}>{b}</li>
                 ))}
               </ul>

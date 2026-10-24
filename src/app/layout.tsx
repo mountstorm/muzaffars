@@ -69,11 +69,12 @@ const personSchema = {
   worksFor: { '@type': 'Organization', name: 'C Spire', sameAs: 'https://www.cspire.com' },
   knowsAbout: [
     'Distributed Systems',
-    'Edge Computing',
-    'Split Inference',
-    'PyTorch',
     'Data Engineering',
-    'Billing Systems'
+    'Billing Systems',
+    'Python',
+    'TypeScript',
+    'Django',
+    'Object Detection'
   ],
   sameAs: [SITE.github, SITE.linkedin]
 };

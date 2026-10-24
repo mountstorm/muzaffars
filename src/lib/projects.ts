@@ -83,47 +83,57 @@ export const projects: Project[] = [
   {
     id: 'distributed-ai-research',
     headline:
-      'A pipeline that splits a neural network across a device, an edge server, and the cloud, cutting it wherever latency is lowest.',
+      'Splitting neural network execution across machines — finding where to cut it, and proving the distributed answer is still the same.',
     result:
-      'All 22 AlexNet split points profiled across WiFi, LTE, and backhaul; distributed output verified within 1e-4 of the single-machine run.',
+      'All 22 AlexNet split points profiled across WiFi, LTE and backhaul; all 300 YOLO outputs verified within a maximum error of 0.000137.',
     status: 'Research',
     caseStudy: 'split-inference',
-    title: 'Split-Inference Distributed AI Systems',
+    title: 'Distributed AI Systems Research',
     description:
-      'Built a distributed inference pipeline splitting neural networks across device, edge, and cloud, accurate within 1e-4 of single-machine output. Profiled all 22 AlexNet split points across WiFi, LTE, and backhaul links to find where the latency minimum actually lands.',
+      'Built a two-machine distributed inference pipeline over TCP and profiled all 22 AlexNet split points across WiFi, LTE and backhaul links. Verified all 300 outputs of a distributed YOLO object detection pipeline across an Apple M3 Mac and two Linux VMs within a maximum error of 0.000137.',
     imagePath: '/images/gallery/programming-wlkata-robot.jpg',
     noLinkLabel: 'Ongoing research, no public repo yet',
-    tags: ['Python', 'PyTorch', 'Distributed Systems', 'TCP', 'Edge Computing']
+    tags: ['Python', 'YOLO', 'ONNX Runtime', 'Distributed Systems', 'TCP']
   },
   {
     id: 'dar-ticket-automation',
     status: 'Internal project',
     title: 'DAR Ticket Automation',
     description:
-      'Built a Python pipeline that auto-generates billing reports and files ServiceNow tickets, replacing 10 to 20 manual reviews a day and saving 30 min/day.',
+      'Gathered needs from operations staff and shipped a Python/KornShell monitoring pipeline that files ServiceNow tickets, replacing 10 to 20 daily manual reviews and saving 30 minutes a day.',
     imagePath: '/images/gallery/cspire-office.jpg',
     noLinkLabel: 'Internal to C Spire — architecture on request',
-    tags: ['Python', 'YAML', 'ServiceNow (SNOW)', 'Excel Reporting']
+    tags: ['Python', 'KornShell', 'ServiceNow', 'Oracle SQL']
+  },
+  {
+    id: 'oncall-dashboard',
+    status: 'Internal project',
+    title: 'On-Call Dashboard',
+    description:
+      'Built a Django calendar dashboard end to end that lets 12 teammates and 2 managers reassign on-call shifts on any date, replacing the verbal swaps that used to happen in daily scrum. Still in use.',
+    imagePath: '/images/gallery/cspire-office.jpg',
+    noLinkLabel: 'Internal to C Spire — architecture on request',
+    tags: ['Django', 'Python', 'Oracle SQL', 'Internal tooling']
   },
   {
     id: 'intl-day-pass-audit',
     status: 'Internal project',
     title: 'International Day Pass Audit',
     description:
-      'Built a Python tool that catches mismatched billing plans before customers see them, replacing a manual check with one CI/CD-ready command.',
+      'Caught mismatched billing plans before customers saw them by building a Python/KornShell audit against Oracle SQL, run as one CI/CD-ready command.',
     imagePath: '/images/gallery/cspire-office.jpg',
     noLinkLabel: 'Internal to C Spire — architecture on request',
-    tags: ['Python', 'Oracle SQL', 'YAML', 'CI/CD']
+    tags: ['Python', 'KornShell', 'Oracle SQL', 'CI/CD']
   },
   {
-    id: 'bbva-lockbox-auto-ignore',
+    id: 'bank-lockbox-auto-ignore',
     status: 'Internal project',
-    title: 'BBVA Lockbox Zero-Payment Auto-Ignore',
+    title: 'Bank Lockbox Zero-Payment Auto-Ignore',
     description:
-      'Fixed payment logic to auto-clear 100+ weekly harmless $0 rejections while still halting on real errors, eliminating a manual step operators ran by hand.',
+      'Auto-cleared 100+ harmless $0 payment rejections weekly by fixing payment logic to still halt on real errors, eliminating a manual step operators ran by hand.',
     imagePath: '/images/gallery/cspire-office.jpg',
     noLinkLabel: 'Internal to C Spire — architecture on request',
-    tags: ['Perl', 'Oracle SQL', 'RHEL / Linux', 'SSH']
+    tags: ['KornShell', 'Oracle SQL', 'Linux', 'SSH']
   },
   {
     id: 'neurabash',
@@ -133,17 +143,17 @@ export const projects: Project[] = [
       'Built a terminal AI coding assistant using GPT-4 and local LLMs (Ollama), cutting RAM footprint 30% with a modular CLI architecture.',
     imagePath: '/images/projects/neurabash.png',
     link: 'https://github.com/mountstorm/neurabash',
-    tags: ['Python', 'Bash', 'OpenAI GPT-4', 'Ollama']
+    tags: ['Python', 'Bash', 'OpenAI GPT-4', 'Ollama', 'Prompt Engineering']
   },
   {
     id: 'valuestop',
     status: 'Live',
     title: 'ValueStop',
     description:
-      'Built an AI shopping navigator optimizing routes across 150 products and 5 stores using the Gemini API and A* pathfinding.',
+      'Co-founded an LLM-powered shopping app and grew it to 100 active users and 20 paying customers, evolving a 36-hour EmoryHacks 2025 prototype built with a 3-person team into a live product. Built the route recommendation feature by integrating the Gemini and Google Maps APIs with A* pathfinding.',
     imagePath: '/images/projects/valuestop.png',
     link: 'https://github.com/mountstorm/cheapstop',
-    tags: ['React', 'Vite', 'Gemini API', 'Google Maps API', 'Firestore']
+    tags: ['React', 'Gemini 2.0 API', 'Google Maps API', 'Firestore', 'A* pathfinding']
   }
 ];
 
