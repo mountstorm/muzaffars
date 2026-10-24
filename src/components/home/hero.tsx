@@ -1,6 +1,7 @@
 import React from 'react';
+import { SITE } from '@/lib/site';
 
-const roles = ['Software Engineer', 'CS Researcher', 'Rising Junior @ Ole Miss'];
+const roles = ['Software Engineer', 'CS Researcher', 'Junior @ Ole Miss'];
 
 export default function Hero() {
   return (
@@ -28,6 +29,9 @@ export default function Hero() {
           </React.Fragment>
         ))}
       </div>
+      <p className="relative z-10 max-w-xl rounded-full border border-background/20 px-5 py-2 text-sm text-background/70 sm:text-base">
+        {SITE.availability}
+      </p>
       <p className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap font-mono text-xs text-background/40 sm:text-sm">
         $ while (awake) {'{'} build(); {'}'}
         <span className="ml-1 inline-block h-[1em] w-[0.5em] animate-pulse bg-background/40 align-middle" />

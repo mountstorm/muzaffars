@@ -44,17 +44,9 @@ export default function RootTemplate({ children }: PropsWithChildren) {
         {isLoading && <PreLoader />}
       </AnimatePresence>
       <div ref={container} className={clsx('relative z-10', bgColour)}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+        <div key={pathname} className="page-transition">
+          {children}
+        </div>
         <motion.div style={{ height }} className="relative">
           <div
             className={clsx(

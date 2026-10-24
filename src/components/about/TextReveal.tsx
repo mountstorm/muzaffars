@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { clsx } from 'clsx';
+import { failsafeReveal, prefersReducedMotion } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +35,8 @@ export default function TextReveal({
   useEffect(() => {
     const words = wordsRef.current;
     if (!words.length) return;
+    // Reduced motion: the words are already in the DOM, so just leave them.
+    if (prefersReducedMotion()) return;
 
     if (scrub) {
       gsap.fromTo(
@@ -71,7 +74,11 @@ export default function TextReveal({
       );
     }
 
+    ScrollTrigger.refresh();
+    const cancelFailsafe = failsafeReveal(words);
+
     return () => {
+      cancelFailsafe();
       ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.vars.trigger === containerRef.current) {
           trigger.kill();
@@ -84,10 +91,11 @@ export default function TextReveal({
 
   return (
     <div ref={containerRef}>
-      <Tag className={clsx('flex flex-wrap', className)}>
+      <Tag className={clsx('flex flex-wrap', className)} aria-label={text}>
         {words.map((word, i) => (
           <span
             key={i}
+            aria-hidden="true"
             ref={(el) => {
               if (el) wordsRef.current[i] = el;
             }}

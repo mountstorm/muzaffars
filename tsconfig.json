@@ -36,6 +36,13 @@
   ],
   "exclude": [
     "node_modules",
-    "whosponsors"
+    "chessy",
+    "gigwage",
+    "openai-build-week",
+    "roachmotel",
+    "shifo",
+    "top-ai",
+    "whosponsors",
+    "worldcup-predictor"
   ]
 }

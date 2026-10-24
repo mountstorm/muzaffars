@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { failsafeReveal, prefersReducedMotion } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +31,8 @@ export default function AnimatedSection({
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+    // Nothing to animate away — leave the content exactly as rendered.
+    if (prefersReducedMotion()) return;
 
     const animations = {
       'fade-up': { y: 80, opacity: 0 },
@@ -54,12 +57,20 @@ export default function AnimatedSection({
       scrollTrigger: {
         trigger: el,
         start: 'top 85%',
-        end: 'top 20%',
-        toggleActions: 'play none none reverse'
+        // Previously 'play none none reverse', which re-hid the section when
+        // scrolling back up past it — on a short page that left it invisible.
+        toggleActions: 'play none none none',
+        once: true
       }
     });
 
+    // The page transition wrapper applies a transform, which can throw off
+    // ScrollTrigger's first measurement. Re-measure, then guarantee visibility.
+    ScrollTrigger.refresh();
+    const cancelFailsafe = failsafeReveal(el);
+
     return () => {
+      cancelFailsafe();
       ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.vars.trigger === el) {
           trigger.kill();

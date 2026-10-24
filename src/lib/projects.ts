@@ -1,0 +1,108 @@
+export type Project = {
+  id: string;
+  title: string;
+  description: string;
+  imagePath: string;
+  link?: string;
+  secondaryLink?: string;
+  secondaryButtonText?: string;
+  noLinkLabel?: string;
+  tags: string[];
+};
+
+// Every `link` below was opened and verified to return 200.
+export const projects: Project[] = [
+  {
+    id: 'resumegit',
+    title: 'resumeGit',
+    description:
+      'Git version control for your resume: a branch per application, and a GPT-5.6 semantic merge engine that propagates one life update into every tailored branch, each rewritten in its own voice. Every resume is a real git repository — history, diffs, and blame for free.',
+    imagePath: '/images/projects/resumegit.svg',
+    link: 'https://github.com/mountstorm/resumegit',
+    tags: ['Next.js', 'TypeScript', 'GPT-5.6', 'simple-git', 'zod']
+  },
+  {
+    id: 'chessy',
+    title: 'Chessy',
+    description:
+      'A browser extension whose cursor becomes a knight that reviews your finished chess games: hover the board or move list and it coaches you on each move. Post-game only, powered by Stockfish 16 running locally in the browser.',
+    imagePath: '/images/projects/chessy.svg',
+    noLinkLabel: 'Private — in development',
+    tags: ['Browser Extension', 'Stockfish (WASM)', 'chess.js', 'JavaScript']
+  },
+  {
+    id: 'worldcup-predictor',
+    title: 'World Cup Final Predictor',
+    description:
+      'Predicted the 2026 World Cup final (Argentina vs Spain) from 35k international matches: Elo ratings feed a recency-weighted Poisson goal model, resolved over 10,000 Monte Carlo simulations into score, event, and player probabilities with a visual dashboard.',
+    imagePath: '/images/projects/worldcup-predictor.png',
+    link: 'https://github.com/mountstorm/worldcup-predictor',
+    secondaryLink:
+      'https://claude.ai/code/artifact/839a7d75-0845-47af-861c-a69d38793dad',
+    secondaryButtonText: 'View Dashboard',
+    tags: ['Python', 'pandas', 'scikit-learn', 'Monte Carlo', 'matplotlib']
+  },
+  {
+    id: 'whosponsors',
+    title: 'WhoSponsors',
+    description:
+      'Built the honest H-1B sponsorship database: ETL over 831k USCIS filings with entity resolution across 324k employers, plus a reverse-engineered Tableau extraction for FY2024+ data, served as searchable per-company trend charts.',
+    imagePath: '/images/projects/whosponsors.svg',
+    link: 'https://github.com/mountstorm/whosponsors',
+    tags: ['Python', 'SQLite', 'Next.js', 'Data Engineering', 'SVG Charts']
+  },
+  {
+    id: 'distributed-ai-research',
+    title: 'Split-Inference Distributed AI Systems',
+    description:
+      'Built a distributed inference pipeline splitting neural networks across device, edge, and cloud, accurate within 1e-4 of single-machine output. Profiled all 22 AlexNet split points across WiFi, LTE, and backhaul links to find where the latency minimum actually lands.',
+    imagePath: '/images/gallery/programming-wlkata-robot.jpg',
+    noLinkLabel: 'Ongoing research, no public repo yet',
+    tags: ['Python', 'PyTorch', 'Distributed Systems', 'TCP', 'Edge Computing']
+  },
+  {
+    id: 'dar-ticket-automation',
+    title: 'DAR Ticket Automation',
+    description:
+      'Built a Python pipeline that auto-generates billing reports and files ServiceNow tickets, replacing 10 to 20 manual reviews a day and saving 30 min/day.',
+    imagePath: '/images/gallery/cspire-office.jpg',
+    noLinkLabel: 'Internal to C Spire — architecture on request',
+    tags: ['Python', 'YAML', 'ServiceNow (SNOW)', 'Excel Reporting']
+  },
+  {
+    id: 'intl-day-pass-audit',
+    title: 'International Day Pass Audit',
+    description:
+      'Built a Python tool that catches mismatched billing plans before customers see them, replacing a manual check with one CI/CD-ready command.',
+    imagePath: '/images/gallery/cspire-office.jpg',
+    noLinkLabel: 'Internal to C Spire — architecture on request',
+    tags: ['Python', 'Oracle SQL', 'YAML', 'CI/CD']
+  },
+  {
+    id: 'bbva-lockbox-auto-ignore',
+    title: 'BBVA Lockbox Zero-Payment Auto-Ignore',
+    description:
+      'Fixed payment logic to auto-clear 100+ weekly harmless $0 rejections while still halting on real errors, eliminating a manual step operators ran by hand.',
+    imagePath: '/images/gallery/cspire-office.jpg',
+    noLinkLabel: 'Internal to C Spire — architecture on request',
+    tags: ['Perl', 'Oracle SQL', 'RHEL / Linux', 'SSH']
+  },
+  {
+    id: 'neurabash',
+    title: 'NeuraBash',
+    description:
+      'Built a terminal AI coding assistant using GPT-4 and local LLMs (Ollama), cutting RAM footprint 30% with a modular CLI architecture.',
+    imagePath: '/images/projects/neurabash.png',
+    link: 'https://github.com/mountstorm/neurabash',
+    tags: ['Python', 'Bash', 'OpenAI GPT-4', 'Ollama']
+  },
+  {
+    id: 'valuestop',
+    title: 'ValueStop',
+    description:
+      'Built an AI shopping navigator optimizing routes across 150 products and 5 stores using the Gemini API and A* pathfinding.',
+    imagePath: '/images/projects/valuestop.png',
+    link: 'https://github.com/mountstorm/cheapstop',
+    tags: ['React', 'Vite', 'Gemini API', 'Google Maps API', 'Firestore']
+  }
+];

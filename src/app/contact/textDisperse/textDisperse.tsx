@@ -13,6 +13,10 @@ export default function TextDisperse({
   onClick
 }: PropsWithChildren<Props>) {
   const [isAnimated, setIsAnimated] = useState(false);
+  const label = String(
+    (children as JSX.Element)?.props?.children ?? ''
+  ).replace(/^\u2192/, '');
+
   const getChars = (element: React.ReactNode) => {
     let chars: JSX.Element[] = [];
     const word = (element as JSX.Element)!.props.children;
@@ -23,6 +27,7 @@ export default function TextDisperse({
           variants={disperse}
           animate={isAnimated ? 'open' : 'closed'}
           key={char + i}
+          aria-hidden="true"
         >
           {char}
         </motion.span>
@@ -45,6 +50,8 @@ export default function TextDisperse({
     <div
       onClick={onClick}
       className="inline-flex text-[8.6vw] uppercase sm:text-[5.6vw]"
+      role="text"
+      aria-label={label}
       style={{ cursor: 'pointer' }}
       onMouseEnter={() => {
         manageMouseEnter();

@@ -145,3 +145,31 @@
 .menu-face:hover .perspective-text p:nth-of-type(2) {
   opacity: 1;
 }
+
+/*
+ * Page transition. Deliberately CSS rather than framer-motion: the previous
+ * motion.div could be left stranded at its `initial` state (opacity 0), which
+ * blanked the entire page because the wrapper contains every route. The base
+ * state here is visible, so if the animation never runs the content still shows.
+ */
+.page-transition {
+  opacity: 1;
+  animation: page-in 350ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+}

@@ -4,54 +4,12 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+import { roles } from '@/lib/resume';
+import { failsafeReveal, prefersReducedMotion } from '@/lib/motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface TimelineItem {
-  year: string;
-  title: string;
-  company: string;
-  companyUrl?: string;
-  description: string;
-}
-
-const journeyData: TimelineItem[] = [
-  {
-    year: 'Aug. 2024 – May 2028',
-    title: 'B.S. Computer Science, Minor in Mathematics',
-    company: 'University of Mississippi',
-    description:
-      "GPA 3.87/4.0, Chancellor's Roll every semester, Sally McDonnell Barksdale Honors College (top 5%)."
-  },
-  {
-    year: 'Oct. 2024 – Apr. 2025',
-    title: 'Undergraduate Research Assistant',
-    company: 'UM Thad Cochran Research Center',
-    description:
-      'Programmed industrial robots (Wlkata, Epson) in Python and C++ for autonomous pharmaceutical preparation, cutting contamination risk by 85%. Built data pipelines with pandas, NumPy, and Matplotlib.'
-  },
-  {
-    year: 'Jul. 2025 – Present',
-    title: 'Computer Science Teaching Assistant',
-    company: 'University of Mississippi',
-    description:
-      'Guide 49+ students through OOP (Java), data structures, and algorithms; review and optimize 300+ programs weekly, improving code quality by 20%.'
-  },
-  {
-    year: 'Jan. 2026 – Present',
-    title: 'Undergraduate Research Assistant, Distributed AI Systems',
-    company: 'University of Mississippi (Prof. Feng Wang) x University of Memphis',
-    description:
-      'Implement split-inference systems in PyTorch that partition DNN execution across device, edge, and cloud. Built a two-machine distributed inference pipeline over TCP, verified within 1e-4 of single-machine output, and profiled all 22 AlexNet split points across WiFi, LTE, and backhaul links.'
-  },
-  {
-    year: 'Jun. 2026 – Present',
-    title: 'Software Engineering Intern',
-    company: 'C Spire',
-    description:
-      'Own two to three repositories handling billing audit logic and application flows, shipping code changes (not just reviews) across production Perl and Python systems. Fixed a production Perl billing flow handling 100+ weekly zero-payment errors, preventing batch-wide failures, and built a Python automation that auto-issues ServiceNow tickets for flagged accounts, saving on-call operators 30 minutes a day.'
-  }
-];
+const journeyData = roles;
 
 export default function JourneyTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -63,6 +21,7 @@ export default function JourneyTimeline() {
     const items = itemsRef.current;
 
     if (!line || !items.length) return;
+    if (prefersReducedMotion()) return;
 
     gsap.fromTo(
       line,
@@ -102,7 +61,11 @@ export default function JourneyTimeline() {
       );
     });
 
+    ScrollTrigger.refresh();
+    const cancelFailsafe = failsafeReveal(items);
+
     return () => {
+      cancelFailsafe();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
