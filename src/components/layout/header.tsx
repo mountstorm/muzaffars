@@ -68,33 +68,33 @@ export default function Header() {
           </Link>
         </div>
         {!mobile && (
-          <div className="flex flex-1 items-center justify-between font-semibold">
+          <nav
+            aria-label="Main"
+            className="flex flex-1 items-center justify-between font-semibold"
+          >
+            {[
+              { href: '/projects', label: 'Projects' },
+              { href: '/#experience', label: 'Experience' },
+              { href: '/about', label: 'About' },
+              { href: '/resume', label: 'Resume' }
+            ].map(({ href, label }) => (
+              <div
+                key={href}
+                className="group relative z-10 flex cursor-pointer p-3"
+              >
+                <Magnetic>
+                  <Link href={href} className="flex min-h-[44px] items-center">
+                    {label}
+                  </Link>
+                </Magnetic>
+              </div>
+            ))}
             <div className="group relative z-10 flex cursor-pointer p-3">
               <Magnetic>
-                <Link href={'/about'}>About</Link>
-              </Magnetic>
-            </div>
-            <div className="group relative z-10 flex cursor-pointer p-3">
-              <Magnetic>
-                <Link href={'/projects'}>Projects</Link>
-              </Magnetic>
-            </div>
-            <div className="group relative z-10 flex cursor-pointer p-3">
-              <Magnetic>
-                <Link href={'/resume'}>Resume</Link>
-              </Magnetic>
-            </div>
-            <div className="group relative z-10 flex cursor-pointer p-3">
-              <Magnetic>
-                <Link href={'/gallery'}>Gallery</Link>
-              </Magnetic>
-            </div>
-            <div className="group relative z-10 flex cursor-pointer p-3">
-              <Magnetic>
-                <div className="flex">
-                  <Link href={'/contact'}>Contact</Link>
-                  <ArrowUpRight size={18} />
-                </div>
+                <Link href="/contact" className="flex min-h-[44px] items-center">
+                  Contact
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </Link>
               </Magnetic>
             </div>
             <div className="relative z-10 flex items-center gap-3 p-3">
@@ -120,7 +120,7 @@ export default function Header() {
               </Magnetic>
               <ThemeToggle className="text-white" />
             </div>
-          </div>
+          </nav>
         )}
       </div>
       {!mobile && (

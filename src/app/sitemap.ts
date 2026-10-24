@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
+import { caseStudies } from '@/lib/case-studies';
 
 const routes = [
   { path: '', priority: 1 },
@@ -11,8 +12,13 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const studies = caseStudies.map((c) => ({
+    path: `/projects/${c.slug}`,
+    priority: 0.8
+  }));
+
   const lastModified = new Date();
-  return routes.map(({ path, priority }) => ({
+  return [...routes, ...studies].map(({ path, priority }) => ({
     url: `${SITE.url}${path}`,
     lastModified,
     changeFrequency: 'monthly',

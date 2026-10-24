@@ -1,3 +1,6 @@
+import Hero from '@/components/home/hero';
+import FeaturedProjects from '@/components/home/FeaturedProjects';
+import ExperienceSummary from '@/components/home/ExperienceSummary';
 import HomeClient from './HomeClient';
 import { pageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/site';
@@ -9,10 +12,16 @@ export const metadata = {
     path: '/',
     og: 'home'
   }),
-  // The home page carries the full title rather than the "%s — Name" template.
   title: { absolute: SITE.title }
 };
 
 export default function Page() {
-  return <HomeClient />;
+  return (
+    <>
+      <Hero />
+      <FeaturedProjects />
+      <ExperienceSummary />
+      <HomeClient />
+    </>
+  );
 }

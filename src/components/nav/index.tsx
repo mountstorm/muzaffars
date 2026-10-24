@@ -1,37 +1,21 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import MenuButton from '@/components/nav/menuButton';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavLinks from '@/components/nav/NavLinks';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import { Linkedin, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 const links = [
-  {
-    title: 'home',
-    href: '/'
-  },
-  {
-    title: 'about',
-    href: '/about'
-  },
-  {
-    title: 'projects',
-    href: '/projects'
-  },
-  {
-    title: 'resume',
-    href: '/resume'
-  },
-  {
-    title: 'gallery',
-    href: '/gallery'
-  },
-  {
-    title: 'contact',
-    href: '/contact'
-  }
+  { title: 'projects', href: '/projects' },
+  { title: 'experience', href: '/#experience' },
+  { title: 'about', href: '/about' },
+  { title: 'resume', href: '/resume' },
+  { title: 'contact', href: '/contact' }
 ];
+
+const PANEL_ID = 'site-menu-panel';
 
 const menu = {
   open: {
@@ -49,6 +33,17 @@ const menu = {
 
 export default function Menu() {
   const [isActive, setIsActive] = useState(false);
+
+  // Escape closes the panel, as a dialog-like overlay should.
+  useEffect(() => {
+    if (!isActive) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsActive(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isActive]);
+
   return (
     <div className="fixed right-[20px] top-[20px] z-20 lg:right-[30px] lg:top-[30px]">
       <motion.div
@@ -63,7 +58,10 @@ export default function Menu() {
       >
         <AnimatePresence>
           {isActive && (
-            <div className="box-border flex h-full flex-col justify-between p-[100px_40px_50px]">
+            <div
+              id={PANEL_ID}
+              className="box-border flex h-full flex-col justify-between p-[100px_40px_50px]"
+            >
               <NavLinks links={links} setIsActive={setIsActive} />
               <div className="flex items-center gap-4 text-background">
                 <a
@@ -78,12 +76,20 @@ export default function Menu() {
                   <Mail size={20} />
                 </a>
                 <ThemeToggle className="text-background" />
+                <Link
+                  href="/gallery"
+                  onClick={() => setIsActive(false)}
+                  className="ml-auto text-sm text-background/75 underline-offset-4 hover:text-background hover:underline"
+                >
+                  Gallery
+                </Link>
               </div>
             </div>
           )}
         </AnimatePresence>
       </motion.div>
       <MenuButton
+        controls={PANEL_ID}
         isActive={isActive}
         toggleMenu={() => {
           setIsActive(!isActive);

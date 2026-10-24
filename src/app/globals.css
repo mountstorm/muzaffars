@@ -28,8 +28,8 @@
     --destructive: 2 100% 50%; /* ff0800 candy apple red */
     --destructive-foreground: 60 9.1% 97.8%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 217 20% 88%;
+    --input: 217 20% 88%;
     --ring: 217 90% 50%;
   }
 
@@ -70,6 +70,28 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Keyboard focus must be visible on every interactive element. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Honour the OS setting: content stays put rather than animating in. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -154,7 +176,10 @@
  */
 .page-transition {
   opacity: 1;
-  animation: page-in 350ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  /* `forwards`, never `both`: with backwards fill, a pending or deferred
+     animation holds the element at the `from` keyframe and blanks the whole
+     page. This way an animation that never runs simply leaves content visible. */
+  animation: page-in 350ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes page-in {
@@ -172,4 +197,22 @@
   .page-transition {
     animation: none;
   }
+}
+
+/* Chart series colours. Fixed order, never cycled; each line also carries a
+   dash pattern so the chart does not rely on colour alone. */
+:root {
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --chart-grid: #e1e0d9;
+  --chart-axis: #c3c2b7;
+}
+
+.dark {
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --chart-grid: #2c2c2a;
+  --chart-axis: #383835;
 }

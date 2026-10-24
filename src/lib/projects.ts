@@ -1,12 +1,27 @@
+export type ProjectStatus =
+  | 'Live'
+  | 'Research'
+  | 'In development'
+  | 'Internal project';
+
 export type Project = {
   id: string;
   title: string;
   description: string;
+  /** One sentence: what it does. Used on the homepage cards. */
+  headline?: string;
+  /** One concrete result or engineering achievement. */
+  result?: string;
+  status: ProjectStatus;
+  /** Slug of the case study at /projects/<slug>, when one exists. */
+  caseStudy?: string;
   imagePath: string;
   link?: string;
   secondaryLink?: string;
   secondaryButtonText?: string;
   noLinkLabel?: string;
+  external?: boolean;
+  buttonText?: string;
   tags: string[];
 };
 
@@ -14,6 +29,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'resumegit',
+    headline:
+      'Version control for your resume: one branch per application, with a semantic merge that propagates a single life update into every tailored branch.',
+    result:
+      'Every resume is a real git repository, so history, diffs, and blame come for free rather than being reimplemented.',
+    status: 'In development',
+    caseStudy: 'resumegit',
     title: 'resumeGit',
     description:
       'Git version control for your resume: a branch per application, and a GPT-5.6 semantic merge engine that propagates one life update into every tailored branch, each rewritten in its own voice. Every resume is a real git repository — history, diffs, and blame for free.',
@@ -23,6 +44,7 @@ export const projects: Project[] = [
   },
   {
     id: 'chessy',
+    status: 'In development',
     title: 'Chessy',
     description:
       'A browser extension whose cursor becomes a knight that reviews your finished chess games: hover the board or move list and it coaches you on each move. Post-game only, powered by Stockfish 16 running locally in the browser.',
@@ -32,6 +54,7 @@ export const projects: Project[] = [
   },
   {
     id: 'worldcup-predictor',
+    status: 'Live',
     title: 'World Cup Final Predictor',
     description:
       'Predicted the 2026 World Cup final (Argentina vs Spain) from 35k international matches: Elo ratings feed a recency-weighted Poisson goal model, resolved over 10,000 Monte Carlo simulations into score, event, and player probabilities with a visual dashboard.',
@@ -44,6 +67,12 @@ export const projects: Project[] = [
   },
   {
     id: 'whosponsors',
+    headline:
+      'A searchable database of which US employers actually sponsor H-1B visas, built from raw USCIS filings.',
+    result:
+      'ETL over 831k filings with entity resolution collapsing 324k raw employer strings into canonical companies.',
+    status: 'Live',
+    caseStudy: 'whosponsors',
     title: 'WhoSponsors',
     description:
       'Built the honest H-1B sponsorship database: ETL over 831k USCIS filings with entity resolution across 324k employers, plus a reverse-engineered Tableau extraction for FY2024+ data, served as searchable per-company trend charts.',
@@ -53,6 +82,12 @@ export const projects: Project[] = [
   },
   {
     id: 'distributed-ai-research',
+    headline:
+      'A pipeline that splits a neural network across a device, an edge server, and the cloud, cutting it wherever latency is lowest.',
+    result:
+      'All 22 AlexNet split points profiled across WiFi, LTE, and backhaul; distributed output verified within 1e-4 of the single-machine run.',
+    status: 'Research',
+    caseStudy: 'split-inference',
     title: 'Split-Inference Distributed AI Systems',
     description:
       'Built a distributed inference pipeline splitting neural networks across device, edge, and cloud, accurate within 1e-4 of single-machine output. Profiled all 22 AlexNet split points across WiFi, LTE, and backhaul links to find where the latency minimum actually lands.',
@@ -62,6 +97,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dar-ticket-automation',
+    status: 'Internal project',
     title: 'DAR Ticket Automation',
     description:
       'Built a Python pipeline that auto-generates billing reports and files ServiceNow tickets, replacing 10 to 20 manual reviews a day and saving 30 min/day.',
@@ -71,6 +107,7 @@ export const projects: Project[] = [
   },
   {
     id: 'intl-day-pass-audit',
+    status: 'Internal project',
     title: 'International Day Pass Audit',
     description:
       'Built a Python tool that catches mismatched billing plans before customers see them, replacing a manual check with one CI/CD-ready command.',
@@ -80,6 +117,7 @@ export const projects: Project[] = [
   },
   {
     id: 'bbva-lockbox-auto-ignore',
+    status: 'Internal project',
     title: 'BBVA Lockbox Zero-Payment Auto-Ignore',
     description:
       'Fixed payment logic to auto-clear 100+ weekly harmless $0 rejections while still halting on real errors, eliminating a manual step operators ran by hand.',
@@ -89,6 +127,7 @@ export const projects: Project[] = [
   },
   {
     id: 'neurabash',
+    status: 'Live',
     title: 'NeuraBash',
     description:
       'Built a terminal AI coding assistant using GPT-4 and local LLMs (Ollama), cutting RAM footprint 30% with a modular CLI architecture.',
@@ -98,6 +137,7 @@ export const projects: Project[] = [
   },
   {
     id: 'valuestop',
+    status: 'Live',
     title: 'ValueStop',
     description:
       'Built an AI shopping navigator optimizing routes across 150 products and 5 stores using the Gemini API and A* pathfinding.',
@@ -106,3 +146,17 @@ export const projects: Project[] = [
     tags: ['React', 'Vite', 'Gemini API', 'Google Maps API', 'Firestore']
   }
 ];
+
+/** The three projects featured on the homepage, in display order. */
+export const FEATURED_IDS = [
+  'whosponsors',
+  'distributed-ai-research',
+  'resumegit'
+] as const;
+
+export const featuredProjects = FEATURED_IDS.map(
+  (id) => projects.find((p) => p.id === id)!
+);
+
+export const byCaseStudy = (slug: string) =>
+  projects.find((p) => p.caseStudy === slug);

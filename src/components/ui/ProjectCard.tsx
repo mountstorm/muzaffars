@@ -22,6 +22,10 @@ export interface ProjectCardProps {
   noLinkLabel?: string;
   secondaryLink?: string;
   secondaryButtonText?: string;
+  caseStudy?: string;
+  status?: string;
+  headline?: string;
+  result?: string;
 }
 
 export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
@@ -41,7 +45,8 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
       buttonText = 'View Project',
       noLinkLabel = 'Internal project, no public link',
       secondaryLink,
-      secondaryButtonText = 'Live Demo'
+      secondaryButtonText = 'Live Demo',
+      caseStudy
     },
     ref
   ) => {
@@ -71,7 +76,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           {imagePath && !imageError ? (
             <Image
               src={imagePath}
-              alt={title}
+              alt=""
               fill
               className={`object-cover transition-transform duration-500 group-hover:scale-105 ${imageClassName}`}
               onError={() => setImageError(true)}
@@ -110,6 +115,17 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                 </span>
               ))}
             </div>
+          )}
+
+          {caseStudy && (
+            <p className="mb-3">
+              <Link
+                href={`/projects/${caseStudy}`}
+                className="inline-flex min-h-[44px] items-center text-sm font-medium underline-offset-4 hover:underline"
+              >
+                Read the {title} case study →
+              </Link>
+            </p>
           )}
 
           {link && secondaryLink ? (
@@ -157,7 +173,12 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
           className="group h-full"
         >
           {link && !secondaryLink ? (
-            <Link href={link} {...linkProps} className="block h-full">
+            <Link
+              href={link}
+              {...linkProps}
+              aria-label={`${title} project`}
+              className="block h-full"
+            >
               {cardShell}
             </Link>
           ) : (
@@ -173,7 +194,12 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
         className="group h-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900"
       >
         {link && !secondaryLink ? (
-          <Link href={link} {...linkProps} className="block h-full">
+          <Link
+            href={link}
+            {...linkProps}
+            aria-label={`${title} project`}
+            className="block h-full"
+          >
             {cardContent}
           </Link>
         ) : (

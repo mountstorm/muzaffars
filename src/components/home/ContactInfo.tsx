@@ -42,11 +42,11 @@ export default function ContactInfo() {
             <div className="relative h-16 w-16 overflow-hidden rounded-full sm:h-[100px] sm:w-[100px]">
               <Image
                 fill
-                alt={'profile'}
+                alt=""
                 src={`/images/gallery/me-at-boston.jpg`}
-                priority
+                loading="lazy"
                 className="object-cover object-[center_55%]"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="100px"
               />
             </div>
             <h2 className="ml-3 text-xl font-medium sm:text-[5vh]">
@@ -95,6 +95,16 @@ export default function ContactInfo() {
             </span>
           </div>
           <div className="flex items-end gap-2">
+            <span className="flex flex-col gap-3">
+              <h3 className="m-0 cursor-default text-base font-light text-gray-500">
+                More
+              </h3>
+              <Magnetic>
+                <Link href="/gallery" className={animatedUnderlineStyle}>
+                  Gallery
+                </Link>
+              </Magnetic>
+            </span>
             <span className="flex flex-col gap-3">
               <h3 className="m-0 cursor-default text-base font-light text-gray-500">
                 Socials
