@@ -44,7 +44,7 @@ export default function GalleryPage() {
             delay={(i % 4) * 50}
             className={p.span ?? ''}
           >
-            <figure className="group relative h-full w-full overflow-hidden border border-[var(--rule)]">
+            <figure className="glass-media group relative h-full w-full">
               <Image
                 src={`/images/gallery/${p.src}`}
                 alt={p.caption}

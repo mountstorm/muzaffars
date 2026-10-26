@@ -29,8 +29,8 @@ export default function ProjectsPage() {
       <ul className="pb-8">
         {listed.map((project, i) => (
           <Reveal as="li" key={project.id} delay={(i % 3) * 50}>
-            <article className="grid gap-6 border-t border-[var(--rule)] py-10 lg:grid-cols-[18rem_1fr] lg:gap-12">
-              <div className="relative aspect-[16/10] w-full overflow-hidden border border-[var(--rule)] bg-[var(--surface-2)] lg:aspect-[4/3]">
+            <article className="glass glass-panel glass-hover my-4 grid gap-6 p-6 lg:grid-cols-[18rem_1fr] lg:gap-10 lg:p-8">
+              <div className="glass-media relative aspect-[16/10] w-full bg-[var(--surface-2)] lg:aspect-[4/3]">
                 <Image
                   src={project.imagePath}
                   alt=""

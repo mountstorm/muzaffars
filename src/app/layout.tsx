@@ -105,6 +105,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         >
           Skip to content
         </a>
+        <div className="ambient" aria-hidden="true" />
         <Header />
         <main id="content">{children}</main>
         <Footer />

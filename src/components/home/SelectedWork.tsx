@@ -15,12 +15,12 @@ export default function SelectedWork() {
           action={<Button href="/projects">All work</Button>}
         />
 
-        <ul className="mt-16 space-y-20 lg:space-y-28">
+        <ul className="mt-14 space-y-8">
           {featuredProjects.map((project, i) => (
             <Reveal as="li" key={project.id} delay={i * 60}>
-              <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
+              <article className="glass glass-panel glass-hover grid items-center gap-8 p-6 sm:p-8 lg:grid-cols-2 lg:gap-12 lg:p-10">
                 <div
-                  className={`relative aspect-[16/11] w-full overflow-hidden border border-[var(--rule)] bg-[var(--surface-2)] ${
+                  className={`glass-media relative aspect-[16/11] w-full bg-[var(--surface-2)] ${
                     i % 2 ? 'lg:order-2' : ''
                   }`}
                 >

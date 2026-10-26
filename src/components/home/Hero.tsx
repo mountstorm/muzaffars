@@ -46,7 +46,7 @@ export default function Hero() {
           >
             <Link
               href="/projects"
-              className="group inline-flex min-h-[48px] items-center gap-2.5 bg-[var(--accent)] px-6 text-[0.95rem] font-medium text-[var(--accent-ink)] transition-opacity hover:opacity-90"
+              className="group inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-[var(--accent)] px-6 text-[0.95rem] font-medium text-[var(--accent-ink)] shadow-[var(--glass-shadow)] transition-opacity hover:opacity-90"
             >
               View selected work
               <ArrowRight
@@ -57,21 +57,22 @@ export default function Hero() {
             </Link>
             <Link
               href="/resume"
-              className="inline-flex min-h-[48px] items-center border border-[var(--rule-strong)] px-6 text-[0.95rem] text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="glass glass-pill glass-hover inline-flex min-h-[48px] items-center px-6 text-[0.95rem] text-[var(--ink)]"
             >
               Read the resume
             </Link>
           </div>
 
           <p
-            className="rise mono mt-8 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[0.82rem] text-[var(--muted)]"
+            className="rise glass glass-pill mono mt-8 inline-flex max-w-full items-start gap-2.5 px-4 py-2 text-[0.82rem] text-[var(--muted)]"
             style={{ '--d': '480ms' } as React.CSSProperties}
           >
+            {/* shrink-0 keeps the dot on the first line when the text wraps */}
             <span
               aria-hidden="true"
-              className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--leaf)]"
+              className="mt-[0.55em] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--leaf)]"
             />
-            {SITE.availability}
+            <span>{SITE.availability}</span>
           </p>
         </div>
 
@@ -83,9 +84,9 @@ export default function Hero() {
           {/* The blue block echoes the wall behind him. */}
           <div
             aria-hidden="true"
-            className="absolute -left-4 -top-4 h-full w-full bg-[var(--accent)] lg:-left-6 lg:-top-6"
+            className="absolute -left-4 -top-4 h-full w-full rounded-[var(--r-media)] bg-[var(--accent)] opacity-90 lg:-left-6 lg:-top-6"
           />
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
+          <div className="glass-media relative aspect-[4/5] w-full">
             <Image
               src="/images/portrait.webp"
               alt="Muzaffar Khaydarov"

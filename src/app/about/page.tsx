@@ -26,7 +26,7 @@ export default function AboutPage() {
 
       <div className="grid gap-12 pb-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <Reveal>
-          <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden border border-[var(--rule)]">
+          <div className="glass-media relative aspect-[4/5] w-full max-w-[420px]">
             <Image
               src="/images/portrait.webp"
               alt="Muzaffar Khaydarov"
@@ -64,7 +64,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <dl className="grid grid-cols-2 gap-6 border-t border-[var(--rule)] pt-6 sm:grid-cols-3">
+            <dl className="glass glass-panel grid grid-cols-2 gap-6 p-6 sm:grid-cols-3">
               {[
                 ['Degree', 'B.S. Computer Science'],
                 ['Minor', 'Mathematics'],
@@ -88,7 +88,7 @@ export default function AboutPage() {
         <ol className="mt-14 space-y-12">
           {timeline.map((role, i) => (
             <Reveal as="li" key={role.title + role.year} delay={(i % 3) * 50}>
-              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+              <div className="glass glass-panel my-4 grid gap-4 p-6 lg:grid-cols-[14rem_1fr] lg:gap-12 lg:p-9">
                 <p className="mono text-[0.82rem] tabular-nums text-[var(--faint)]">
                   {role.year}
                 </p>
@@ -113,7 +113,7 @@ export default function AboutPage() {
 
           {leadership.map((entry) => (
             <Reveal as="li" key={entry.title}>
-              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+              <div className="glass glass-panel my-4 grid gap-4 p-6 lg:grid-cols-[14rem_1fr] lg:gap-12 lg:p-9">
                 <p className="mono text-[0.82rem] tabular-nums text-[var(--faint)]">
                   {entry.year}
                 </p>
@@ -148,7 +148,7 @@ export default function AboutPage() {
         <div className="mt-14 space-y-12">
           {skillGroups.map((group, gi) => (
             <Reveal key={group.label} delay={gi * 60}>
-              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+              <div className="glass glass-panel my-4 grid gap-4 p-6 lg:grid-cols-[14rem_1fr] lg:gap-12 lg:p-9">
                 <p className="label">{group.label}</p>
                 <ul className="space-y-3">
                   {group.skills.map((s) => (
@@ -168,7 +168,7 @@ export default function AboutPage() {
               </div>
             </Reveal>
           ))}
-          <p className="mono border-t border-[var(--rule)] pt-8 text-[0.88rem] text-[var(--faint)]">
+          <p className="mono pt-4 text-[0.88rem] text-[var(--faint)]">
             Certifications: {certifications.join(' · ')}
           </p>
         </div>

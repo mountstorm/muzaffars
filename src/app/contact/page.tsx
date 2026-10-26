@@ -35,7 +35,7 @@ export default function ContactPage() {
             {DETAILS.map(({ k, v, href, external }) => (
               <div
                 key={k}
-                className="flex flex-wrap items-baseline justify-between gap-4 border-t border-[var(--rule)] py-5"
+                className="flex flex-wrap items-baseline justify-between gap-4 border-t border-[var(--glass-hairline)] py-5"
               >
                 <dt className="label">{k}</dt>
                 <dd className="mono text-[0.95rem]">
@@ -60,7 +60,7 @@ export default function ContactPage() {
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="border-t border-[var(--rule)] pt-5">
+          <div className="pt-1">
             <p className="label">Availability</p>
             <p className="display mt-4 text-[clamp(1.6rem,3.5vw,2.25rem)]">
               Seeking a Summer 2027 SWE internship.

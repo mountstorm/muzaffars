@@ -32,7 +32,7 @@ function Block({
   children: React.ReactNode;
 }) {
   return (
-    <section className="grid gap-5 border-t border-[var(--rule)] py-12 lg:grid-cols-[14rem_1fr] lg:gap-12">
+    <section className="glass glass-panel my-5 grid gap-5 p-6 lg:grid-cols-[14rem_1fr] lg:gap-12 lg:p-9">
       <h2 className="label">{label}</h2>
       <div className="measure">{children}</div>
     </section>
@@ -113,7 +113,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <Block label={study.decisions.heading}>
             <dl className="space-y-8">
               {study.decisions.items.map((item) => (
-                <div key={item.choice} className="border-l-2 border-[var(--accent)] pl-5">
+                <div key={item.choice} className="rounded-[var(--r-media)] border-l-2 border-[var(--accent)] bg-[var(--glass-bg)] py-4 pl-5 pr-5">
                   <dt className="font-medium">{item.choice}</dt>
                   <dd className="mt-2 leading-relaxed text-[var(--muted)]">
                     {item.why}
@@ -172,7 +172,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </Block>
         </Reveal>
 
-        <div className="flex flex-wrap gap-4 border-t border-[var(--rule)] pt-12">
+        <div className="flex flex-wrap gap-4 pt-8">
           <Button href="/projects" variant="solid">
             All work
           </Button>

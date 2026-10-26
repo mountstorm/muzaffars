@@ -32,7 +32,7 @@ function Block({
   children: React.ReactNode;
 }) {
   return (
-    <section className="grid gap-4 border-t border-[var(--rule)] py-10 lg:grid-cols-[14rem_1fr] lg:gap-12">
+    <section className="glass glass-panel my-5 grid gap-4 p-6 lg:grid-cols-[14rem_1fr] lg:gap-12 lg:p-9">
       <h2 className="label">{label}</h2>
       <div>{children}</div>
     </section>

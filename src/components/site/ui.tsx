@@ -20,7 +20,7 @@ export function SectionHead({
   action?: ReactNode;
 }) {
   return (
-    <div className="rule-out pt-8">
+    <div className="pt-2">
       <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
         <p className="label">
           <span className="text-[var(--accent)]">{index}</span>
@@ -41,7 +41,7 @@ export function SectionHead({
 
 export function Tag({ children }: { children: ReactNode }) {
   return (
-    <li className="mono border border-[var(--rule)] px-2.5 py-1 text-[0.72rem] text-[var(--muted)]">
+    <li className="glass glass-pill mono px-3 py-1 text-[0.72rem] text-[var(--muted)]">
       {children}
     </li>
   );
@@ -118,8 +118,8 @@ export function Button({
 }) {
   const cls =
     variant === 'solid'
-      ? 'bg-[var(--accent)] text-[var(--accent-ink)] hover:opacity-90'
-      : 'border border-[var(--rule-strong)] text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)]';
+      ? 'bg-[var(--accent)] text-[var(--accent-ink)] shadow-[var(--glass-shadow)] hover:opacity-90'
+      : 'glass glass-hover text-[var(--ink)] hover:text-[var(--accent)]';
   const props = external
     ? { target: '_blank', rel: 'noopener noreferrer' }
     : {};
@@ -127,7 +127,7 @@ export function Button({
     <Link
       href={href}
       {...props}
-      className={`inline-flex min-h-[48px] items-center px-6 text-[0.95rem] transition-colors ${cls}`}
+      className={`inline-flex min-h-[48px] items-center rounded-full px-6 text-[0.95rem] transition-colors ${cls}`}
     >
       {children}
     </Link>
