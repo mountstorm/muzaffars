@@ -1,21 +1,24 @@
-import { Inter } from 'next/font/google';
+import { Inter, JetBrains_Mono, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import React, { ReactNode } from 'react';
 import { Metadata } from 'next';
-import Animations from './animations';
-import Header from '@/components/layout/header';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Header from '@/components/site/Header';
+import Footer from '@/components/site/Footer';
 import { SITE, abs } from '@/lib/site';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
+const display = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-display'
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: {
-    default: SITE.title,
-    template: `%s — ${SITE.name}`
-  },
+  title: { default: SITE.title, template: `%s — ${SITE.name}` },
   description: SITE.description,
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
@@ -23,8 +26,7 @@ export const metadata: Metadata = {
     'Muzaffar Khaydarov',
     'software engineer',
     'distributed systems',
-    'split inference',
-    'edge computing',
+    'data engineering',
     'University of Mississippi',
     'Ole Miss computer science'
   ],
@@ -57,7 +59,7 @@ const personSchema = {
   name: SITE.name,
   url: SITE.url,
   email: `mailto:${SITE.email}`,
-  image: abs('/images/profile.png'),
+  image: abs('/images/portrait.webp'),
   jobTitle: 'Software Engineer',
   description: SITE.description,
   homeLocation: { '@type': 'Place', name: SITE.location },
@@ -79,19 +81,13 @@ const personSchema = {
   sameAs: [SITE.github, SITE.linkedin]
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
-          // Set the theme class synchronously before hydration to avoid a flash of
-          // incorrect theme / hydration mismatch.
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var stored=localStorage.getItem('theme');var isDark=stored?stored==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',isDark);}catch(e){}})();`
+            __html: `(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;var e=document.documentElement;e.classList.toggle('dark',d);e.setAttribute('data-theme',d?'dark':'light');}catch(e){}})();`
           }}
         />
         <script
@@ -99,25 +95,21 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
-      <body className="overflow-scroll overflow-x-hidden" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${mono.variable} ${display.variable} overflow-x-hidden`}
+        suppressHydrationWarning
+      >
         <a
           href="#content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-background"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-[var(--accent)] focus:px-4 focus:py-2 focus:text-[var(--accent-ink)]"
         >
           Skip to content
         </a>
-        <Animations>
-          <main>
-            <Header />
-            <div className="flex flex-col bg-background text-foreground">
-              <main id="content" className={`flex-grow ${inter.className}`}>
-                {children}
-              </main>
-              <Analytics />
-              <SpeedInsights />
-            </div>
-          </main>
-        </Animations>
+        <Header />
+        <main id="content">{children}</main>
+        <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

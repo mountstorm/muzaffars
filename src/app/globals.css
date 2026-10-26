@@ -2,190 +2,178 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================================================================
+   Design system
+   Editorial warmth, engineering precision. The palette is sampled from the
+   portrait: the blue of the wall behind him, the green of the foliage, the
+   warm light off the windows. Display serif carries the voice, mono carries
+   the data, Inter carries the reading.
+   =========================================================================== */
+
 @layer base {
   :root {
-    --background: 0 0% 100%; /* eddfef pale purple 0 100% 100%; */
-    --foreground: 0 0% 8%; /* 141414 night */
+    /* Surfaces */
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --surface-2: #f3f2ee;
 
-    --card: 0 0% 100%; /* ffffff white */
-    --card-foreground: 20 14.3% 4.1%; /* 0c0a09 smoky black */
+    /* Ink */
+    --ink: #14171a;
+    --muted: #596470;
+    --faint: #8b94a0;
 
-    --popover: 0 0% 100%; /* ffffff white */
-    --popover-foreground: 20 14.3% 4.1%; /* 0c0a09 smoky black */
+    /* Lines */
+    --rule: #e5e3dd;
+    --rule-strong: #d2cfc7;
 
-    --primary: 217 90% 50%; /* hero blue */
+    /* Accents, from the photograph */
+    --accent: #0f5fa6;
+    --accent-ink: #ffffff;
+    --accent-soft: #e9f1f8;
+    --leaf: #2e6b52;
+    --leaf-soft: #e8f1ec;
+
+    --sel: rgba(15, 95, 166, 0.1);
+
+    /* Tailwind-facing tokens (shadcn-style utilities depend on these) */
+    --background: 40 25% 98%;
+    --foreground: 210 13% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 13% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 13% 9%;
+    --primary: 206 83% 35%;
     --primary-foreground: 0 0% 100%;
+    --secondary: 160 40% 30%;
+    --secondary-foreground: 0 0% 100%;
+    --muted-bg: 44 14% 94%;
+    --muted-foreground: 210 11% 39%;
+    --accent-bg: 206 60% 95%;
+    --accent-foreground: 206 83% 25%;
+    --destructive: 2 70% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 44 12% 88%;
+    --input: 44 12% 88%;
+    --ring: 206 83% 35%;
 
-    --secondary: 217 75% 32%; /* deep hero blue */
-    --secondary-foreground: 0 0% 96%; /* off-white */
-
-    --muted: 217 60% 93%; /* pale blue */
-    --muted-foreground: 217 15% 45%;
-
-    --accent: 217 45% 95%;
-    --accent-foreground: 217 60% 15%;
-
-    --destructive: 2 100% 50%; /* ff0800 candy apple red */
-    --destructive-foreground: 60 9.1% 97.8%;
-
-    --border: 217 20% 88%;
-    --input: 217 20% 88%;
-    --ring: 217 90% 50%;
+    /* Rhythm */
+    --measure: 68ch;
+    --radius: 2px;
   }
 
-  .dark {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 96%;
+  :root[data-theme='dark'] {
+    --bg: #0d0f12;
+    --surface: #14181c;
+    --surface-2: #1a1f24;
 
-    --card: 20 14.3% 8%;
-    --card-foreground: 0 0% 96%;
+    --ink: #eceef1;
+    --muted: #9aa3ae;
+    --faint: #626b76;
 
-    --popover: 20 14.3% 8%;
-    --popover-foreground: 0 0% 96%;
+    --rule: #232830;
+    --rule-strong: #333a44;
 
-    --primary: 217 90% 62%; /* hero blue, brightened for dark bg */
-    --primary-foreground: 0 0% 8%;
+    --accent: #58a6f0;
+    --accent-ink: #0d0f12;
+    --accent-soft: rgba(88, 166, 240, 0.12);
+    --leaf: #63c096;
+    --leaf-soft: rgba(99, 192, 150, 0.12);
 
-    --secondary: 217 60% 42%;
-    --secondary-foreground: 0 0% 96%;
+    --sel: rgba(88, 166, 240, 0.16);
 
-    --muted: 217 25% 16%;
-    --muted-foreground: 217 15% 70%;
-
-    --accent: 217 30% 18%;
-    --accent-foreground: 0 0% 96%;
-
-    --destructive: 2 90% 60%; /* softened red for dark backgrounds */
-    --destructive-foreground: 0 0% 96%;
-
-    --border: 217.2 20% 25%;
-    --input: 217.2 20% 25%;
-    --ring: 217 90% 62%;
+    --background: 213 14% 6%;
+    --foreground: 210 13% 93%;
+    --card: 213 14% 9%;
+    --card-foreground: 210 13% 93%;
+    --popover: 213 14% 9%;
+    --popover-foreground: 210 13% 93%;
+    --primary: 208 82% 64%;
+    --primary-foreground: 213 14% 6%;
+    --secondary: 155 44% 57%;
+    --secondary-foreground: 213 14% 6%;
+    --muted-bg: 213 12% 14%;
+    --muted-foreground: 213 10% 64%;
+    --accent-bg: 208 40% 16%;
+    --accent-foreground: 208 82% 80%;
+    --destructive: 2 70% 62%;
+    --destructive-foreground: 213 14% 6%;
+    --border: 215 16% 16%;
+    --input: 215 16% 16%;
+    --ring: 208 82% 64%;
   }
-}
 
-@layer base {
   * {
-    @apply border-border;
+    border-color: var(--rule);
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     font-size: 17px;
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Keyboard focus must be visible on every interactive element. */
+  ::selection {
+    background: var(--sel);
+  }
+
   :focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  /* Honour the OS setting: content stays put rather than animating in. */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius);
   }
 }
 
-/* Custom animations for about page */
-@keyframes scroll-down {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 1;
+@layer components {
+  /* The voice: tight, high-contrast serif for names and page titles. */
+  .display {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.96;
   }
-  50% {
-    transform: translateY(16px);
-    opacity: 0.3;
+
+  /* The data: small, wide-tracked mono for labels, tags and figures. */
+  .label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-ligatures: none;
+  }
+
+  .measure {
+    max-width: var(--measure);
+  }
+
+  /* A rule that starts at the text and runs to the edge of the column. */
+  .rule-out {
+    border-top: 1px solid var(--rule);
   }
 }
 
-.animate-scroll-down {
-  animation: scroll-down 1.5s ease-in-out infinite;
-}
+/* --- Motion ---------------------------------------------------------------
+   Base states are always visible. Animations only ever move an element from
+   a hidden start to where it already sits, with `forwards` fill, so a
+   deferred or blocked animation can never leave the page blank.
+   ------------------------------------------------------------------------- */
 
-/* Smooth text gradient for highlighted sections */
-.text-gradient {
-  background: linear-gradient(
-    135deg,
-    hsl(var(--primary)) 0%,
-    hsl(var(--secondary)) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Section divider gradient */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    hsl(var(--primary) / 0.3),
-    transparent
-  );
-}
-
-/* 3D flip for the menu button label (Menu/Close) */
-.perspective-text {
-  transform-style: preserve-3d;
-  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
-}
-.perspective-text p {
-  transition:
-    transform 0.75s cubic-bezier(0.76, 0, 0.24, 1),
-    opacity 0.75s cubic-bezier(0.76, 0, 0.24, 1);
-}
-.perspective-text p:nth-of-type(2) {
-  transform-origin: bottom center;
-  transform: rotateX(-90deg) translateY(9px);
-  opacity: 0;
-}
-.menu-face:hover .perspective-text {
-  transform: rotateX(90deg);
-}
-.menu-face:hover .perspective-text p:nth-of-type(1) {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-.menu-face:hover .perspective-text p:nth-of-type(2) {
-  opacity: 1;
-}
-
-/*
- * Page transition. Deliberately CSS rather than framer-motion: the previous
- * motion.div could be left stranded at its `initial` state (opacity 0), which
- * blanked the entire page because the wrapper contains every route. The base
- * state here is visible, so if the animation never runs the content still shows.
- */
-.page-transition {
-  opacity: 1;
-  /* `forwards`, never `both`: with backwards fill, a pending or deferred
-     animation holds the element at the `from` keyframe and blanks the whole
-     page. This way an animation that never runs simply leaves content visible. */
-  animation: page-in 350ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes page-in {
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -193,26 +181,77 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .page-transition {
-    animation: none;
+.rise {
+  animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes wipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }
 
-/* Chart series colours. Fixed order, never cycled; each line also carries a
-   dash pattern so the chart does not rely on colour alone. */
-:root {
-  --series-1: #2a78d6;
-  --series-2: #eb6834;
-  --series-3: #1baf7a;
-  --chart-grid: #e1e0d9;
-  --chart-axis: #c3c2b7;
+.wipe {
+  clip-path: inset(0 0 0 0);
+  animation: wipe 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
 }
 
-.dark {
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --series-3: #199e70;
-  --chart-grid: #2c2c2a;
-  --chart-axis: #383835;
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.draw {
+  transform-origin: left;
+  animation: draw 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Revealed on scroll by IntersectionObserver; visible by default. */
+[data-reveal] {
+  opacity: 1;
+}
+
+[data-reveal='pending'] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+[data-reveal='shown'] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--d, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .wipe,
+  .draw {
+    animation: none !important;
+  }
+  .wipe {
+    clip-path: none !important;
+  }
+  [data-reveal],
+  [data-reveal='pending'],
+  [data-reveal='shown'] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

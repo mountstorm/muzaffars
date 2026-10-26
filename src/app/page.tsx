@@ -1,7 +1,6 @@
-import Hero from '@/components/home/hero';
-import FeaturedProjects from '@/components/home/FeaturedProjects';
-import ExperienceSummary from '@/components/home/ExperienceSummary';
-import HomeClient from './HomeClient';
+import Hero from '@/components/home/Hero';
+import SelectedWork from '@/components/home/SelectedWork';
+import Experience from '@/components/home/Experience';
 import { pageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/site';
 
@@ -19,9 +18,8 @@ export default function Page() {
   return (
     <>
       <Hero />
-      <FeaturedProjects />
-      <ExperienceSummary />
-      <HomeClient />
+      <SelectedWork />
+      <Experience />
     </>
   );
 }

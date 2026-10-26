@@ -9,7 +9,9 @@ const SUBTITLES: Record<string, string> = {
   projects: 'Split inference, 831k-row H-1B ETL, and production billing systems',
   resume: 'Software Engineer · Distributed AI Researcher · CS @ Ole Miss',
   gallery: 'Coding, travelling, sports, and learning',
-  contact: "Let's work together"
+  contact: "Let's work together",
+  'split-inference':
+    'Where to split a neural network — 22 AlexNet cut points, three links'
 };
 
 export async function GET(
