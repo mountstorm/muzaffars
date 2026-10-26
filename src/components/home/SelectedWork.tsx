@@ -11,7 +11,7 @@ export default function SelectedWork() {
           index="01"
           label="Selected work"
           title="Three that show the range."
-          lede="Data engineering at scale, distributed systems research, and product built end to end."
+          lede="An interactive atlas of history, distributed systems research, and developer tooling built end to end."
           action={<Button href="/projects">All work</Button>}
         />
 
@@ -61,6 +61,11 @@ export default function SelectedWork() {
                     {project.caseStudy && (
                       <TextLink href={`/projects/${project.caseStudy}`}>
                         Read the case study
+                      </TextLink>
+                    )}
+                    {project.secondaryLink && (
+                      <TextLink href={project.secondaryLink} external>
+                        {project.secondaryButtonText ?? 'Live demo'}
                       </TextLink>
                     )}
                     {project.link && (

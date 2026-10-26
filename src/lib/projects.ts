@@ -28,6 +28,22 @@ export type Project = {
 // Every `link` below was opened and verified to return 200.
 export const projects: Project[] = [
   {
+    id: 'xarita',
+    headline:
+      'An interactive atlas of history: drag through 5,000 years of borders, then lay scanned library maps over today\u2019s streets.',
+    result:
+      'Georeferenced scans from 15+ libraries, fetched by the area in view and faded over a live vector map, in English, Uzbek and Russian.',
+    status: 'Live',
+    title: 'Xarita',
+    description:
+      'Built an interactive historical atlas \u2014 \u201cxarita\u201d is Uzbek for map. Borders render for any year from 3000 BC to today on a vector globe, scanned maps from 15+ libraries are pulled in by the area you are viewing and can be overlaid and faded against the modern map, and guided tours and a region quiz sit on top. English, Uzbek and Russian.',
+    imagePath: '/images/projects/xarita.jpg',
+    link: 'https://github.com/mountstorm/Xarita',
+    secondaryLink: 'https://xarita-atlas.vercel.app',
+    secondaryButtonText: 'Open the atlas',
+    tags: ['JavaScript', 'MapLibre GL', 'OpenSeadragon', 'Georeferencing', 'i18n']
+  },
+  {
     id: 'resumegit',
     headline:
       'Version control for your resume: one branch per application, with a semantic merge that propagates a single life update into every tailored branch.',
@@ -159,7 +175,7 @@ export const projects: Project[] = [
 
 /** The three projects featured on the homepage, in display order. */
 export const FEATURED_IDS = [
-  'whosponsors',
+  'xarita',
   'distributed-ai-research',
   'resumegit'
 ] as const;
