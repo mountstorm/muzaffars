@@ -1,10 +1,17 @@
 /**
  * World Cup final model output.
  *
- * GENERATED — do not hand-edit. Produced by running the model in
- * github.com/mountstorm/worldcup-predictor at commit 822d4ca, which is
- * deterministic (seed 42, 10,000 runs). Re-running the
- * same commit reproduces these numbers exactly.
+ * GENERATED — do not hand-edit. To refresh, run the predictor's exporter and
+ * paste the JSON into the `worldCup` object below:
+ *
+ *     git clone https://github.com/mountstorm/worldcup-predictor
+ *     cd worldcup-predictor
+ *     python3 -m venv .venv
+ *     .venv/bin/pip install pandas numpy scipy scikit-learn matplotlib pyyaml
+ *     .venv/bin/python export_json.py --stdout
+ *
+ * The model is deterministic (seed 42, 10,000 runs), so the same commit always
+ * reproduces the same numbers. These were generated at commit c9f4ebb.
  *
  * Source data: 49,520 international matches in data/results.csv, of which
  * 32,401 fall on or after 1990 and are used by the model.
