@@ -1,5 +1,13 @@
-import { Download, Mail, Github, Linkedin, MapPin } from 'lucide-react';
-import Layout from '@/components/layout';
+import {
+  Buffer,
+  Section,
+  Field,
+  MarkedList,
+  Comment,
+  Cmd,
+  PathLink,
+  sans
+} from '@/components/shell/doc';
 import { pageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/site';
 import {
@@ -21,201 +29,151 @@ export const metadata = pageMetadata({
   og: 'resume'
 });
 
-// Only the public projects belong on the resume page.
 const featured = projects.filter((p) => p.link).slice(0, 4);
 
 export default function ResumePage() {
   return (
-    <Layout title="Resume" center>
-      <div className="mx-auto max-w-3xl">
-        <div className="mb-10 flex flex-col items-center gap-4">
-          <p className="text-center text-foreground/70">{SITE.availability}</p>
-          <a
-            href={RESUME_PATH}
-            download
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform duration-300 hover:scale-105"
-          >
-            <Download size={18} aria-hidden="true" />
-            Download PDF
-          </a>
+    <Buffer
+      path="~/muzaffarkhaydarov.com/resume.pdf"
+      title="resume"
+      lede="The same content as the PDF, as readable text. The download is generated from this."
+      meta={
+        <div className="flex flex-wrap items-center gap-[2ch]">
+          <Cmd href={RESUME_PATH} primary>
+            download pdf
+          </Cmd>
+          <Comment tone="add">{SITE.availability}</Comment>
         </div>
+      }
+    >
+      <Section heading="contact">
+        <dl className="space-y-[1ch]">
+          <Field k="email">
+            <a
+              href={`mailto:${SITE.email}`}
+              className="text-[var(--ed-accent)] underline-offset-4 hover:underline"
+            >
+              {SITE.email}
+            </a>
+          </Field>
+          <Field k="github">github.com/mountstorm</Field>
+          <Field k="linkedin">linkedin.com/in/muzaffar-</Field>
+          <Field k="location">{SITE.location}</Field>
+        </dl>
+      </Section>
 
-        {/* The resume itself is real HTML so it is indexable and readable on a
-            phone. The PDF above is generated from the same content. */}
-        <article className="rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm sm:p-10">
-          <header className="border-b border-border pb-6">
-            <h2 className="text-3xl font-bold text-foreground">{SITE.name}</h2>
-            <p className="mt-1 text-lg text-foreground/70">
-              Software Engineer · Distributed AI Researcher
-            </p>
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground/70">
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin size={15} aria-hidden="true" />
-                {SITE.location}
+      <Section heading="education">
+        <div className="border-l border-[var(--ed-rule)] pl-[2ch]">
+          <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
+            <h3 className="ed-mono text-[1rem] font-semibold">
+              {education.school}
+            </h3>
+            <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
+              {education.dates}
+            </span>
+          </div>
+          <p className={`${sans} mt-[0.5ch] text-[var(--ed-dim)]`}>
+            {education.degree}
+          </p>
+          <div className="mt-[1ch]">
+            <MarkedList items={education.highlights} mark="add" />
+          </div>
+          <div className="mt-[1.5ch]">
+            <Comment tone="key">
+              coursework: {education.coursework.join(', ')}
+            </Comment>
+          </div>
+        </div>
+      </Section>
+
+      <Section heading="experience">
+        <ol className="space-y-[3ch]">
+          {experience.map((role) => (
+            <li
+              key={role.title + role.year}
+              className="border-l border-[var(--ed-rule)] pl-[2ch]"
+            >
+              <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
+                <h3 className="ed-mono text-[1rem] font-semibold">
+                  {role.title}
+                  <span className="font-normal text-[var(--ed-dim)]">
+                    {' '}
+                    @ {role.company}
+                  </span>
+                </h3>
+                <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
+                  {role.year}
+                </span>
+              </div>
+              {role.company.startsWith('C Spire') && (
+                <p className="ed-mono mt-[0.5ch] text-[12px] text-[var(--ed-add)]">
+                  [received return offer]
+                </p>
+              )}
+              <div className="mt-[1ch]">
+                <MarkedList items={role.bullets} mark="add" />
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section heading="leadership">
+        {leadership.map((entry) => (
+          <div
+            key={entry.title}
+            className="border-l border-[var(--ed-rule)] pl-[2ch]"
+          >
+            <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
+              <h3 className="ed-mono text-[1rem] font-semibold">
+                {entry.title}
+                <span className="font-normal text-[var(--ed-dim)]">
+                  {' '}
+                  @ {entry.organization}
+                </span>
+              </h3>
+              <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
+                {entry.year}
               </span>
-              <a
-                href={`mailto:${SITE.email}`}
-                className="inline-flex items-center gap-1.5 hover:text-foreground hover:underline"
-              >
-                <Mail size={15} aria-hidden="true" />
-                {SITE.email}
-              </a>
-              <a
-                href={SITE.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-foreground hover:underline"
-              >
-                <Github size={15} aria-hidden="true" />
-                github.com/mountstorm
-              </a>
-              <a
-                href={SITE.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-foreground hover:underline"
-              >
-                <Linkedin size={15} aria-hidden="true" />
-                LinkedIn
-              </a>
             </div>
-          </header>
-
-          <Section title="Education">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-              <h4 className="font-semibold text-foreground">{education.school}</h4>
-              <span className="text-sm text-foreground/60">{education.dates}</span>
+            <div className="mt-[1ch]">
+              <MarkedList items={entry.bullets} mark="add" />
             </div>
-            <p className="text-foreground/80">{education.degree}</p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-foreground/70">
-              {education.highlights.map((h) => (
-                <li key={h}>{h}</li>
-              ))}
-            </ul>
-            <p className="mt-2 text-foreground/70">
-              <span className="font-medium text-foreground">Coursework:</span>{' '}
-              {education.coursework.join(', ')}
-            </p>
-          </Section>
+          </div>
+        ))}
+      </Section>
 
-          <Section title="Experience">
-            <div className="space-y-6">
-              {experience.map((role) => (
-                <div key={role.title + role.year}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h4 className="font-semibold text-foreground">{role.title}</h4>
-                    <span className="text-sm text-foreground/60">{role.year}</span>
-                  </div>
-                  <p className="text-foreground/80">
-                    {role.company}
-                    {role.location ? ` · ${role.location}` : ''}
-                    {role.company.startsWith('C Spire') && (
-                      <span className="ml-2 rounded-full border border-emerald-600/30 bg-emerald-600/10 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300">
-                        Received return offer
-                      </span>
-                    )}
-                  </p>
-                  <ul className="mt-2 list-disc space-y-1 pl-5 text-foreground/70">
-                    {role.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Section>
+      <Section heading="selected projects">
+        <ul className="space-y-[2ch]">
+          {featured.map((p) => (
+            <li key={p.id} className="border-l border-[var(--ed-rule)] pl-[2ch]">
+              <PathLink href={p.link!} external>
+                {p.title}
+              </PathLink>
+              <p className={`${sans} mt-[0.25ch] max-w-[74ch] text-[var(--ed-dim)]`}>
+                {p.description}
+              </p>
+              <p className="ed-mono mt-[0.5ch] text-[12px] text-[var(--ed-string)]">
+                {p.tags.join(' · ')}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
-          <Section title="Leadership">
-            <div className="space-y-6">
-              {leadership.map((entry) => (
-                <div key={entry.title}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-                    <h4 className="font-semibold text-foreground">
-                      {entry.title}
-                    </h4>
-                    <span className="text-sm text-foreground/60">
-                      {entry.year}
-                    </span>
-                  </div>
-                  <p className="text-foreground/80">
-                    {entry.organization}
-                    {entry.location ? ` · ${entry.location}` : ''}
-                  </p>
-                  <ul className="mt-2 list-disc space-y-1 pl-5 text-foreground/70">
-                    {entry.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </Section>
+      <Section heading="skills">
+        <dl className="space-y-[1ch]">
+          {skillGroups.map((g) => (
+            <Field key={g.label} k={g.label.toLowerCase()}>
+              {g.skills.map((s) => s.name).join(', ')}
+            </Field>
+          ))}
+        </dl>
+      </Section>
 
-          <Section title="Selected Projects">
-            <ul className="space-y-3">
-              {featured.map((p) => (
-                <li key={p.id}>
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-foreground hover:underline"
-                  >
-                    {p.title} ↗
-                  </a>
-                  <p className="text-foreground/70">{p.description}</p>
-                  <p className="mt-1 text-sm text-foreground/50">
-                    {p.tags.join(' · ')}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Section>
-
-          <Section title="Skills">
-            <dl className="space-y-3">
-              {skillGroups.map((group) => (
-                <div
-                  key={group.label}
-                  className="flex flex-col gap-1 sm:flex-row sm:gap-4"
-                >
-                  <dt className="shrink-0 font-semibold text-foreground sm:w-56">
-                    {group.label}
-                  </dt>
-                  <dd className="text-foreground/70">
-                    {group.skills.map((s) => s.name).join(', ')}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Section>
-
-          <Section title="Certifications">
-            <ul className="list-disc space-y-1 pl-5 text-foreground/70">
-              {certifications.map((c) => (
-                <li key={c}>{c}</li>
-              ))}
-            </ul>
-          </Section>
-        </article>
-      </div>
-    </Layout>
-  );
-}
-
-function Section({
-  title,
-  children
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section className="mt-8">
-      <h3 className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-foreground/50">
-        {title}
-      </h3>
-      {children}
-    </section>
+      <Section heading="certifications">
+        <MarkedList items={certifications} mark="neutral" />
+      </Section>
+    </Buffer>
   );
 }
