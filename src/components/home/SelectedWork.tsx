@@ -53,6 +53,12 @@ export default function SelectedWork() {
                     {project.result}
                   </p>
 
+                  {project.credit && (
+                    <p className="mono mt-4 text-[0.82rem] text-[var(--faint)]">
+                      {project.credit}
+                    </p>
+                  )}
+
                   <div className="mt-6">
                     <Tags tags={project.tags.slice(0, 5)} />
                   </div>

@@ -54,6 +54,12 @@ export default function ProjectsPage() {
                   {project.description}
                 </p>
 
+                {project.credit && (
+                  <p className="mono mt-3 text-[0.82rem] text-[var(--faint)]">
+                    {project.credit}
+                  </p>
+                )}
+
                 <div className="mt-5">
                   <Tags tags={project.tags} />
                 </div>
