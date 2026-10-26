@@ -36,7 +36,7 @@ export const projects: Project[] = [
     result:
       'Georeferenced scans from 15+ libraries, fetched by the area in view and faded over a live vector map, in English, Uzbek and Russian.',
     status: 'Live',
-    credit: 'Built with my brother.',
+    credit: 'Built with my brother, Muhammad Sodiq Khaydarov.',
     title: 'Xarita',
     description:
       'Built an interactive historical atlas \u2014 \u201cxarita\u201d is Uzbek for map. Borders render for any year from 3000 BC to today on a vector globe, scanned maps from 15+ libraries are pulled in by the area you are viewing and can be overlaid and faded against the modern map, and guided tours and a region quiz sit on top. English, Uzbek and Russian.',
