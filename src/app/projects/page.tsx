@@ -1,98 +1,88 @@
-import {
-  Buffer,
-  Section,
-  Status,
-  Tags,
-  PathLink,
-  Comment,
-  sans
-} from '@/components/shell/doc';
+import Image from 'next/image';
+import Reveal from '@/components/site/Reveal';
+import { Shell, PageHead, Tags, Status, TextLink } from '@/components/site/ui';
 import { pageMetadata } from '@/lib/metadata';
 import { projects } from '@/lib/projects';
 
 export const metadata = pageMetadata({
-  title: 'Projects',
+  title: 'Work',
   description:
     'Distributed inference research, an H-1B database built from 831k USCIS filings, a co-founded shopping app with paying users, and production billing systems at C Spire.',
   path: '/projects',
   og: 'projects'
 });
 
-const PUBLIC_FIRST = (a: { link?: string }, b: { link?: string }) =>
-  Number(!!b.link) - Number(!!a.link);
-
 export default function ProjectsPage() {
-  const listed = [...projects].sort(PUBLIC_FIRST);
+  const listed = [...projects].sort(
+    (a, b) => Number(!!b.link) - Number(!!a.link)
+  );
 
   return (
-    <Buffer
-      path="~/muzaffarkhaydarov.com/projects/"
-      title="projects"
-      lede="Everything I have shipped that I can show. Internal work at C Spire is described without the code."
-      meta={
-        <Comment>
-          {listed.length} entries · {listed.filter((p) => p.link).length} public
-          · {listed.filter((p) => !p.link).length} internal or in progress
-        </Comment>
-      }
-    >
-      <Section>
-        <ol className="divide-y divide-[var(--ed-rule)] border-y border-[var(--ed-rule)]">
-          {listed.map((project, i) => (
-            <li
-              key={project.id}
-              className="ed-diff py-[2ch]"
-              style={{ '--ed-delay': `${i * 55}ms` } as React.CSSProperties}
-            >
-              <div className="flex flex-wrap items-baseline gap-x-[2ch] gap-y-[0.5ch]">
-                <span
-                  aria-hidden="true"
-                  className="ed-mono text-[12px] tabular-nums text-[var(--ed-faint)]"
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h2 className="ed-mono text-[1.0625rem] font-semibold">
-                  {project.title}
-                </h2>
-                <Status status={project.status} />
+    <Shell>
+      <PageHead
+        index="01"
+        label="Work"
+        title="Everything I can show."
+        lede="Internal work at C Spire is described without the code. Everything else links to the repository."
+      />
+
+      <ul className="pb-8">
+        {listed.map((project, i) => (
+          <Reveal as="li" key={project.id} delay={(i % 3) * 50}>
+            <article className="grid gap-6 border-t border-[var(--rule)] py-10 lg:grid-cols-[18rem_1fr] lg:gap-12">
+              <div className="relative aspect-[16/10] w-full overflow-hidden border border-[var(--rule)] bg-[var(--surface-2)] lg:aspect-[4/3]">
+                <Image
+                  src={project.imagePath}
+                  alt=""
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 288px"
+                  className="object-cover"
+                />
               </div>
 
-              <p
-                className={`${sans} mt-[1ch] max-w-[76ch] pl-[4ch] leading-relaxed text-[var(--ed-dim)]`}
-              >
-                {project.description}
-              </p>
-
-              <div className="mt-[1ch] pl-[4ch]">
-                <Tags tags={project.tags} />
-              </div>
-
-              <div className="mt-[0.5ch] flex flex-wrap gap-x-[3ch] pl-[4ch]">
-                {project.caseStudy && (
-                  <PathLink href={`/projects/${project.caseStudy}`}>
-                    read the {project.title} case study →
-                  </PathLink>
-                )}
-                {project.link && (
-                  <PathLink href={project.link} external>
-                    {project.title} on github
-                  </PathLink>
-                )}
-                {project.secondaryLink && (
-                  <PathLink href={project.secondaryLink} external>
-                    {project.secondaryButtonText?.toLowerCase() ?? 'live demo'}
-                  </PathLink>
-                )}
-                {!project.link && (
-                  <span className="ed-mono inline-flex min-h-[44px] items-center text-[13px] text-[var(--ed-faint)]">
-                    {project.noLinkLabel}
+              <div>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <span className="mono text-[0.8rem] text-[var(--faint)]">
+                    {String(i + 1).padStart(2, '0')}
                   </span>
-                )}
+                  <h2 className="text-[1.35rem] font-medium">{project.title}</h2>
+                  <Status status={project.status} />
+                </div>
+
+                <p className="measure mt-4 leading-relaxed text-[var(--muted)]">
+                  {project.description}
+                </p>
+
+                <div className="mt-5">
+                  <Tags tags={project.tags} />
+                </div>
+
+                <div className="mt-5 flex flex-wrap items-center gap-x-8">
+                  {project.caseStudy && (
+                    <TextLink href={`/projects/${project.caseStudy}`}>
+                      Case study
+                    </TextLink>
+                  )}
+                  {project.link && (
+                    <TextLink href={project.link} external>
+                      GitHub
+                    </TextLink>
+                  )}
+                  {project.secondaryLink && (
+                    <TextLink href={project.secondaryLink} external>
+                      {project.secondaryButtonText ?? 'Live demo'}
+                    </TextLink>
+                  )}
+                  {!project.link && (
+                    <span className="label">{project.noLinkLabel}</span>
+                  )}
+                </div>
               </div>
-            </li>
-          ))}
-        </ol>
-      </Section>
-    </Buffer>
+            </article>
+          </Reveal>
+        ))}
+      </ul>
+    </Shell>
   );
 }

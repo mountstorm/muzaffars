@@ -1,21 +1,13 @@
 import Image from 'next/image';
-import {
-  Buffer,
-  Section,
-  Prose,
-  Comment,
-  MarkedList,
-  Field,
-  Cmd,
-  sans
-} from '@/components/shell/doc';
+import Reveal from '@/components/site/Reveal';
+import { Shell, PageHead, SectionHead, Button } from '@/components/site/ui';
 import { pageMetadata } from '@/lib/metadata';
 import { roles, education, leadership, skillGroups, certifications } from '@/lib/resume';
 
 export const metadata = pageMetadata({
   title: 'About',
   description:
-    'Junior at Ole Miss studying CS and math. Production billing systems at C Spire, distributed inference research with Prof. Feng Wang, and the path that got me here.',
+    'Junior at Ole Miss studying CS and maths. Production billing systems at C Spire, distributed inference research with Prof. Feng Wang, and the path that got me here.',
   path: '/about',
   og: 'about'
 });
@@ -24,156 +16,170 @@ export default function AboutPage() {
   const timeline = [...roles].reverse();
 
   return (
-    <Buffer
-      path="~/muzaffarkhaydarov.com/about.md"
-      title="about"
-      lede="Junior at Ole Miss studying computer science and maths, undergraduate researcher on distributed AI systems, and a 2026 software engineering intern at C Spire."
-    >
-      <Section>
-        <div className="flex flex-col gap-[3ch] sm:flex-row">
-          <div className="relative aspect-[4/5] w-full max-w-[28ch] shrink-0 overflow-hidden border border-[var(--ed-rule)]">
+    <Shell>
+      <PageHead
+        index="03"
+        label="About"
+        title="Muzaffar Khaydarov"
+        lede="Junior at Ole Miss studying computer science and maths, undergraduate researcher on distributed AI systems, and a 2026 software engineering intern at C Spire."
+      />
+
+      <div className="grid gap-12 pb-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <Reveal>
+          <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden border border-[var(--rule)]">
             <Image
-              src="/images/profile.png"
+              src="/images/portrait.webp"
               alt="Muzaffar Khaydarov"
               fill
-              className="object-cover object-center"
               priority
-              sizes="(max-width: 640px) 100vw, 28ch"
+              sizes="(max-width: 1024px) 90vw, 420px"
+              className="object-cover object-[center_22%]"
             />
           </div>
-          <dl className="min-w-0 flex-1 space-y-[1ch]">
-            <Field k="name">Muzaffar Khaydarov</Field>
-            <Field k="role">Software Engineer &amp; Distributed AI Researcher</Field>
-            <Field k="based">{education.location}</Field>
-            <Field k="school">{education.school}</Field>
-            <Field k="degree">{education.degree}</Field>
-            <Field k="gpa">3.87 / 4.0</Field>
-            <Field k="seeking">Summer 2027 SWE internship</Field>
-          </dl>
-        </div>
-      </Section>
+        </Reveal>
 
-      <Section heading="what I work on">
-        <Prose>
-          <p>
-            I like problems that span layers. At one end, billing systems
-            processing thousands of records a week, where a wrong branch shows
-            up on somebody&apos;s bill. At the other, running one object
-            detection model across a laptop and two Linux VMs and proving the
-            answer is still the same.
-          </p>
-          <p>
-            Right now that means distributed inference research with Prof. Feng
-            Wang, in collaboration with the University of Memphis, and whatever
-            I am building on the side.
-          </p>
-        </Prose>
-      </Section>
+        <Reveal delay={80}>
+          <div className="space-y-8">
+            <div>
+              <p className="label">What I work on</p>
+              <p className="measure mt-4 text-[1.0625rem] leading-relaxed text-[var(--muted)]">
+                I like problems that span layers. At one end, billing systems
+                processing thousands of records a week, where a wrong branch
+                shows up on somebody&apos;s bill. At the other, running one
+                object detection model across a laptop and two Linux VMs and
+                proving the answer is still the same.
+              </p>
+              <p className="measure mt-4 text-[1.0625rem] leading-relaxed text-[var(--muted)]">
+                Right now that means distributed inference research with Prof.
+                Feng Wang, in collaboration with the University of Memphis, and
+                whatever I&apos;m building on the side.
+              </p>
+            </div>
 
-      <Section heading="beyond code">
-        <Prose>
-          <p>
-            Chess and football. Camus, Kafka and Dostoevsky. Maths puzzles when
-            I want the kind of problem that has an answer.
-          </p>
-        </Prose>
-        <div className="mt-[1.5ch]">
-          <Comment tone="key">
-            Photos of most of this live under{' '}
-            <span className="text-[var(--ed-accent)]">gallery/</span>.
-          </Comment>
-        </div>
-      </Section>
+            <div>
+              <p className="label">Beyond code</p>
+              <p className="measure mt-4 text-[1.0625rem] leading-relaxed text-[var(--muted)]">
+                Chess and football. Camus, Kafka and Dostoevsky. Maths puzzles
+                when I want the kind of problem that has an answer.
+              </p>
+            </div>
 
-      <Section heading="where I've been">
-        <ol className="space-y-[3ch]">
+            <dl className="grid grid-cols-2 gap-6 border-t border-[var(--rule)] pt-6 sm:grid-cols-3">
+              {[
+                ['Degree', 'B.S. Computer Science'],
+                ['Minor', 'Mathematics'],
+                ['GPA', '3.87 / 4.0'],
+                ['Honors', 'Barksdale, top 5%'],
+                ['Based in', education.location],
+                ['Graduating', 'May 2028']
+              ].map(([k, v]) => (
+                <div key={k}>
+                  <dt className="label">{k}</dt>
+                  <dd className="mono mt-1.5 text-[0.9rem] text-[var(--ink)]">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Reveal>
+      </div>
+
+      <section aria-labelledby="path" className="pb-20">
+        <SectionHead index="—" label="Timeline" title="The path here." />
+        <ol className="mt-14 space-y-12">
           {timeline.map((role, i) => (
-            <li
-              key={role.title + role.year}
-              className="ed-diff border-l border-[var(--ed-rule)] pl-[2ch]"
-              style={{ '--ed-delay': `${i * 70}ms` } as React.CSSProperties}
-            >
-              <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
-                <h3 className="ed-mono text-[1rem] font-semibold">
-                  {role.title}
-                  <span className="font-normal text-[var(--ed-dim)]">
-                    {' '}
-                    @ {role.company}
-                  </span>
-                </h3>
-                <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
+            <Reveal as="li" key={role.title + role.year} delay={(i % 3) * 50}>
+              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+                <p className="mono text-[0.82rem] tabular-nums text-[var(--faint)]">
                   {role.year}
-                </span>
+                </p>
+                <div>
+                  <h3 className="text-[1.2rem] font-medium">{role.title}</h3>
+                  <p className="mt-1 text-[var(--muted)]">{role.company}</p>
+                  <ul className="measure mt-5 space-y-3">
+                    {role.bullets.map((b) => (
+                      <li key={b} className="flex gap-3 leading-relaxed text-[var(--muted)]">
+                        <span
+                          aria-hidden="true"
+                          className="mt-[0.7em] inline-block h-px w-3 shrink-0 bg-[var(--rule-strong)]"
+                        />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div className="mt-[1ch]">
-                <MarkedList items={role.bullets} mark="add" />
+            </Reveal>
+          ))}
+
+          {leadership.map((entry) => (
+            <Reveal as="li" key={entry.title}>
+              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+                <p className="mono text-[0.82rem] tabular-nums text-[var(--faint)]">
+                  {entry.year}
+                </p>
+                <div>
+                  <h3 className="text-[1.2rem] font-medium">{entry.title}</h3>
+                  <p className="mt-1 text-[var(--muted)]">{entry.organization}</p>
+                  <ul className="measure mt-5 space-y-3">
+                    {entry.bullets.map((b) => (
+                      <li key={b} className="flex gap-3 leading-relaxed text-[var(--muted)]">
+                        <span
+                          aria-hidden="true"
+                          className="mt-[0.7em] inline-block h-px w-3 shrink-0 bg-[var(--rule-strong)]"
+                        />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
-      </Section>
+      </section>
 
-      <Section heading="leadership">
-        {leadership.map((entry) => (
-          <div key={entry.title} className="border-l border-[var(--ed-rule)] pl-[2ch]">
-            <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
-              <h3 className="ed-mono text-[1rem] font-semibold">
-                {entry.title}
-                <span className="font-normal text-[var(--ed-dim)]">
-                  {' '}
-                  @ {entry.organization}
-                </span>
-              </h3>
-              <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
-                {entry.year}
-              </span>
-            </div>
-            <div className="mt-[1ch]">
-              <MarkedList items={entry.bullets} mark="add" />
-            </div>
-          </div>
-        ))}
-      </Section>
-
-      <Section heading="toolchain">
-        <div className="space-y-[2.5ch]">
-          {skillGroups.map((group) => (
-            <div key={group.label}>
-              <h3 className="ed-mono text-[13px] text-[var(--ed-key)]">
-                {group.label.toLowerCase()}:
-              </h3>
-              <ul className="mt-[0.75ch] space-y-[0.5ch]">
-                {group.skills.map((s) => (
-                  <li
-                    key={s.name}
-                    className="flex flex-col gap-[0.1ch] sm:flex-row sm:gap-[2ch]"
-                  >
-                    <span className="ed-mono shrink-0 text-[13px] text-[var(--ed-ink)] sm:w-[24ch]">
-                      {s.name}
-                    </span>
-                    <span className={`${sans} text-[0.9rem] text-[var(--ed-faint)]`}>
-                      {s.evidence}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <section aria-labelledby="toolchain" className="pb-16">
+        <SectionHead
+          index="—"
+          label="Toolchain"
+          title="What I reach for."
+          lede="Every entry is backed by shipped work. If it isn't here, nothing public demonstrates it yet."
+        />
+        <div className="mt-14 space-y-12">
+          {skillGroups.map((group, gi) => (
+            <Reveal key={group.label} delay={gi * 60}>
+              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+                <p className="label">{group.label}</p>
+                <ul className="space-y-3">
+                  {group.skills.map((s) => (
+                    <li
+                      key={s.name}
+                      className="flex flex-col gap-1 sm:flex-row sm:gap-6"
+                    >
+                      <span className="mono shrink-0 text-[0.9rem] sm:w-[14rem]">
+                        {s.name}
+                      </span>
+                      <span className="text-[0.95rem] leading-relaxed text-[var(--muted)]">
+                        {s.evidence}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           ))}
+          <p className="mono border-t border-[var(--rule)] pt-8 text-[0.88rem] text-[var(--faint)]">
+            Certifications: {certifications.join(' · ')}
+          </p>
         </div>
-        <div className="mt-[2.5ch]">
-          <Comment>certifications: {certifications.join(', ')}</Comment>
-        </div>
-      </Section>
+      </section>
 
-      <Section>
-        <div className="flex flex-wrap gap-[2ch]">
-          <Cmd href="/projects" primary>
-            ls projects/
-          </Cmd>
-          <Cmd href="/resume">open resume.pdf</Cmd>
-          <Cmd href="/contact">contact</Cmd>
-        </div>
-      </Section>
-    </Buffer>
+      <div className="flex flex-wrap gap-4 pb-8">
+        <Button href="/projects" variant="solid">
+          See selected work
+        </Button>
+        <Button href="/contact">Get in touch</Button>
+      </div>
+    </Shell>
   );
 }

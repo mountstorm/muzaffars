@@ -1,13 +1,6 @@
-import {
-  Buffer,
-  Section,
-  Field,
-  MarkedList,
-  Comment,
-  Cmd,
-  PathLink,
-  sans
-} from '@/components/shell/doc';
+import { Download } from 'lucide-react';
+import Reveal from '@/components/site/Reveal';
+import { Shell, PageHead, Button, TextLink, Tags } from '@/components/site/ui';
 import { pageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/site';
 import {
@@ -31,149 +24,180 @@ export const metadata = pageMetadata({
 
 const featured = projects.filter((p) => p.link).slice(0, 4);
 
+function Block({
+  label,
+  children
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="grid gap-4 border-t border-[var(--rule)] py-10 lg:grid-cols-[14rem_1fr] lg:gap-12">
+      <h2 className="label">{label}</h2>
+      <div>{children}</div>
+    </section>
+  );
+}
+
+const Bullets = ({ items }: { items: string[] }) => (
+  <ul className="measure mt-4 space-y-3">
+    {items.map((b) => (
+      <li key={b} className="flex gap-3 leading-relaxed text-[var(--muted)]">
+        <span
+          aria-hidden="true"
+          className="mt-[0.7em] inline-block h-px w-3 shrink-0 bg-[var(--rule-strong)]"
+        />
+        <span>{b}</span>
+      </li>
+    ))}
+  </ul>
+);
+
 export default function ResumePage() {
   return (
-    <Buffer
-      path="~/muzaffarkhaydarov.com/resume.pdf"
-      title="resume"
-      lede="The same content as the PDF, as readable text. The download is generated from this."
-      meta={
-        <div className="flex flex-wrap items-center gap-[2ch]">
-          <Cmd href={RESUME_PATH} primary>
-            download pdf
-          </Cmd>
-          <Comment tone="add">{SITE.availability}</Comment>
-        </div>
-      }
-    >
-      <Section heading="contact">
-        <dl className="space-y-[1ch]">
-          <Field k="email">
-            <a
-              href={`mailto:${SITE.email}`}
-              className="text-[var(--ed-accent)] underline-offset-4 hover:underline"
-            >
-              {SITE.email}
-            </a>
-          </Field>
-          <Field k="github">github.com/mountstorm</Field>
-          <Field k="linkedin">linkedin.com/in/muzaffar-</Field>
-          <Field k="location">{SITE.location}</Field>
-        </dl>
-      </Section>
+    <Shell>
+      <PageHead
+        index="04"
+        label="Resume"
+        title="The long version."
+        lede="The same content as the PDF, readable here. The download is generated from this."
+      />
 
-      <Section heading="education">
-        <div className="border-l border-[var(--ed-rule)] pl-[2ch]">
-          <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
-            <h3 className="ed-mono text-[1rem] font-semibold">
-              {education.school}
-            </h3>
-            <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
-              {education.dates}
-            </span>
-          </div>
-          <p className={`${sans} mt-[0.5ch] text-[var(--ed-dim)]`}>
-            {education.degree}
+      <div className="flex flex-wrap items-center gap-4 pb-10">
+        <Button href={RESUME_PATH} variant="solid">
+          <Download size={16} aria-hidden="true" className="mr-2" />
+          Download PDF
+        </Button>
+        <p className="mono text-[0.85rem] text-[var(--muted)]">
+          {SITE.availability}
+        </p>
+      </div>
+
+      <Reveal>
+        <Block label="Contact">
+          <dl className="grid gap-x-10 gap-y-3 sm:grid-cols-2">
+            {[
+              ['Email', SITE.email, `mailto:${SITE.email}`],
+              ['GitHub', 'github.com/mountstorm', SITE.github],
+              ['LinkedIn', 'linkedin.com/in/muzaffar-', SITE.linkedin],
+              ['Location', SITE.location, '']
+            ].map(([k, v, href]) => (
+              <div key={k} className="flex items-baseline gap-4">
+                <dt className="label w-[6rem] shrink-0">{k}</dt>
+                <dd className="mono text-[0.9rem]">
+                  {href ? (
+                    <a
+                      href={href}
+                      className="text-[var(--accent)] underline-offset-4 hover:underline"
+                    >
+                      {v}
+                    </a>
+                  ) : (
+                    v
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Block>
+      </Reveal>
+
+      <Reveal>
+        <Block label="Education">
+          <h3 className="text-[1.2rem] font-medium">{education.school}</h3>
+          <p className="mt-1 text-[var(--muted)]">{education.degree}</p>
+          <p className="mono mt-1 text-[0.85rem] text-[var(--faint)]">
+            {education.dates} · {education.location}
           </p>
-          <div className="mt-[1ch]">
-            <MarkedList items={education.highlights} mark="add" />
-          </div>
-          <div className="mt-[1.5ch]">
-            <Comment tone="key">
-              coursework: {education.coursework.join(', ')}
-            </Comment>
-          </div>
-        </div>
-      </Section>
+          <Bullets items={education.highlights} />
+          <p className="mono mt-5 text-[0.85rem] text-[var(--faint)]">
+            Coursework: {education.coursework.join(', ')}
+          </p>
+        </Block>
+      </Reveal>
 
-      <Section heading="experience">
-        <ol className="space-y-[3ch]">
-          {experience.map((role) => (
-            <li
-              key={role.title + role.year}
-              className="border-l border-[var(--ed-rule)] pl-[2ch]"
-            >
-              <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
-                <h3 className="ed-mono text-[1rem] font-semibold">
-                  {role.title}
-                  <span className="font-normal text-[var(--ed-dim)]">
-                    {' '}
-                    @ {role.company}
+      <Reveal>
+        <Block label="Experience">
+          <ol className="space-y-10">
+            {experience.map((role) => (
+              <li key={role.title + role.year}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                  <h3 className="text-[1.2rem] font-medium">{role.title}</h3>
+                  <span className="mono text-[0.85rem] tabular-nums text-[var(--faint)]">
+                    {role.year}
                   </span>
-                </h3>
-                <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
-                  {role.year}
-                </span>
-              </div>
-              {role.company.startsWith('C Spire') && (
-                <p className="ed-mono mt-[0.5ch] text-[12px] text-[var(--ed-add)]">
-                  [received return offer]
+                </div>
+                <p className="mt-1 text-[var(--muted)]">
+                  {role.company}
+                  {role.location ? ` · ${role.location}` : ''}
                 </p>
-              )}
-              <div className="mt-[1ch]">
-                <MarkedList items={role.bullets} mark="add" />
-              </div>
-            </li>
-          ))}
-        </ol>
-      </Section>
+                {role.company.startsWith('C Spire') && (
+                  <p className="label mt-2 text-[var(--leaf)]">Received return offer</p>
+                )}
+                <Bullets items={role.bullets} />
+              </li>
+            ))}
+          </ol>
+        </Block>
+      </Reveal>
 
-      <Section heading="leadership">
-        {leadership.map((entry) => (
-          <div
-            key={entry.title}
-            className="border-l border-[var(--ed-rule)] pl-[2ch]"
-          >
-            <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
-              <h3 className="ed-mono text-[1rem] font-semibold">
-                {entry.title}
-                <span className="font-normal text-[var(--ed-dim)]">
-                  {' '}
-                  @ {entry.organization}
+      <Reveal>
+        <Block label="Leadership">
+          {leadership.map((entry) => (
+            <div key={entry.title}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h3 className="text-[1.2rem] font-medium">{entry.title}</h3>
+                <span className="mono text-[0.85rem] tabular-nums text-[var(--faint)]">
+                  {entry.year}
                 </span>
-              </h3>
-              <span className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
-                {entry.year}
-              </span>
+              </div>
+              <p className="mt-1 text-[var(--muted)]">{entry.organization}</p>
+              <Bullets items={entry.bullets} />
             </div>
-            <div className="mt-[1ch]">
-              <MarkedList items={entry.bullets} mark="add" />
-            </div>
-          </div>
-        ))}
-      </Section>
-
-      <Section heading="selected projects">
-        <ul className="space-y-[2ch]">
-          {featured.map((p) => (
-            <li key={p.id} className="border-l border-[var(--ed-rule)] pl-[2ch]">
-              <PathLink href={p.link!} external>
-                {p.title}
-              </PathLink>
-              <p className={`${sans} mt-[0.25ch] max-w-[74ch] text-[var(--ed-dim)]`}>
-                {p.description}
-              </p>
-              <p className="ed-mono mt-[0.5ch] text-[12px] text-[var(--ed-string)]">
-                {p.tags.join(' · ')}
-              </p>
-            </li>
           ))}
-        </ul>
-      </Section>
+        </Block>
+      </Reveal>
 
-      <Section heading="skills">
-        <dl className="space-y-[1ch]">
-          {skillGroups.map((g) => (
-            <Field key={g.label} k={g.label.toLowerCase()}>
-              {g.skills.map((s) => s.name).join(', ')}
-            </Field>
-          ))}
-        </dl>
-      </Section>
+      <Reveal>
+        <Block label="Selected projects">
+          <ul className="space-y-8">
+            {featured.map((p) => (
+              <li key={p.id}>
+                <TextLink href={p.link!} external>
+                  {p.title}
+                </TextLink>
+                <p className="measure mt-2 leading-relaxed text-[var(--muted)]">
+                  {p.description}
+                </p>
+                <div className="mt-3">
+                  <Tags tags={p.tags} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Block>
+      </Reveal>
 
-      <Section heading="certifications">
-        <MarkedList items={certifications} mark="neutral" />
-      </Section>
-    </Buffer>
+      <Reveal>
+        <Block label="Skills">
+          <dl className="space-y-4">
+            {skillGroups.map((g) => (
+              <div key={g.label} className="flex flex-col gap-1 sm:flex-row sm:gap-8">
+                <dt className="label shrink-0 sm:w-[11rem]">{g.label}</dt>
+                <dd className="mono text-[0.9rem] leading-relaxed text-[var(--muted)]">
+                  {g.skills.map((s) => s.name).join(', ')}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Block>
+      </Reveal>
+
+      <Reveal>
+        <Block label="Certifications">
+          <Bullets items={certifications} />
+        </Block>
+      </Reveal>
+    </Shell>
   );
 }
