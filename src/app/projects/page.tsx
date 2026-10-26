@@ -67,7 +67,7 @@ export default function ProjectsPage() {
                 <div className="mt-5 flex flex-wrap items-center gap-x-8">
                   {project.caseStudy && (
                     <TextLink href={`/projects/${project.caseStudy}`}>
-                      Case study
+                      {project.caseStudyLabel ?? 'Case study'}
                     </TextLink>
                   )}
                   {project.link && (

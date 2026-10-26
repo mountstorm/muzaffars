@@ -15,8 +15,10 @@ export type Project = {
   status: ProjectStatus;
   /** Collaboration credit, shown wherever the project is listed. */
   credit?: string;
-  /** Slug of the case study at /projects/<slug>, when one exists. */
+  /** Slug of the deeper page at /projects/<slug>, when one exists. */
   caseStudy?: string;
+  /** Link text for that page. Defaults to case-study wording. */
+  caseStudyLabel?: string;
   imagePath: string;
   link?: string;
   secondaryLink?: string;
@@ -76,12 +78,11 @@ export const projects: Project[] = [
     status: 'Live',
     title: 'World Cup Final Predictor',
     description:
-      'Predicted the 2026 World Cup final (Argentina vs Spain) from 35k international matches: Elo ratings feed a recency-weighted Poisson goal model, resolved over 10,000 Monte Carlo simulations into score, event, and player probabilities with a visual dashboard.',
+      'Modelled a projected 2026 World Cup final (Argentina vs Spain) from 32,401 international matches since 1990: Elo ratings feed a recency-weighted Poisson goal model, resolved over 10,000 Monte Carlo finals into scoreline, market, card and player probabilities. The model puts the two teams within Monte Carlo noise of each other \u2014 a coin flip rather than a favourite.',
     imagePath: '/images/projects/worldcup-predictor.png',
     link: 'https://github.com/mountstorm/worldcup-predictor',
-    secondaryLink:
-      'https://claude.ai/code/artifact/839a7d75-0845-47af-861c-a69d38793dad',
-    secondaryButtonText: 'View Dashboard',
+    caseStudy: 'worldcup',
+    caseStudyLabel: 'Open the dashboard',
     tags: ['Python', 'pandas', 'scikit-learn', 'Monte Carlo', 'matplotlib']
   },
   {

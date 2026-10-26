@@ -18,7 +18,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const lastModified = new Date();
-  return [...routes, ...studies].map(({ path, priority }) => ({
+  const extra = [{ path: '/projects/worldcup', priority: 0.8 }];
+
+  return [...routes, ...studies, ...extra].map(({ path, priority }) => ({
     url: `${SITE.url}${path}`,
     lastModified,
     changeFrequency: 'monthly',

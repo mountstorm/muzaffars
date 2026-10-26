@@ -66,7 +66,7 @@ export default function SelectedWork() {
                   <div className="mt-6 flex flex-wrap items-center gap-x-8">
                     {project.caseStudy && (
                       <TextLink href={`/projects/${project.caseStudy}`}>
-                        Read the case study
+                        {project.caseStudyLabel ?? 'Read the case study'}
                       </TextLink>
                     )}
                     {project.secondaryLink && (
