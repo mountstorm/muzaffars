@@ -95,19 +95,6 @@ export default function Hero() {
               className="object-cover object-[center_22%]"
             />
           </div>
-
-          <dl className="mt-5 grid grid-cols-3 gap-4 border-t border-[var(--rule)] pt-4">
-            {[
-              ['GPA', '3.87'],
-              ['Shipping since', '2024'],
-              ['Based in', 'Oxford, MS']
-            ].map(([k, v]) => (
-              <div key={k}>
-                <dt className="label">{k}</dt>
-                <dd className="mono mt-1 text-[0.9rem] text-[var(--ink)]">{v}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </div>
 
