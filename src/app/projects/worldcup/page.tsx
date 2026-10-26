@@ -57,7 +57,7 @@ export default function WorldCupDashboard() {
           <TextLink href="/projects">
             <span className="inline-flex items-center gap-2">
               <ArrowLeft size={14} aria-hidden="true" />
-              All work
+              All projects
             </span>
           </TextLink>
         </div>

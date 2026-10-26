@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/metadata';
 import { projects } from '@/lib/projects';
 
 export const metadata = pageMetadata({
-  title: 'Work',
+  title: 'Projects',
   description:
     'Distributed inference research, an H-1B database built from 831k USCIS filings, a co-founded shopping app with paying users, and production billing systems at C Spire.',
   path: '/projects',
@@ -21,8 +21,8 @@ export default function ProjectsPage() {
     <Shell>
       <PageHead
         index="01"
-        label="Work"
-        title="Everything I can show."
+        label="Projects"
+        title="Projects"
         lede="Internal work at C Spire is described without the code. Everything else links to the repository."
       />
 
@@ -37,7 +37,11 @@ export default function ProjectsPage() {
                   fill
                   loading="lazy"
                   sizes="(max-width: 1024px) 100vw, 288px"
-                  className="object-cover"
+                  className={
+                    project.imageFit === 'contain'
+                      ? 'bg-white object-contain p-6'
+                      : 'object-cover'
+                  }
                 />
               </div>
 

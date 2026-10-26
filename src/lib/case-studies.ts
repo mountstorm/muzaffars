@@ -137,31 +137,31 @@ export const caseStudies: CaseStudy[] = [
     slug: 'split-inference',
     projectId: 'distributed-ai-research',
     title: 'Distributed AI Systems Research',
-    metaTitle: 'Distributed Inference Research — Verifying a Split YOLO Pipeline',
+    metaTitle: 'Split Inference Across Heterogeneous Machines — Research Case Study',
     metaDescription:
-      'Profiling all 22 AlexNet split points across WiFi, LTE and backhaul, then verifying a distributed YOLO pipeline across an Apple M3 Mac and two Linux VMs to within 0.000137 across all 300 outputs.',
+      'Deciding where to cut a neural network when inference runs across several machines: 367 candidate split points evaluated for correctness, latency and transfer size, with output identical to the unsplit model.',
     standfirst:
-      'Splitting neural network execution across machines — finding where to cut it, and proving the answer is still the same.',
+      'Deciding where to split a neural network when inference runs across several machines, and proving the split result still matches the whole model.',
     overview: {
       heading: 'Overview',
       body: [
         'Ongoing undergraduate research with Prof. Feng Wang at the University of Mississippi, in collaboration with the University of Memphis, running since January 2026.',
-        'The work has run in two phases. The first partitioned AlexNet across a two-machine pipeline over TCP and profiled all 22 candidate split points against WiFi, LTE and backhaul link characteristics, to establish where the end-to-end latency minimum actually falls. The second moved to YOLO object detection across heterogeneous hardware — an Apple M3 Mac and two Linux VMs — and focused on proving the distributed result is numerically faithful.'
+        'The work treats latency-optimal partitioning of deep neural network inference across heterogeneous service providers as a constrained optimization problem, balancing compute time, network transfer time, and memory and storage limits.'
       ]
     },
     problem: {
       heading: 'Problem',
       body: [
-        'Splitting a model across machines raises two separate questions. Where should the cut go, and is the distributed result still the same result?',
-        'The first is not obvious, because activation sizes do not shrink monotonically — AlexNet\'s balloon after the first convolution before collapsing through pooling, so the cheapest cut depends on how expensive a byte is on that link. The second is easy to get wrong silently: a partitioned pipeline can diverge from the single-machine baseline while still producing output that looks like a plausible detection.',
-        'Across a heterogeneous cluster the sources of divergence multiply. The Mac and the Linux VMs resolve different dependency versions, the machines have to authenticate to each other before anything runs, and partial results can arrive out of order.'
+        'Splitting a model across machines raises two questions that have to be answered in order. Is the distributed result still the same result, and where should the cut go?',
+        'Correctness is easy to lose silently — a partitioned pipeline can drift from the single-machine baseline while still producing plausible output. And the best cut is not obvious: activation sizes do not shrink monotonically, so the cheapest place to split depends on how expensive a byte is on the link between the machines.'
       ]
     },
     contribution: {
       heading: 'My contribution',
       body: [
-        'I built the two-machine distributed inference pipeline that carries activations over TCP, and profiled all 22 AlexNet split points against WiFi, LTE and backhaul link characteristics.',
-        'On the YOLO pipeline I verified all 300 outputs against the single-machine baseline and tracked down the failures that stood in the way. Those fell into three classes: dependency mismatches between the Mac and the Linux VMs, authentication between the machines, and ordering errors where partial results were assembled in the wrong sequence.'
+        'I reproduced an NDN-based distributed inference framework for YOLO26n split inference and Qwen3-0.6B, reaching 175 ms end to end with output matching the unsplit model exactly.',
+        'I built the Python and ONNX Runtime profiling tools that evaluate every one of the 367 possible cut points — verifying correctness at each and measuring per-part latency and transfer size — along with a two-machine runner over TCP.',
+        'I also set up the heterogeneous Linux testbed the work runs on, and diagnosed three reproducibility failures in the research installer from logs and source.'
       ]
     },
     architecture: {
@@ -170,32 +170,27 @@ export const caseStudies: CaseStudy[] = [
         {
           label: 'Partition',
           detail:
-            'The model is cut at a chosen layer, producing a head that runs on the near tier and a tail that runs on the far one.'
+            'The model is cut at a chosen layer, producing a head that runs near the data and a tail that runs on more capable hardware.'
         },
         {
-          label: 'Tiers',
+          label: 'Enumerate',
           detail:
-            'A two-machine TCP pipeline for the AlexNet profiling; an Apple M3 Mac and two Linux VMs for the YOLO work.'
+            'Every one of the 367 candidate cut points is evaluated rather than a promising few, since the latency minimum is not where intuition puts it.'
         },
         {
           label: 'Transfer',
           detail:
-            'The intermediate activation is serialized and sent across the link, whose cost depends on the tensor size at that cut.'
-        },
-        {
-          label: 'Authenticate',
-          detail:
-            'The machines establish trust with each other before any stage will run.'
-        },
-        {
-          label: 'Order',
-          detail:
-            'Partial results are reassembled in the correct sequence, which is where several early mismatches originated.'
+            'The intermediate tensor crosses the link. Only 16 of the 367 cuts pass a single tensor; the rest carry more and cost correspondingly more to ship.'
         },
         {
           label: 'Verify',
           detail:
-            'Every output is compared against the same input run end to end on a single machine.'
+            'Each split is checked against the unsplit model, holding error at or below 3.7 × 10⁻⁴ across the tooling and exact on the reproduced framework.'
+        },
+        {
+          label: 'Measure',
+          detail:
+            'Per-part latency and transfer size are recorded so the break-even bandwidth for offloading can be computed rather than guessed.'
         }
       ]
     },
@@ -203,47 +198,45 @@ export const caseStudies: CaseStudy[] = [
       heading: 'Engineering decisions',
       items: [
         {
-          choice: 'Verifying correctness before measuring anything',
+          choice: 'Establishing correctness before measuring anything',
           why:
-            'A distributed pipeline that is fast but subtly wrong is worthless, and the error is easy to miss — a shifted bounding box still looks like a detection. Establishing numerical equivalence first means every later result describes a pipeline that is actually computing the right thing.'
+            'A split pipeline that is fast but subtly wrong is worthless, and the failure is quiet — the output still looks like a valid detection. Verifying each cut first means every latency number afterwards describes a pipeline that computes the right thing.'
         },
         {
-          choice: 'Profiling every split point rather than a promising few',
+          choice: 'Evaluating all 367 cut points rather than sampling',
           why:
-            'Activation sizes do not shrink monotonically through the network, so the latency minimum is not where intuition puts it — and it moves with the link. Sampling a few plausible cuts would miss it. Profiling all 22 across WiFi, LTE and backhaul is what makes the choice defensible rather than guessed.'
+            'Activation sizes do not shrink monotonically through a network, so the latency minimum sits somewhere counter-intuitive and moves with the link. Sampling plausible cuts would miss it. Exhaustive evaluation is also what surfaced that only 16 cuts pass a single tensor.'
         },
         {
-          choice: 'Checking all 300 outputs rather than sampling',
+          choice: 'Reporting a break-even bandwidth instead of a verdict',
           why:
-            'The failures were not uniform. Ordering errors in particular affect specific outputs rather than degrading everything slightly, so a sample can pass while the pipeline is still wrong.'
+            'Whether to offload is not a fixed answer. Splitting a 34 ms local inference only pays off above roughly 390 Mbps, so the useful output is the threshold, which a deployment can check against its own network.'
         },
         {
-          choice: 'Running across genuinely heterogeneous machines',
+          choice: 'Building a genuinely heterogeneous testbed',
           why:
-            'A Mac and two Linux VMs surface the dependency and authentication problems that a homogeneous cluster hides — and those are the problems a real device-to-edge deployment would hit.'
+            'Dual-boot Ubuntu across UEFI and Legacy BIOS machines plus a KVM virtual machine surfaces the dependency and environment problems a homogeneous cluster hides — and those are exactly what a real device-to-edge deployment hits.'
         }
       ]
     },
     results: {
       heading: 'Results',
       outcomes: [
-        'A two-machine distributed inference pipeline running over TCP.',
-        'All 22 AlexNet split points profiled against WiFi, LTE and backhaul link characteristics.',
-        'All 300 outputs of the distributed YOLO pipeline verified against the single-machine baseline.',
-        'Maximum error of 0.000137 — that is, the largest absolute difference between any distributed output value and its single-machine counterpart, which rules out a partition that silently changes the computation.',
-        'Dependency, authentication, and ordering errors identified and resolved across the Mac and the two Linux VMs.'
+        'Reproduced split inference for YOLO26n and Qwen3-0.6B at 175 ms end to end, with output identical to the unsplit model.',
+        'All 367 candidate cut points evaluated for correctness, latency and transfer size, holding error at or below 3.7 × 10⁻⁴.',
+        'Established that only 16 of 367 cuts carry a single tensor, and that offloading a 34 ms local inference breaks even only above roughly 390 Mbps.',
+        'Three reproducibility failures in the research installer diagnosed from logs and source, each documented for the development team.',
+        'A heterogeneous Linux testbed built from scratch: dual-boot Ubuntu on UEFI and Legacy BIOS machines, plus a KVM virtual machine mirroring the supported environment.'
       ],
       limitations: [
         'The work is ongoing and there is no public repository yet.',
-        'Results so far cover AlexNet and YOLO; generalization to other architectures is not yet established.',
-        'Verification establishes correctness, not a latency benefit — the performance question is separate.'
+        'Results so far cover YOLO26n and Qwen3-0.6B; generalization to other architectures is not yet established.',
+        'The break-even bandwidth is specific to the models and hardware measured, not a universal threshold.'
       ]
     },
     missing: [
-      'The measured latency per AlexNet split point — the numbers behind the profiling, and where the minimum landed on each link',
-      'The verification tolerance for the AlexNet pipeline (the old site said "within 1e-4"; the resume gives 0.000137 for YOLO)',
-      'How the link characteristics were obtained — measured on real networks or applied as published profiles',
-      'How execution is partitioned across the three machines in the YOLO phase, and whether the split point is fixed or chosen'
+      'Whether the optimization has been solved for the general multi-provider case or only evaluated exhaustively per model',
+      'How the 175 ms end-to-end figure decomposes across compute and transfer'
     ]
   },
   {

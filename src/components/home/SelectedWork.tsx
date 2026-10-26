@@ -9,10 +9,10 @@ export default function SelectedWork() {
       <Shell>
         <SectionHead
           index="01"
-          label="Selected work"
-          title="Three that show the range."
-          lede="An interactive atlas of history, distributed systems research, and developer tooling built end to end."
-          action={<Button href="/projects">All work</Button>}
+          label="Projects"
+          title="Projects"
+          lede="Three projects covering interactive mapping, distributed systems research, and developer tooling."
+          action={<Button href="/projects">All projects</Button>}
         />
 
         <ul className="mt-14 space-y-8">
@@ -29,7 +29,11 @@ export default function SelectedWork() {
                     alt=""
                     fill
                     sizes="(max-width: 1024px) 100vw, 560px"
-                    className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+                    className={`transition-transform duration-700 ease-out hover:scale-[1.03] ${
+                      project.imageFit === 'contain'
+                        ? 'bg-white object-contain p-8'
+                        : 'object-cover'
+                    }`}
                   />
                 </div>
 

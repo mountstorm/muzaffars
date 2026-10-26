@@ -2,14 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { SITE } from '@/lib/site';
+import FloatingMarks from './FloatingMarks';
 
 export default function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="mx-auto max-w-[1240px] px-6 pb-20 pt-10 lg:px-10 lg:pb-28 lg:pt-16"
+      className="relative mx-auto max-w-[1240px] px-6 pb-20 pt-10 lg:px-10 lg:pb-28 lg:pt-16"
     >
-      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+      <FloatingMarks />
+      <div className="relative grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         {/* Text column */}
         <div>
           <p className="label rise" style={{ '--d': '0ms' } as React.CSSProperties}>

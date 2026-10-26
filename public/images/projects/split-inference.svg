@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="A neural network split across a device and an edge server, with the cut point between them">
+  <rect width="800" height="500" fill="#ffffff"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#67727f">
+    <text x="130" y="60" text-anchor="middle">device</text>
+    <text x="400" y="60" text-anchor="middle">cut point</text>
+    <text x="670" y="60" text-anchor="middle">edge</text>
+  </g>
+
+  <!-- tiers -->
+  <rect x="40" y="80" width="300" height="340" rx="18" fill="#0f5fa6" fill-opacity="0.06" stroke="#0f5fa6" stroke-opacity="0.25"/>
+  <rect x="460" y="80" width="300" height="340" rx="18" fill="#2e6b52" fill-opacity="0.06" stroke="#2e6b52" stroke-opacity="0.25"/>
+
+  <!-- edges, device side -->
+  <g stroke="#0f5fa6" stroke-opacity="0.45" stroke-width="1.5" fill="none">
+    <path d="M110 170 L190 140 M110 170 L190 250 M110 250 L190 140 M110 250 L190 250 M110 330 L190 250 M110 330 L190 360"/>
+    <path d="M190 140 L270 190 M190 250 L270 190 M190 250 L270 310 M190 360 L270 310"/>
+  </g>
+  <!-- edges, edge side -->
+  <g stroke="#2e6b52" stroke-opacity="0.45" stroke-width="1.5" fill="none">
+    <path d="M530 190 L610 150 M530 190 L610 250 M530 310 L610 250 M530 310 L610 350"/>
+    <path d="M610 150 L690 250 M610 250 L690 250 M610 350 L690 250"/>
+  </g>
+
+  <!-- the cut -->
+  <line x1="400" y1="100" x2="400" y2="400" stroke="#67727f" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <path d="M270 190 L400 230 M270 310 L400 270" stroke="#67727f" stroke-width="1.5" fill="none"/>
+  <path d="M400 230 L530 190 M400 270 L530 310" stroke="#67727f" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+
+  <!-- nodes -->
+  <g fill="#0f5fa6">
+    <circle cx="110" cy="170" r="13"/><circle cx="110" cy="250" r="13"/><circle cx="110" cy="330" r="13"/>
+    <circle cx="190" cy="140" r="13"/><circle cx="190" cy="250" r="13"/><circle cx="190" cy="360" r="13"/>
+    <circle cx="270" cy="190" r="13"/><circle cx="270" cy="310" r="13"/>
+  </g>
+  <g fill="#2e6b52">
+    <circle cx="530" cy="190" r="13"/><circle cx="530" cy="310" r="13"/>
+    <circle cx="610" cy="150" r="13"/><circle cx="610" cy="250" r="13"/><circle cx="610" cy="350" r="13"/>
+    <circle cx="690" cy="250" r="15"/>
+  </g>
+
+  <!-- the tensor crossing the wire -->
+  <rect x="356" y="236" width="88" height="28" rx="14" fill="#ffffff" stroke="#67727f"/>
+  <text x="400" y="255" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#14171a">tensor</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#67727f">
+    <text x="400" y="452" text-anchor="middle">367 candidate cuts · 16 pass a single tensor</text>
+    <text x="400" y="476" text-anchor="middle">split output identical to the unsplit model</text>
+  </g>
+</svg>

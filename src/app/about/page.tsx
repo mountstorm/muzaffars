@@ -84,7 +84,7 @@ export default function AboutPage() {
       </div>
 
       <section aria-labelledby="path" className="pb-20">
-        <SectionHead index="—" label="Timeline" title="The path here." />
+        <SectionHead index="—" label="Timeline" title="Timeline" />
         <ol className="mt-14 space-y-12">
           {timeline.map((role, i) => (
             <Reveal as="li" key={role.title + role.year} delay={(i % 3) * 50}>
@@ -142,7 +142,7 @@ export default function AboutPage() {
         <SectionHead
           index="—"
           label="Toolchain"
-          title="What I reach for."
+          title="Toolchain"
           lede="Every entry is backed by shipped work. If it isn't here, nothing public demonstrates it yet."
         />
         <div className="mt-14 space-y-12">

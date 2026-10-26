@@ -21,7 +21,7 @@ export default function Experience() {
         <SectionHead
           index="02"
           label="Experience"
-          title="Where I've been."
+          title="Experience"
           action={<Button href="/resume">Full resume</Button>}
         />
 

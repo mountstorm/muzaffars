@@ -59,7 +59,7 @@ export default function ResumePage() {
       <PageHead
         index="04"
         label="Resume"
-        title="The long version."
+        title="Resume"
         lede="The same content as the PDF, readable here. The download is generated from this."
       />
 

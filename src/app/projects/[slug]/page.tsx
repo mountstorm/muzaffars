@@ -51,7 +51,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <TextLink href="/projects">
             <span className="inline-flex items-center gap-2">
               <ArrowLeft size={14} aria-hidden="true" />
-              All work
+              All projects
             </span>
           </TextLink>
         </div>
@@ -174,7 +174,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
         <div className="flex flex-wrap gap-4 pt-8">
           <Button href="/projects" variant="solid">
-            All work
+            All projects
           </Button>
           <Button href="/contact">Get in touch</Button>
         </div>
