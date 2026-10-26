@@ -216,3 +216,191 @@
   --chart-grid: #2c2c2a;
   --chart-axis: #383835;
 }
+
+/* ===========================================================================
+   Editor shell
+   The site is laid out as a code editor: a character grid, a line-number
+   gutter, a file-tree sidebar and a status bar. Every horizontal measure is
+   in `ch` and every vertical one is a multiple of --line, so the whole page
+   snaps to a monospace baseline grid.
+   =========================================================================== */
+
+:root {
+  --mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ch: 1ch;
+  --line: 1.5rem;
+  --gutter-w: 5ch;
+  --sidebar-w: 34ch;
+  --rail-pad: 2ch;
+
+  /* Cool paper. Deliberately bluer than a warm parchment. */
+  --ed-bg: #f2f5f8;
+  --ed-panel: #e8edf2;
+  --ed-ink: #1b2430;
+  --ed-dim: #5c6b7d;
+  --ed-faint: #9aa8b8;
+  --ed-rule: #d3dce5;
+  --ed-accent: #1f6feb;
+  --ed-add: #1a7f45;
+  --ed-del: #c0392b;
+  --ed-string: #8250df;
+  --ed-key: #0b6d7d;
+  --ed-caret: #1f6feb;
+  --ed-sel: rgba(31, 111, 235, 0.12);
+}
+
+:root[data-theme='dark'] {
+  --ed-bg: #0f141a;
+  --ed-panel: #151c24;
+  --ed-ink: #dfe7ef;
+  --ed-dim: #8da0b5;
+  --ed-faint: #4e5d6e;
+  --ed-rule: #222d3a;
+  --ed-accent: #5aa0ff;
+  --ed-add: #4ec98a;
+  --ed-del: #ff7b72;
+  --ed-string: #c09cff;
+  --ed-key: #56c8dc;
+  --ed-caret: #5aa0ff;
+  --ed-sel: rgba(90, 160, 255, 0.16);
+}
+
+.ed-mono {
+  font-family: var(--mono);
+  font-variant-ligatures: none;
+}
+
+/* The gutter: line numbers that run the height of the content. */
+.ed-gutter {
+  width: var(--gutter-w);
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: var(--line);
+  color: var(--ed-faint);
+  text-align: right;
+  user-select: none;
+}
+
+.ed-gutter span {
+  display: block;
+  transition: color 160ms linear;
+}
+
+.ed-gutter span[data-active='true'] {
+  color: var(--ed-accent);
+}
+
+/* --- Animation vocabulary -------------------------------------------------
+   Deliberately not a fade-and-lift set. Everything here reads as something a
+   text editor does: a caret blinking, a line being typed, a diff landing, a
+   selection sweeping across a run of characters.
+   ------------------------------------------------------------------------- */
+
+@keyframes ed-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.ed-caret {
+  display: inline-block;
+  width: 1ch;
+  background: var(--ed-caret);
+  animation: ed-caret 1.06s steps(1) infinite;
+}
+
+/* A line of text revealed one character cell at a time. */
+@keyframes ed-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.ed-type {
+  display: inline-block;
+  white-space: pre-wrap;
+  /* Base state is fully revealed, and the fill is `forwards` only, so an
+     animation that never runs leaves the text readable rather than clipped. */
+  clip-path: inset(0 0 0 0);
+  animation: ed-type var(--ed-type-dur, 900ms)
+    steps(var(--ed-type-steps, 24)) forwards;
+}
+
+/* A diff hunk landing: the row slides in from the gutter and its marker
+   colour settles from the change colour to the body colour. */
+@keyframes ed-diff-in {
+  from {
+    opacity: 0;
+    transform: translateX(-1.5ch);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.ed-diff {
+  animation: ed-diff-in 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--ed-delay, 0ms);
+}
+
+/* A selection sweeping across a run, used on headings. */
+@keyframes ed-select {
+  from {
+    background-size: 0% 100%;
+  }
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+.ed-select {
+  background-image: linear-gradient(var(--ed-sel), var(--ed-sel));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: ed-select 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--ed-delay, 0ms);
+}
+
+/* The status-bar mode pill, when the mode changes. */
+@keyframes ed-mode {
+  from {
+    transform: translateY(var(--line));
+  }
+  to {
+    transform: none;
+  }
+}
+
+.ed-mode {
+  animation: ed-mode 180ms steps(3) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-caret,
+  .ed-type,
+  .ed-diff,
+  .ed-select,
+  .ed-mode {
+    animation: none !important;
+  }
+  .ed-type {
+    clip-path: none !important;
+  }
+  .ed-select {
+    background-size: 100% 100% !important;
+  }
+  .ed-diff {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

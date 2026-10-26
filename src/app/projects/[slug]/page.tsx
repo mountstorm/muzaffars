@@ -23,12 +23,11 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-const STATUS_STYLE: Record<Project['status'], string> = {
-  Live: 'border-emerald-600/30 bg-emerald-600/10 text-emerald-700 dark:text-emerald-300',
-  Research: 'border-blue-600/30 bg-blue-600/10 text-blue-700 dark:text-blue-300',
-  'In development':
-    'border-amber-600/30 bg-amber-600/10 text-amber-700 dark:text-amber-300',
-  'Internal project': 'border-foreground/20 bg-foreground/5 text-foreground/70'
+const STATUS_COLOR: Record<Project['status'], string> = {
+  Live: 'var(--ed-add)',
+  Research: 'var(--ed-key)',
+  'In development': 'var(--ed-string)',
+  'Internal project': 'var(--ed-faint)'
 };
 
 export default function CaseStudyPage({
@@ -42,46 +41,37 @@ export default function CaseStudyPage({
   const project = projects.find((p) => p.id === study.projectId)!;
 
   return (
-    <article className="mx-auto w-full max-w-3xl px-6 pb-24 pt-32 sm:px-10 sm:pt-40">
+    <article className="w-full max-w-[80ch] px-[2ch] py-[4ch] sm:px-[4ch]">
       <Link
         href="/projects"
-        className="inline-flex min-h-[44px] items-center gap-2 text-sm text-foreground/60 underline-offset-4 hover:text-foreground hover:underline"
+        className="ed-mono inline-flex min-h-[44px] items-center gap-2 text-[13px] text-[var(--ed-dim)] underline-offset-4 hover:text-[var(--ed-accent)] hover:underline"
       >
         <ArrowLeft size={16} aria-hidden="true" />
-        All projects
+        cd ../projects
       </Link>
 
-      <header className="mt-4">
+      <header className="mt-[1ch] border-b border-[var(--ed-rule)] pb-[2ch]">
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="text-[clamp(2rem,6vw,3.25rem)] font-bold leading-tight tracking-tight">
+          <h1 className="ed-mono text-[clamp(1.7rem,5.5vw,3rem)] font-semibold leading-[1.12] tracking-tight">
             {study.title}
           </h1>
-          <span
-            className={`rounded-full border px-3 py-1 text-xs font-medium ${STATUS_STYLE[project.status]}`}
-          >
-            {project.status}
+          <span className="ed-mono text-[12px]" style={{ color: STATUS_COLOR[project.status] }}>
+            [{project.status}]
           </span>
         </div>
-        <p className="mt-4 max-w-[70ch] text-lg leading-relaxed text-foreground/75">
+        <p className="mt-[1.5ch] max-w-[72ch] font-[family-name:var(--font-sans)] text-[1.0625rem] leading-relaxed text-[var(--ed-dim)]">
           {study.standfirst}
         </p>
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-full bg-foreground/5 px-3 py-1 text-xs font-medium text-foreground/70"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
+        <p className="ed-mono mt-[1.5ch] text-[12px] text-[var(--ed-string)]">
+          {project.tags.map((t) => `"${t}"`).join(', ')}
+        </p>
       </header>
 
-      <div className="mt-14 space-y-14">
+      <div className="mt-[3ch] space-y-[4ch]">
         {[study.overview, study.problem, study.contribution].map((section) => (
           <Prose key={section.heading} heading={section.heading}>
             {section.body.map((p) => (
-              <p key={p} className="leading-relaxed text-foreground/80">
+              <p key={p} className="font-[family-name:var(--font-sans)] leading-relaxed text-[var(--ed-dim)]">
                 {p}
               </p>
             ))}
@@ -94,13 +84,13 @@ export default function CaseStudyPage({
               <li key={step.label} className="flex gap-4">
                 <span
                   aria-hidden="true"
-                  className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border text-xs font-medium tabular-nums text-foreground/60"
+                  className="ed-mono mt-[0.2ch] shrink-0 tabular-nums text-[var(--ed-faint)]"
                 >
-                  {i + 1}
+                  {String(i + 1).padStart(2, '0')}
                 </span>
-                <p className="leading-relaxed text-foreground/80">
-                  <span className="font-semibold text-foreground">
-                    {step.label}.
+                <p className="font-[family-name:var(--font-sans)] leading-relaxed text-[var(--ed-dim)]">
+                  <span className="ed-mono font-semibold text-[var(--ed-key)]">
+                    {step.label}
                   </span>{' '}
                   {step.detail}
                 </p>
@@ -114,10 +104,10 @@ export default function CaseStudyPage({
             {study.decisions.items.map((item) => (
               <div
                 key={item.choice}
-                className="rounded-2xl border border-border bg-card p-5 text-card-foreground"
+                className="border-l-2 border-[var(--ed-accent)] bg-[var(--ed-sel)] py-[1ch] pl-[2ch] pr-[2ch]"
               >
-                <dt className="font-semibold">{item.choice}</dt>
-                <dd className="mt-2 leading-relaxed text-foreground/75">
+                <dt className="ed-mono font-semibold text-[var(--ed-ink)]">{item.choice}</dt>
+                <dd className="mt-[1ch] font-[family-name:var(--font-sans)] leading-relaxed text-[var(--ed-dim)]">
                   {item.why}
                 </dd>
               </div>
@@ -126,18 +116,20 @@ export default function CaseStudyPage({
         </Prose>
 
         <Prose heading={study.results.heading}>
-          <ul className="list-disc space-y-2 pl-5 text-foreground/80">
+          <ul className="space-y-[0.75ch] font-[family-name:var(--font-sans)] text-[var(--ed-dim)]">
             {study.results.outcomes.map((o) => (
-              <li key={o} className="leading-relaxed">
-                {o}
+              <li key={o} className="flex gap-[1.5ch] leading-relaxed">
+                <span aria-hidden="true" className="ed-mono shrink-0 text-[var(--ed-add)]">+</span>
+                <span>{o}</span>
               </li>
             ))}
           </ul>
-          <h3 className="mt-8 text-base font-semibold">Limitations</h3>
-          <ul className="mt-3 list-disc space-y-2 pl-5 text-foreground/70">
+          <h3 className="ed-mono mt-[2.5ch] text-[0.95rem] font-semibold"><span className="text-[var(--ed-faint)]">### </span>limitations</h3>
+          <ul className="mt-[1ch] space-y-[0.75ch] font-[family-name:var(--font-sans)] text-[var(--ed-faint)]">
             {study.results.limitations.map((l) => (
-              <li key={l} className="leading-relaxed">
-                {l}
+              <li key={l} className="flex gap-[1.5ch] leading-relaxed">
+                <span aria-hidden="true" className="ed-mono shrink-0 text-[var(--ed-del)]">!</span>
+                <span>{l}</span>
               </li>
             ))}
           </ul>
@@ -151,7 +143,7 @@ export default function CaseStudyPage({
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-2 font-medium underline-offset-4 hover:underline"
+                  className="ed-mono inline-flex min-h-[44px] items-center gap-2 text-[13px] text-[var(--ed-accent)] underline-offset-4 hover:underline"
                 >
                   {study.title} repository on GitHub
                   <ExternalLink size={15} aria-hidden="true" />
@@ -164,7 +156,7 @@ export default function CaseStudyPage({
                   href={project.secondaryLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-2 font-medium underline-offset-4 hover:underline"
+                  className="ed-mono inline-flex min-h-[44px] items-center gap-2 text-[13px] text-[var(--ed-accent)] underline-offset-4 hover:underline"
                 >
                   {project.secondaryButtonText ?? 'Live demo'}
                   <ExternalLink size={15} aria-hidden="true" />
@@ -172,7 +164,7 @@ export default function CaseStudyPage({
               </li>
             )}
             {!project.link && (
-              <li className="text-foreground/70">
+              <li className="ed-mono text-[13px] text-[var(--ed-faint)]">
                 {project.noLinkLabel ?? 'No public link for this project.'}
               </li>
             )}
@@ -192,8 +184,11 @@ function Prose({
 }) {
   return (
     <section>
-      <h2 className="text-2xl font-bold tracking-tight">{heading}</h2>
-      <div className="mt-4 max-w-[72ch] space-y-4">{children}</div>
+      <h2 className="ed-mono text-[1.3rem] font-semibold tracking-tight">
+        <span className="text-[var(--ed-faint)]">## </span>
+        {heading.toLowerCase()}
+      </h2>
+      <div className="mt-[1.5ch] max-w-[74ch] space-y-[1.5ch]">{children}</div>
     </section>
   );
 }

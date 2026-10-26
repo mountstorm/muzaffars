@@ -1,9 +1,6 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { roles, education, leadership } from '@/lib/resume';
 
-// C Spire first, then the research role, then teaching — the order a reviewer
-// cares about. Education stays as a one-line summary; the detail is on /about.
 const HOMEPAGE_ROLES = [
   'Software Engineering Intern',
   'Undergraduate Research Assistant — Distributed AI Systems',
@@ -19,86 +16,104 @@ export default function ExperienceSummary() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="scroll-mt-24 border-t border-border bg-foreground/[0.02]"
+      className="scroll-mt-[4ch] border-b border-[var(--ed-rule)] px-[2ch] py-[4ch] sm:px-[4ch]"
     >
-      <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-10 sm:py-24">
-        <h2
-          id="experience-heading"
-          className="text-2xl font-bold tracking-tight sm:text-3xl"
-        >
-          Experience
-        </h2>
+      <h2
+        id="experience-heading"
+        className="ed-mono text-[1.4rem] font-semibold tracking-tight sm:text-[1.75rem]"
+      >
+        <span className="text-[var(--ed-faint)]">## </span>
+        experience
+      </h2>
 
-        <ol className="mt-10 space-y-10">
-          {shown.map((role) => (
-            <li key={role.title}>
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                <h3 className="text-lg font-semibold">
-                  {role.title}
-                  <span className="font-normal text-foreground/60">
-                    {' '}
-                    · {role.company}
-                  </span>
-                </h3>
-                <p className="shrink-0 text-sm tabular-nums text-foreground/60">
-                  {role.year}
-                </p>
-              </div>
-              <ul className="mt-3 max-w-[75ch] list-disc space-y-1.5 pl-5 text-left text-foreground/75">
-                {role.bullets.slice(0, 3).map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
-
-        <h3 className="mt-12 text-lg font-semibold">Leadership</h3>
-        <ol className="mt-4 space-y-6">
-          {leadership.map((entry) => (
-            <li key={entry.title}>
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                <h4 className="font-semibold">
-                  {entry.title}
-                  <span className="font-normal text-foreground/60">
-                    {' '}
-                    · {entry.organization}
-                  </span>
-                </h4>
-                <p className="shrink-0 text-sm tabular-nums text-foreground/60">
-                  {entry.year}
-                </p>
-              </div>
-              <ul className="mt-3 max-w-[75ch] list-disc space-y-1.5 pl-5 text-left text-foreground/75">
-                {entry.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
-
-        <p className="mt-10 max-w-[75ch] text-foreground/70">
-          <span className="font-medium text-foreground">{education.degree}</span>
-          , {education.school}, {education.dates} —{' '}
-          {education.highlights.join(', ')}.
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
-          <Link
-            href="/resume"
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-foreground/25 px-6 py-3 text-base font-medium transition-colors hover:bg-foreground/5"
+      <ol className="mt-[3ch] space-y-[3ch]">
+        {shown.map((role, i) => (
+          <li
+            key={role.title}
+            className="ed-diff"
+            style={{ '--ed-delay': `${i * 90}ms` } as React.CSSProperties}
           >
-            View full resume
-            <ArrowRight size={18} aria-hidden="true" />
-          </Link>
-          <Link
-            href="/about"
-            className="inline-flex min-h-[44px] items-center text-base underline-offset-4 hover:underline"
-          >
-            More about me
-          </Link>
+            <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
+              <h3 className="ed-mono text-[1.0625rem] font-semibold">
+                {role.title}
+                <span className="font-normal text-[var(--ed-dim)]">
+                  {' '}
+                  @ {role.company}
+                </span>
+              </h3>
+              <p className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
+                {role.year}
+              </p>
+            </div>
+            <ul className="mt-[1ch] max-w-[75ch] space-y-[0.75ch] font-[family-name:var(--font-sans)] text-[var(--ed-dim)]">
+              {role.bullets.slice(0, 3).map((b) => (
+                <li key={b} className="flex gap-[1.5ch] leading-relaxed">
+                  <span
+                    aria-hidden="true"
+                    className="ed-mono shrink-0 text-[var(--ed-add)]"
+                  >
+                    +
+                  </span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+
+      <h3 className="ed-mono mt-[4ch] text-[1.0625rem] font-semibold">
+        <span className="text-[var(--ed-faint)]">### </span>leadership
+      </h3>
+      {leadership.map((entry) => (
+        <div key={entry.title} className="mt-[1.5ch]">
+          <div className="flex flex-col gap-[0.25ch] sm:flex-row sm:items-baseline sm:justify-between sm:gap-[3ch]">
+            <h4 className="ed-mono font-semibold">
+              {entry.title}
+              <span className="font-normal text-[var(--ed-dim)]">
+                {' '}
+                @ {entry.organization}
+              </span>
+            </h4>
+            <p className="ed-mono shrink-0 text-[12px] tabular-nums text-[var(--ed-faint)]">
+              {entry.year}
+            </p>
+          </div>
+          <ul className="mt-[1ch] max-w-[75ch] space-y-[0.75ch] font-[family-name:var(--font-sans)] text-[var(--ed-dim)]">
+            {entry.bullets.map((b) => (
+              <li key={b} className="flex gap-[1.5ch] leading-relaxed">
+                <span
+                  aria-hidden="true"
+                  className="ed-mono shrink-0 text-[var(--ed-add)]"
+                >
+                  +
+                </span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
         </div>
+      ))}
+
+      <p className="ed-mono mt-[3ch] max-w-[75ch] text-[13px] leading-relaxed text-[var(--ed-faint)]">
+        <span className="text-[var(--ed-key)]">{'// '}</span>
+        {education.degree}, {education.school}, {education.dates} —{' '}
+        {education.highlights.join(', ')}.
+      </p>
+
+      <div className="mt-[3ch] flex flex-wrap gap-[3ch]">
+        <Link
+          href="/resume"
+          className="ed-mono inline-flex min-h-[44px] items-center border border-[var(--ed-rule)] px-[2ch] text-[13px] transition-colors hover:border-[var(--ed-accent)] hover:text-[var(--ed-accent)]"
+        >
+          cat resume.pdf
+        </Link>
+        <Link
+          href="/about"
+          className="ed-mono inline-flex min-h-[44px] items-center text-[13px] text-[var(--ed-accent)] underline-offset-4 hover:underline"
+        >
+          more about me →
+        </Link>
       </div>
     </section>
   );

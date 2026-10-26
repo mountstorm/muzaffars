@@ -1,14 +1,14 @@
-import { Inter } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import React, { ReactNode } from 'react';
 import { Metadata } from 'next';
-import Animations from './animations';
-import Header from '@/components/layout/header';
+import EditorShell from '@/components/shell/EditorShell';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { SITE, abs } from '@/lib/site';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -91,7 +91,7 @@ export default function RootLayout({
           // Set the theme class synchronously before hydration to avoid a flash of
           // incorrect theme / hydration mismatch.
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var stored=localStorage.getItem('theme');var isDark=stored?stored==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',isDark);}catch(e){}})();`
+            __html: `(function(){try{var stored=localStorage.getItem('theme');var isDark=stored?stored==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;var d=document.documentElement;d.classList.toggle('dark',isDark);d.setAttribute('data-theme',isDark?'dark':'light');}catch(e){}})();`
           }}
         />
         <script
@@ -99,25 +99,19 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
-      <body className="overflow-scroll overflow-x-hidden" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${mono.variable} overflow-x-hidden`}
+        suppressHydrationWarning
+      >
         <a
           href="#content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-background"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--ed-accent)] focus:px-4 focus:py-2 focus:text-[var(--ed-bg)]"
         >
           Skip to content
         </a>
-        <Animations>
-          <main>
-            <Header />
-            <div className="flex flex-col bg-background text-foreground">
-              <main id="content" className={`flex-grow ${inter.className}`}>
-                {children}
-              </main>
-              <Analytics />
-              <SpeedInsights />
-            </div>
-          </main>
-        </Animations>
+        <EditorShell>{children}</EditorShell>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

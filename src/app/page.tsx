@@ -1,7 +1,6 @@
 import Hero from '@/components/home/hero';
 import FeaturedProjects from '@/components/home/FeaturedProjects';
 import ExperienceSummary from '@/components/home/ExperienceSummary';
-import HomeClient from './HomeClient';
 import { pageMetadata } from '@/lib/metadata';
 import { SITE } from '@/lib/site';
 
@@ -21,7 +20,6 @@ export default function Page() {
       <Hero />
       <FeaturedProjects />
       <ExperienceSummary />
-      <HomeClient />
     </>
   );
 }
