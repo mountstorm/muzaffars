@@ -72,10 +72,14 @@ export const roles: Role[] = [
       'University of Mississippi (Prof. Feng Wang) and University of Memphis collaboration',
     location: 'Oxford, MS',
     description:
-      'Verified all 300 outputs of a distributed YOLO object detection pipeline across an Apple M3 Mac and two Linux VMs within a max error of 0.000137, by debugging dependency, authentication, and ordering errors.',
+      'Working out where to split a neural network when inference runs across several machines, and proving the split answer still matches the whole model.',
     bullets: [
-      'Verified all 300 outputs of a distributed YOLO object detection pipeline across an Apple M3 Mac and two Linux VMs within a max error of 0.000137.',
-      'Debugged the dependency, authentication, and ordering errors that stood between the distributed run and the single-machine baseline.'
+      'Framed latency-optimal partitioning of DNN inference across heterogeneous providers as a constrained optimization over compute time, transfer time, and memory limits.',
+      'Reproduced an NDN-based distributed inference framework for YOLO26n and Qwen3-0.6B split inference, reaching 175 ms end-to-end with output identical to the unsplit model.',
+      'Built Python and ONNX Runtime tooling that evaluates all 367 possible cut points — verifying correctness at each and measuring latency and transfer size — plus a two-machine runner over TCP.',
+      'Established that only 16 of 367 cuts pass a single tensor, and that splitting a 34 ms local inference only pays off above roughly 390 Mbps, quantifying when offloading is worth it.',
+      'Diagnosed three reproducibility failures in the research installer from logs and source, and documented each fix for the development team.',
+      'Built the heterogeneous Linux testbed the work runs on: dual-boot Ubuntu across UEFI and Legacy BIOS machines, plus a KVM virtual machine mirroring the supported environment.'
     ]
   },
   {
@@ -115,7 +119,8 @@ export const leadership: LeadershipEntry[] = [
     location: 'Oxford, MS',
     bullets: [
       'Set the project roadmap for a 15+ member chapter.',
-      'Led all 4 hands-on AWS build sessions, explaining cloud concepts in plain language for members at varied skill levels.'
+      'Taught 16 members to host a static website on S3, and introduced them to EC2, Bedrock, IAM and the wider AWS toolset.',
+      'Led all 4 hands-on build sessions, explaining cloud concepts in plain language for members at varied skill levels.'
     ]
   }
 ];

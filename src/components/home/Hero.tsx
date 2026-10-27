@@ -1,15 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { SITE } from '@/lib/site';
+import FloatingMarks from './FloatingMarks';
 
 export default function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="mx-auto max-w-[1240px] px-6 pb-20 pt-10 lg:px-10 lg:pb-28 lg:pt-16"
+      className="relative mx-auto max-w-[1240px] px-6 pb-20 pt-10 lg:px-10 lg:pb-28 lg:pt-16"
     >
-      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+      <FloatingMarks />
+      <div className="relative grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         {/* Text column */}
         <div>
           <p className="label rise" style={{ '--d': '0ms' } as React.CSSProperties}>
@@ -46,9 +47,9 @@ export default function Hero() {
           >
             <Link
               href="/projects"
-              className="group inline-flex min-h-[48px] items-center gap-2.5 bg-[var(--accent)] px-6 text-[0.95rem] font-medium text-[var(--accent-ink)] transition-opacity hover:opacity-90"
+              className="group inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-[var(--accent)] px-6 text-[0.95rem] font-medium text-[var(--accent-ink)] shadow-[var(--glass-shadow)] transition-opacity hover:opacity-90"
             >
-              View selected work
+              View projects
               <ArrowRight
                 size={17}
                 aria-hidden="true"
@@ -57,22 +58,11 @@ export default function Hero() {
             </Link>
             <Link
               href="/resume"
-              className="inline-flex min-h-[48px] items-center border border-[var(--rule-strong)] px-6 text-[0.95rem] text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="glass glass-pill glass-hover inline-flex min-h-[48px] items-center px-6 text-[0.95rem] text-[var(--ink)]"
             >
               Read the resume
             </Link>
           </div>
-
-          <p
-            className="rise mono mt-8 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[0.82rem] text-[var(--muted)]"
-            style={{ '--d': '480ms' } as React.CSSProperties}
-          >
-            <span
-              aria-hidden="true"
-              className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--leaf)]"
-            />
-            {SITE.availability}
-          </p>
         </div>
 
         {/* Portrait */}
@@ -83,9 +73,9 @@ export default function Hero() {
           {/* The blue block echoes the wall behind him. */}
           <div
             aria-hidden="true"
-            className="absolute -left-4 -top-4 h-full w-full bg-[var(--accent)] lg:-left-6 lg:-top-6"
+            className="absolute -left-4 -top-4 h-full w-full rounded-[var(--r-media)] bg-[var(--accent)] opacity-90 lg:-left-6 lg:-top-6"
           />
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
+          <div className="glass-media relative aspect-[4/5] w-full">
             <Image
               src="/images/portrait.webp"
               alt="Muzaffar Khaydarov"

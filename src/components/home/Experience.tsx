@@ -15,20 +15,20 @@ export default function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="scroll-mt-24 border-t border-[var(--rule)] bg-[var(--surface-2)] py-20 lg:py-28"
+      className="scroll-mt-24 px-3 py-16 sm:px-5 lg:py-20"
     >
-      <Shell>
+      <div className="glass glass-panel mx-auto max-w-[1240px] px-6 py-12 lg:px-10 lg:py-16">
         <SectionHead
           index="02"
           label="Experience"
-          title="Where I've been."
+          title="Experience"
           action={<Button href="/resume">Full resume</Button>}
         />
 
         <ol className="mt-16 space-y-14">
           {shown.map((role, i) => (
             <Reveal as="li" key={role.title} delay={i * 60}>
-              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+              <div className="grid gap-4 border-t border-[var(--glass-hairline)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
                 <div>
                   <p className="mono text-[0.82rem] tabular-nums text-[var(--faint)]">
                     {role.year}
@@ -63,7 +63,7 @@ export default function Experience() {
 
           {leadership.map((entry) => (
             <Reveal as="li" key={entry.title} delay={180}>
-              <div className="grid gap-4 border-t border-[var(--rule)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+              <div className="grid gap-4 border-t border-[var(--glass-hairline)] pt-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
                 <p className="mono text-[0.82rem] tabular-nums text-[var(--faint)]">
                   {entry.year}
                 </p>
@@ -90,11 +90,11 @@ export default function Experience() {
           ))}
         </ol>
 
-        <p className="mono mt-14 border-t border-[var(--rule)] pt-8 text-[0.88rem] leading-relaxed text-[var(--faint)]">
+        <p className="mono mt-14 border-t border-[var(--glass-hairline)] pt-8 text-[0.88rem] leading-relaxed text-[var(--faint)]">
           {education.degree} · {education.school} · {education.dates} ·{' '}
           {education.highlights.join(' · ')}
         </p>
-      </Shell>
+      </div>
     </section>
   );
 }

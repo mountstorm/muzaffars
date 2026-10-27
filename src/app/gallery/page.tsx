@@ -32,8 +32,8 @@ export default function GalleryPage() {
       <PageHead
         index="06"
         label="Gallery"
-        title="Off the clock."
-        lede="Coding, travelling, sport and learning — the parts that don't fit on a resume."
+        title="Gallery"
+        lede="Photographs from coding, travelling, sport and study."
       />
 
       <ul className="grid auto-rows-[18rem] grid-cols-1 gap-4 pb-8 sm:grid-cols-3">
@@ -44,7 +44,7 @@ export default function GalleryPage() {
             delay={(i % 4) * 50}
             className={p.span ?? ''}
           >
-            <figure className="group relative h-full w-full overflow-hidden border border-[var(--rule)]">
+            <figure className="glass-media group relative h-full w-full">
               <Image
                 src={`/images/gallery/${p.src}`}
                 alt={p.caption}

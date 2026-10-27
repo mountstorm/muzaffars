@@ -7,7 +7,7 @@ import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const NAV = [
-  { href: '/projects', label: 'Work' },
+  { href: '/projects', label: 'Projects' },
   { href: '/#experience', label: 'Experience' },
   { href: '/about', label: 'About' },
   { href: '/resume', label: 'Resume' },
@@ -36,12 +36,12 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-40 bg-[var(--bg)]/90 backdrop-blur transition-[border-color] ${
-        lifted ? 'border-b border-[var(--rule)]' : 'border-b border-transparent'
-      }`}
-    >
-      <div className="mx-auto flex max-w-[1240px] items-center gap-6 px-6 py-4 lg:px-10">
+    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5 sm:pt-4">
+      <div
+        className={`glass glass-pill mx-auto flex max-w-[1240px] items-center gap-6 px-5 py-2.5 transition-shadow duration-500 lg:px-7 ${
+          lifted ? '' : 'shadow-none'
+        }`}
+      >
         <Link
           href="/"
           className="display shrink-0 text-[1.35rem] tracking-[-0.02em] text-[var(--ink)]"
@@ -94,13 +94,13 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Main"
-          className="border-t border-[var(--rule)] px-6 pb-4 md:hidden"
+          className="glass glass-panel mx-auto mt-2 max-w-[1240px] px-5 py-1 md:hidden"
         >
           {NAV.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="flex min-h-[52px] items-center border-b border-[var(--rule)] text-[1.05rem] text-[var(--ink)] last:border-b-0"
+              className="flex min-h-[52px] items-center border-b border-[var(--glass-hairline)] text-[1.05rem] text-[var(--ink)] last:border-b-0"
             >
               {label}
             </Link>

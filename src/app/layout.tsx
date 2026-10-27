@@ -87,7 +87,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;var e=document.documentElement;e.classList.toggle('dark',d);e.setAttribute('data-theme',d?'dark':'light');}catch(e){}})();`
+            __html: `(function(){try{var s=localStorage.getItem('theme');var d=s==='dark';var e=document.documentElement;e.classList.toggle('dark',d);e.setAttribute('data-theme',d?'dark':'light');}catch(e){}})();`
           }}
         />
         <script
@@ -105,6 +105,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         >
           Skip to content
         </a>
+        <div className="ambient" aria-hidden="true" />
         <Header />
         <main id="content">{children}</main>
         <Footer />

@@ -20,6 +20,8 @@ export type Project = {
   /** Link text for that page. Defaults to case-study wording. */
   caseStudyLabel?: string;
   imagePath: string;
+  /** 'contain' for logos and diagrams; defaults to 'cover' for photographs. */
+  imageFit?: 'cover' | 'contain';
   link?: string;
   secondaryLink?: string;
   secondaryButtonText?: string;
@@ -59,7 +61,8 @@ export const projects: Project[] = [
     title: 'resumeGit',
     description:
       'Git version control for your resume: a branch per application, and a GPT-5.6 semantic merge engine that propagates one life update into every tailored branch, each rewritten in its own voice. Every resume is a real git repository — history, diffs, and blame for free.',
-    imagePath: '/images/projects/resumegit.svg',
+    imagePath: '/images/projects/resumegit.png',
+    imageFit: 'contain',
     link: 'https://github.com/mountstorm/resumegit',
     tags: ['Next.js', 'TypeScript', 'GPT-5.6', 'simple-git', 'zod']
   },
@@ -103,17 +106,18 @@ export const projects: Project[] = [
   {
     id: 'distributed-ai-research',
     headline:
-      'Splitting neural network execution across machines — finding where to cut it, and proving the distributed answer is still the same.',
+      'Deciding where to split a neural network when inference runs across several machines, and proving the split result still matches the whole model.',
     result:
-      'All 22 AlexNet split points profiled across WiFi, LTE and backhaul; all 300 YOLO outputs verified within a maximum error of 0.000137.',
+      'Evaluated all 367 possible cut points for YOLO26n; found only 16 pass a single tensor, and that offloading a 34 ms inference only pays off above roughly 390 Mbps.',
     status: 'Research',
     caseStudy: 'split-inference',
     title: 'Distributed AI Systems Research',
     description:
-      'Built a two-machine distributed inference pipeline over TCP and profiled all 22 AlexNet split points across WiFi, LTE and backhaul links. Verified all 300 outputs of a distributed YOLO object detection pipeline across an Apple M3 Mac and two Linux VMs within a maximum error of 0.000137.',
-    imagePath: '/images/gallery/programming-wlkata-robot.jpg',
+      'Framed latency-optimal partitioning of neural network inference across heterogeneous machines as a constrained optimization over compute, transfer and memory. Reproduced an NDN-based split-inference framework for YOLO26n and Qwen3-0.6B at 175 ms end to end with output identical to the unsplit model, and built ONNX Runtime tooling that evaluates every one of the 367 possible cut points for correctness, latency and transfer size.',
+    imagePath: '/images/projects/split-inference.svg',
+    imageFit: 'contain',
     noLinkLabel: 'Ongoing research, no public repo yet',
-    tags: ['Python', 'YOLO', 'ONNX Runtime', 'Distributed Systems', 'TCP']
+    tags: ['Python', 'ONNX Runtime', 'YOLO26n', 'Qwen3', 'NDN', 'Linux']
   },
   {
     id: 'dar-ticket-automation',
@@ -121,7 +125,8 @@ export const projects: Project[] = [
     title: 'DAR Ticket Automation',
     description:
       'Gathered needs from operations staff and shipped a Python/KornShell monitoring pipeline that files ServiceNow tickets, replacing 10 to 20 daily manual reviews and saving 30 minutes a day.',
-    imagePath: '/images/gallery/cspire-office.jpg',
+    imagePath: '/images/logos/cspire.png',
+    imageFit: 'contain',
     noLinkLabel: 'Internal to C Spire — architecture on request',
     tags: ['Python', 'KornShell', 'ServiceNow', 'Oracle SQL']
   },
@@ -131,7 +136,8 @@ export const projects: Project[] = [
     title: 'On-Call Dashboard',
     description:
       'Built a Django calendar dashboard end to end that lets 12 teammates and 2 managers reassign on-call shifts on any date, replacing the verbal swaps that used to happen in daily scrum. Still in use.',
-    imagePath: '/images/gallery/cspire-office.jpg',
+    imagePath: '/images/logos/cspire.png',
+    imageFit: 'contain',
     noLinkLabel: 'Internal to C Spire — architecture on request',
     tags: ['Django', 'Python', 'Oracle SQL', 'Internal tooling']
   },
@@ -141,7 +147,8 @@ export const projects: Project[] = [
     title: 'International Day Pass Audit',
     description:
       'Caught mismatched billing plans before customers saw them by building a Python/KornShell audit against Oracle SQL, run as one CI/CD-ready command.',
-    imagePath: '/images/gallery/cspire-office.jpg',
+    imagePath: '/images/logos/cspire.png',
+    imageFit: 'contain',
     noLinkLabel: 'Internal to C Spire — architecture on request',
     tags: ['Python', 'KornShell', 'Oracle SQL', 'CI/CD']
   },
@@ -151,7 +158,8 @@ export const projects: Project[] = [
     title: 'Bank Lockbox Zero-Payment Auto-Ignore',
     description:
       'Auto-cleared 100+ harmless $0 payment rejections weekly by fixing payment logic to still halt on real errors, eliminating a manual step operators ran by hand.',
-    imagePath: '/images/gallery/cspire-office.jpg',
+    imagePath: '/images/logos/cspire.png',
+    imageFit: 'contain',
     noLinkLabel: 'Internal to C Spire — architecture on request',
     tags: ['KornShell', 'Oracle SQL', 'Linux', 'SSH']
   },

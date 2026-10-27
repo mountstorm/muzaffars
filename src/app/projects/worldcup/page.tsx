@@ -32,7 +32,7 @@ function Block({
   note?: string;
 }) {
   return (
-    <section className="grid gap-5 border-t border-[var(--rule)] py-12 lg:grid-cols-[14rem_1fr] lg:gap-12">
+    <section className="glass glass-panel my-5 grid gap-5 p-6 lg:grid-cols-[14rem_1fr] lg:gap-12 lg:p-9">
       <div>
         <h2 className="label">{label}</h2>
         {note && (
@@ -57,7 +57,7 @@ export default function WorldCupDashboard() {
           <TextLink href="/projects">
             <span className="inline-flex items-center gap-2">
               <ArrowLeft size={14} aria-hidden="true" />
-              All work
+              All projects
             </span>
           </TextLink>
         </div>
@@ -85,7 +85,7 @@ export default function WorldCupDashboard() {
 
         {/* The headline, stated honestly. */}
         <Reveal>
-          <section className="border-y border-[var(--rule)] py-12">
+          <section className="glass glass-panel my-5 p-6 lg:p-9">
             <p className="label">The result</p>
             <p className="display mt-4 text-[clamp(1.9rem,5vw,3.25rem)]">
               {TROPHY_IS_TIED
@@ -99,13 +99,13 @@ export default function WorldCupDashboard() {
                 ['Goes to extra time', pct(worldCup.simulation.extra_time), 'var(--faint)'],
                 ['Goes to penalties', pct(worldCup.simulation.went_to_pens), 'var(--faint)']
               ].map(([k, v, c]) => (
-                <div key={k} className="border-t-2 pt-4" style={{ borderColor: c }}>
+                <div key={k} className="rounded-[var(--r-media)] border-t-2 bg-[var(--glass-bg)] p-4" style={{ borderColor: c }}>
                   <p className="label">{k}</p>
                   <p className="display mt-2 text-[2.25rem]">{v}</p>
                 </div>
               ))}
             </div>
-            <p className="measure mt-8 border-l-2 border-[var(--accent)] pl-5 text-[0.95rem] leading-relaxed text-[var(--muted)]">
+            <p className="measure mt-8 rounded-[var(--r-media)] border-l-2 border-[var(--accent)] bg-[var(--glass-bg)] py-4 pl-5 pr-5 text-[0.95rem] leading-relaxed text-[var(--muted)]">
               At {worldCup.dataset.runs.toLocaleString()} runs the Monte Carlo
               standard error near 50% is {(se * 100).toFixed(2)} percentage
               points, so the 95% interval spans roughly ±

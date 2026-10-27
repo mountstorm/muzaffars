@@ -9,13 +9,13 @@ const ELSEWHERE = [
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-[var(--rule)]">
-      <div className="mx-auto max-w-[1240px] px-6 py-16 lg:px-10">
+    <footer className="px-3 pb-3 pt-24 sm:px-5 sm:pb-5">
+      <div className="glass glass-panel mx-auto max-w-[1240px] px-6 py-14 lg:px-10">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="label">Get in touch</p>
             <p className="display mt-4 text-[clamp(1.8rem,4vw,2.75rem)]">
-              Let&apos;s build something.
+              Contact
             </p>
             <a
               href={`mailto:${SITE.email}`}
@@ -29,7 +29,7 @@ export default function Footer() {
             <p className="label">Pages</p>
             <ul className="mt-4 space-y-1">
               {[
-                ['/projects', 'Work'],
+                ['/projects', 'Projects'],
                 ['/about', 'About'],
                 ['/resume', 'Resume'],
                 ['/gallery', 'Gallery'],
@@ -66,12 +66,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-2 border-t border-[var(--rule)] pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 border-t border-[var(--glass-hairline)] pt-6">
           <p className="mono text-[0.8rem] text-[var(--faint)]">
             © {new Date().getFullYear()} Muzaffar Khaydarov · {SITE.location}
-          </p>
-          <p className="mono text-[0.8rem] text-[var(--faint)]">
-            {SITE.availability}
           </p>
         </div>
       </div>

@@ -20,7 +20,7 @@
     /* Ink */
     --ink: #14171a;
     --muted: #596470;
-    --faint: #8b94a0;
+    --faint: #67727f;
 
     /* Lines */
     --rule: #e5e3dd;
@@ -56,9 +56,29 @@
     --input: 44 12% 88%;
     --ring: 206 83% 35%;
 
+    /* Glass. The material needs something behind it, which the ambient
+       field below provides. */
+    --glass-bg: rgba(255, 255, 255, 0.62);
+    --glass-bg-strong: rgba(255, 255, 255, 0.82);
+    --glass-edge: rgba(255, 255, 255, 0.75);
+    --glass-hairline: rgba(20, 23, 26, 0.08);
+    --glass-spec: rgba(255, 255, 255, 0.95);
+    --glass-shadow: 0 1px 2px rgba(20, 23, 26, 0.04),
+      0 8px 24px rgba(20, 23, 26, 0.06), 0 24px 56px rgba(20, 23, 26, 0.05);
+    --glass-blur: 24px;
+    --glass-sat: 180%;
+
+    /* Ambient colour fields, sampled from the portrait. */
+    --amb-1: rgba(15, 95, 166, 0.16);
+    --amb-2: rgba(46, 107, 82, 0.13);
+    --amb-3: rgba(227, 73, 72, 0.08);
+
     /* Rhythm */
     --measure: 68ch;
     --radius: 2px;
+    --r-card: 24px;
+    --r-panel: 28px;
+    --r-media: 20px;
   }
 
   :root[data-theme='dark'] {
@@ -68,7 +88,7 @@
 
     --ink: #eceef1;
     --muted: #9aa3ae;
-    --faint: #626b76;
+    --faint: #79838f;
 
     --rule: #232830;
     --rule-strong: #333a44;
@@ -100,6 +120,18 @@
     --border: 215 16% 16%;
     --input: 215 16% 16%;
     --ring: 208 82% 64%;
+
+    --glass-bg: rgba(28, 34, 42, 0.55);
+    --glass-bg-strong: rgba(28, 34, 42, 0.78);
+    --glass-edge: rgba(255, 255, 255, 0.1);
+    --glass-hairline: rgba(255, 255, 255, 0.08);
+    --glass-spec: rgba(255, 255, 255, 0.34);
+    --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),
+      0 10px 30px rgba(0, 0, 0, 0.34), 0 28px 64px rgba(0, 0, 0, 0.3);
+
+    --amb-1: rgba(88, 166, 240, 0.2);
+    --amb-2: rgba(99, 192, 150, 0.14);
+    --amb-3: rgba(227, 73, 72, 0.1);
   }
 
   * {
@@ -137,7 +169,11 @@
     font-family: var(--font-display), Georgia, serif;
     font-weight: 400;
     letter-spacing: -0.02em;
-    line-height: 0.96;
+    /* 0.96 clipped descenders on y, g and p. 1.08 clears them, and the
+       negative margin keeps the optical spacing the tighter value gave. */
+    line-height: 1.08;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
   }
 
   /* The data: small, wide-tracked mono for labels, tags and figures. */
@@ -191,12 +227,13 @@
     clip-path: inset(0 0 100% 0);
   }
   to {
-    clip-path: inset(0 0 0 0);
+    /* -0.2em at the bottom so descenders are never cropped mid-animation. */
+    clip-path: inset(0 0 -0.2em 0);
   }
 }
 
 .wipe {
-  clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 -0.2em 0);
   animation: wipe 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: var(--d, 0ms);
 }
@@ -253,5 +290,134 @@
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+}
+
+/* ===========================================================================
+   Liquid glass
+   Translucent layered surfaces over a soft ambient colour field, with a
+   specular rim on the top edge and diffuse elevation shadows. Content
+   scrolls beneath the chrome rather than beside it.
+   =========================================================================== */
+
+/* The field the glass refracts. Fixed, so panels shift against it on scroll. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 12% -5%, var(--amb-1), transparent 60%),
+    radial-gradient(50rem 38rem at 92% 8%, var(--amb-2), transparent 62%),
+    radial-gradient(44rem 34rem at 70% 96%, var(--amb-3), transparent 60%),
+    radial-gradient(38rem 30rem at 4% 88%, var(--amb-1), transparent 64%);
+  background-color: var(--bg);
+}
+
+@layer components {
+  .glass {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    border: 1px solid var(--glass-hairline);
+    border-radius: var(--r-card);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Used where text must stay legible over busy content. */
+  .glass-strong {
+    background: var(--glass-bg-strong);
+  }
+
+  /* The specular rim: a light edge along the top, fading by 45%. */
+  .glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      180deg,
+      var(--glass-spec),
+      transparent 45%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .glass-pill {
+    border-radius: 999px;
+  }
+
+  .glass-panel {
+    border-radius: var(--r-panel);
+  }
+
+  /* Media sits in a glass frame rather than a hard border. */
+  .glass-media {
+    border-radius: var(--r-media);
+    overflow: hidden;
+    border: 1px solid var(--glass-hairline);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Interactive glass lifts slightly and brightens its rim. */
+  .glass-hover {
+    transition:
+      transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 420ms ease;
+  }
+
+  .glass-hover:hover {
+    transform: translateY(-2px);
+    background: var(--glass-bg-strong);
+  }
+}
+
+/*
+ * Apple drops the material when the viewer asks for reduced transparency, and
+ * so do we: solid surfaces, no blur, visible borders. Also the fallback for
+ * browsers without backdrop-filter, where translucent panels would otherwise
+ * render as flat washes with unreadable text.
+ */
+@media (prefers-reduced-transparency: reduce) {
+  .ambient {
+    background: var(--bg);
+  }
+  .glass,
+  .glass-strong {
+    background: var(--surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: var(--rule);
+  }
+  .glass::before {
+    display: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-strong {
+    background: var(--surface);
+    border-color: var(--rule);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-hover {
+    transition: none;
+  }
+  .glass-hover:hover {
+    transform: none;
   }
 }

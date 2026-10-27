@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/metadata';
 import { projects } from '@/lib/projects';
 
 export const metadata = pageMetadata({
-  title: 'Work',
+  title: 'Projects',
   description:
     'Distributed inference research, an H-1B database built from 831k USCIS filings, a co-founded shopping app with paying users, and production billing systems at C Spire.',
   path: '/projects',
@@ -21,23 +21,27 @@ export default function ProjectsPage() {
     <Shell>
       <PageHead
         index="01"
-        label="Work"
-        title="Everything I can show."
+        label="Projects"
+        title="Projects"
         lede="Internal work at C Spire is described without the code. Everything else links to the repository."
       />
 
       <ul className="pb-8">
         {listed.map((project, i) => (
           <Reveal as="li" key={project.id} delay={(i % 3) * 50}>
-            <article className="grid gap-6 border-t border-[var(--rule)] py-10 lg:grid-cols-[18rem_1fr] lg:gap-12">
-              <div className="relative aspect-[16/10] w-full overflow-hidden border border-[var(--rule)] bg-[var(--surface-2)] lg:aspect-[4/3]">
+            <article className="glass glass-panel glass-hover my-4 grid gap-6 p-6 lg:grid-cols-[18rem_1fr] lg:gap-10 lg:p-8">
+              <div className="glass-media relative aspect-[16/10] w-full bg-[var(--surface-2)] lg:aspect-[4/3]">
                 <Image
                   src={project.imagePath}
                   alt=""
                   fill
                   loading="lazy"
                   sizes="(max-width: 1024px) 100vw, 288px"
-                  className="object-cover"
+                  className={
+                    project.imageFit === 'contain'
+                      ? 'bg-white object-contain p-6'
+                      : 'object-cover'
+                  }
                 />
               </div>
 
