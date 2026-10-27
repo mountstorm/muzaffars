@@ -8,11 +8,21 @@ import { useEffect, useRef } from 'react';
  * screensaver. Each mark is something real: where he studies, where he
  * interned, what he reads, what he plays, what he researches.
  */
-const MARKS = [
+type Mark = {
+  src: string;
+  alt: string;
+  size: number;
+  vx: number;
+  vy: number;
+  /** Photographs fill the tile; logos sit on a white chip inside it. */
+  photo?: boolean;
+};
+
+const MARKS: Mark[] = [
   { src: '/images/logos/cspire.png', alt: 'C Spire', size: 76, vx: 0.22, vy: 0.17 },
   { src: '/images/logos/olemiss.png', alt: 'University of Mississippi', size: 84, vx: -0.18, vy: 0.23 },
   { src: '/images/logos/chess.png', alt: 'Chess', size: 64, vx: 0.26, vy: -0.2 },
-  { src: '/images/logos/stranger.png', alt: 'The Stranger by Albert Camus', size: 60, vx: -0.24, vy: -0.15 },
+  { src: '/images/logos/camus.webp', alt: 'Albert Camus', size: 76, vx: -0.24, vy: -0.15, photo: true },
   { src: '/images/logos/neural.png', alt: 'Neural networks', size: 70, vx: 0.2, vy: 0.26 }
 ];
 
@@ -100,24 +110,44 @@ export default function FloatingMarks() {
             borderRadius: m.size * 0.28
           }}
         >
-          {/* These marks are white-background PNGs, so they need a white chip
-              to sit on — otherwise they disappear into light glass. */}
-          <div
-            className="grid place-items-center bg-white"
-            style={{
-              width: m.size * 0.78,
-              height: m.size * 0.78,
-              borderRadius: m.size * 0.2
-            }}
-          >
-            <Image
-              src={m.src}
-              alt=""
-              width={Math.round(m.size * 0.62)}
-              height={Math.round(m.size * 0.62)}
-              className="object-contain"
-            />
-          </div>
+          {m.photo ? (
+            // A photograph fills the tile and is cropped to it.
+            <div
+              className="relative overflow-hidden"
+              style={{
+                width: m.size * 0.84,
+                height: m.size * 0.84,
+                borderRadius: m.size * 0.21
+              }}
+            >
+              <Image
+                src={m.src}
+                alt=""
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            // Logos are white-background files, so they need a white chip to
+            // sit on — otherwise they disappear into light glass.
+            <div
+              className="grid place-items-center bg-white"
+              style={{
+                width: m.size * 0.78,
+                height: m.size * 0.78,
+                borderRadius: m.size * 0.2
+              }}
+            >
+              <Image
+                src={m.src}
+                alt=""
+                width={Math.round(m.size * 0.62)}
+                height={Math.round(m.size * 0.62)}
+                className="object-contain"
+              />
+            </div>
+          )}
         </div>
       ))}
     </div>
