@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { SITE } from '@/lib/site';
 import FloatingMarks from './FloatingMarks';
 
 export default function Hero() {
@@ -64,18 +63,6 @@ export default function Hero() {
               Read the resume
             </Link>
           </div>
-
-          <p
-            className="rise glass glass-pill mono mt-8 inline-flex max-w-full items-start gap-2.5 px-4 py-2 text-[0.82rem] text-[var(--muted)]"
-            style={{ '--d': '480ms' } as React.CSSProperties}
-          >
-            {/* shrink-0 keeps the dot on the first line when the text wraps */}
-            <span
-              aria-hidden="true"
-              className="mt-[0.55em] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--leaf)]"
-            />
-            <span>{SITE.availability}</span>
-          </p>
         </div>
 
         {/* Portrait */}
