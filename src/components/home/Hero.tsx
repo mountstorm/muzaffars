@@ -50,7 +50,7 @@ export default function Hero() {
               href="/projects"
               className="group inline-flex min-h-[48px] items-center gap-2.5 rounded-full bg-[var(--accent)] px-6 text-[0.95rem] font-medium text-[var(--accent-ink)] shadow-[var(--glass-shadow)] transition-opacity hover:opacity-90"
             >
-              View selected work
+              View projects
               <ArrowRight
                 size={17}
                 aria-hidden="true"

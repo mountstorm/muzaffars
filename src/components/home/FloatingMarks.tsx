@@ -85,7 +85,7 @@ export default function FloatingMarks() {
     <div
       ref={hostRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden"
+      className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block"
     >
       {MARKS.map((m, i) => (
         <div
